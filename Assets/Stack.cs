@@ -9,6 +9,7 @@ public class Stack : MonoBehaviour
     [SerializeField] public Transform[] Placements = new Transform[6];
     public Stack<GameObject> Deck = new Stack<GameObject>();
     public List<GameObject> Discard = new List<GameObject>();
+    public bool[] placements = new bool[6];
     int randNumber;
 
     private void Start()
@@ -24,7 +25,7 @@ public class Stack : MonoBehaviour
         {
             Debug.Log("Not Enough Cards");
         }
-        if (Discard.Count > 12)
+        if(Discard.Count > 12)
         {
             Debug.Log("Too Many Cards");
         }
@@ -43,10 +44,6 @@ public class Stack : MonoBehaviour
 
     public void Draw()
     {
-        if (Deck.Count == 0)
-        {
-            Shuffle();
-        }
         for (int i = 0; i < 6; i++)
         {
             Debug.Log("Popped");

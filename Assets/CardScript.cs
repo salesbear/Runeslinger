@@ -6,6 +6,7 @@ public class CardScript : MonoBehaviour
 {
     [SerializeField] int damage;
     [SerializeField] int shield;
+    Stack stack = new Stack();
     public void PlayCard()
     {
         Debug.Log("You Played Card");
@@ -14,6 +15,7 @@ public class CardScript : MonoBehaviour
     void OnMouseDown()
     {
         Debug.Log("You Played Card");
+
         Destroy(gameObject);
     }
 }
