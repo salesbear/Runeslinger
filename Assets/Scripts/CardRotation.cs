@@ -8,10 +8,10 @@ using System.Collections;
 [ExecuteInEditMode]
 public class CardRotation : MonoBehaviour {
 
-    public RectTransform CardFront;
-    public RectTransform CardBack;
+    public RectTransform cardFront;
+    public RectTransform cardBack;
     public Transform targetFacePoint;
-    public Collider col;
+    public Collider collider;
 
     private bool showingBack = false;
 
@@ -28,7 +28,7 @@ public class CardRotation : MonoBehaviour {
 
         foreach (RaycastHit h in hits)
         {
-            if (h.collider == col)
+            if (h.collider == collider)
                 passedThroughColliderOnCard = true;
         }
 
@@ -38,13 +38,13 @@ public class CardRotation : MonoBehaviour {
 
             if (showingBack)
             {
-                CardFront.gameObject.SetActive(false);
-                CardBack.gameObject.SetActive(true);
+                cardFront.gameObject.SetActive(false);
+                cardBack.gameObject.SetActive(true);
             }
             else
             {
-                CardFront.gameObject.SetActive(true);
-                CardBack.gameObject.SetActive(false);
+                cardFront.gameObject.SetActive(true);
+                cardBack.gameObject.SetActive(false);
             }
         }
 	}
