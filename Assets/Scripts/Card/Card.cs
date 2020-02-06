@@ -19,12 +19,20 @@ public enum CardClass
     Air
 }
 
+public enum CardType
+{
+    Ailment, // negative effect
+    Attack,
+    Action, // one-off effect
+    Ability // positive effect
+}
+
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
 public class Card : ScriptableObject
 {
     public string cardName;
     public CardClass cardClass;
-    public string cardType;
+    public CardType cardType;
 
     [TextArea(2, 3)]
     public string description;
