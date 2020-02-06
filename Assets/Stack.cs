@@ -9,9 +9,9 @@ public class Stack : MonoBehaviour
     [SerializeField] GameObject card3;
     public int field;
     [SerializeField] public Transform[] Placements = new Transform[6];
-    private Stack<GameObject> Deck = new Stack<GameObject>(0);
+    public Stack<GameObject> Deck = new Stack<GameObject>();
     public List<GameObject> Discard = new List<GameObject>();
-    private List<GameObject> Hand = new List<GameObject>(6);
+    private List<GameObject> Hand = new List<GameObject>();
     //private bool[] placements = new bool[];
     int randNumber;
 
@@ -43,7 +43,10 @@ public class Stack : MonoBehaviour
         }
         for (int i = 0; i < 6; i++)
         {
-            Instantiate(Deck.Pop(), Placements[i].transform.position, Quaternion.identity);
+            Debug.Log("Popped");
+            GameObject popped = Deck.Pop();
+            Discard.Add(popped);
+            Instantiate(popped, Placements[i].transform.position, Quaternion.identity);
         }
     }
 
@@ -52,7 +55,7 @@ public class Stack : MonoBehaviour
         Discard.Add(played);
         Hand.Remove(played);
     }
-    
+
     public void AddToHand(GameObject card)
     {
         Hand.Add(card);

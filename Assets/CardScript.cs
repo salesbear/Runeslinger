@@ -9,7 +9,7 @@ public class CardScript : MonoBehaviour
     [SerializeField] PlayerScript player;
     [SerializeField] Stack stack;
 
-    public void Start(Transform location)
+    public void Start()
     {
         stack.AddToHand(gameObject);
     }
