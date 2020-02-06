@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Magic Guard
   cardClass: 1
-  cardType: Defense
+  cardType: 1
   description: Gain 5 defense this turn
   cardImage: {fileID: 21300000, guid: cd2261401fad2cd4aa7872fe44fc35b4, type: 3}
   gritCost: 0

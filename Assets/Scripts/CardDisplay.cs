@@ -39,7 +39,7 @@ public class CardDisplay : MonoBehaviour
         {
             cardName.text = card.cardName;
             cardClass = card.cardClass;
-            cardType.text = card.cardType;
+            cardType.text = card.cardType.ToString();
             description.text = card.description;
             gritCost.text = card.gritCost.ToString();
             target = card.target;
