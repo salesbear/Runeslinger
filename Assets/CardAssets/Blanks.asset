@@ -18,4 +18,8 @@ MonoBehaviour:
   description: Deal 0 damage to target, draw a card
   cardImage: {fileID: 21300000, guid: b8e8bcc74b9b6e543bc8870d140d857b, type: 3}
   gritCost: 0
+  cardsDrawn: 1
+  damage: 0
+  shield: 0
+  gritGained: 0
   target: 1
