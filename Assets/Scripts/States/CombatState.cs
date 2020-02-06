@@ -6,5 +6,6 @@
     Discard,
     Loss,
     Victory,
-    RewardScreen
+    RewardScreen,
+    ViewDeck
 }
