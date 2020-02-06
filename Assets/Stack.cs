@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Stack : MonoBehaviour
 {
-    [SerializeField] GameObject[] PossibleCards = new GameObject[6];
+    [SerializeField] List<GameObject> PossibleCards = new List<GameObject>();
+    [SerializeField] List<int> Instances = new List<int>(); // Details the Instances of the Possible Card with the corresponding index
     [SerializeField] public Transform[] Placements = new Transform[6];
     public Stack<GameObject> Deck = new Stack<GameObject>();
     public List<GameObject> Discard = new List<GameObject>();
@@ -12,18 +13,21 @@ public class Stack : MonoBehaviour
 
     private void Start()
     {
-        Discard.Add(PossibleCards[0]);
-        Discard.Add(PossibleCards[1]);
-        Discard.Add(PossibleCards[2]);
-        Discard.Add(PossibleCards[3]);
-        Discard.Add(PossibleCards[4]);
-        Discard.Add(PossibleCards[5]);
-        Discard.Add(PossibleCards[0]);
-        Discard.Add(PossibleCards[1]);
-        Discard.Add(PossibleCards[2]);
-        Discard.Add(PossibleCards[3]);
-        Discard.Add(PossibleCards[4]);
-        Discard.Add(PossibleCards[5]);
+        for(int i = 0; i < PossibleCards.Count; i++)
+        {
+            for(int y = 0; y < Instances[i]; y++)
+            {
+                Discard.Add(PossibleCards[i]);
+            }
+        }
+        if(Discard.Count < 12)
+        {
+            Debug.Log("Not Enough Cards");
+        }
+        if (Discard.Count > 12)
+        {
+            Debug.Log("Too Many Cards");
+        }
     }
 
     public void Shuffle()
