@@ -15,11 +15,11 @@ MonoBehaviour:
   cardName: Grape Shot
   cardClass: 0
   cardType: 1
-  description: Deal 1 damage to all enemies
+  description: Deal 2 damage to all enemies
   cardImage: {fileID: 21300000, guid: b8e8bcc74b9b6e543bc8870d140d857b, type: 3}
-  gritCost: 1
+  gritCost: 2
   cardsDrawn: 0
-  damage: 1
+  damage: 2
   shield: 0
   gritGained: 0
   target: 2
