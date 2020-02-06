@@ -61,10 +61,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb181a0a950df444d9cd90453e002dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card1: {fileID: 1342034871789455630, guid: 2d853fe1e58369345a139e91d73c2442, type: 3}
-  card2: {fileID: 1795766638147648354, guid: bc93864ef47e95b4eb1514e279de4d5d, type: 3}
-  card3: {fileID: 3517243048852285669, guid: 0c995b1f4c1c06e4eb53845333ed151a, type: 3}
-  field: 0
+  PossibleCards:
+  - {fileID: 1342034871789455630, guid: 0fa3d855535ba0a4085862fc5b0ddc75, type: 3}
+  - {fileID: 1795766638147648354, guid: c6c62413e6570f74daf98a84a9e07b29, type: 3}
+  - {fileID: 1342034871789455630, guid: 2d853fe1e58369345a139e91d73c2442, type: 3}
+  - {fileID: 1795766638147648354, guid: bc93864ef47e95b4eb1514e279de4d5d, type: 3}
+  - {fileID: 3517243048852285669, guid: 212dfb859f2d52b49b1ce555fe96f732, type: 3}
+  - {fileID: 3517243048852285669, guid: 0c995b1f4c1c06e4eb53845333ed151a, type: 3}
   Placements:
   - {fileID: 5278855932125669903, guid: 53a45cf6097cfb049927b28a282fed7b, type: 3}
   - {fileID: 7763997302242889629, guid: f1145ca740272e640a5f0a8a2624441e, type: 3}
@@ -72,3 +75,4 @@ MonoBehaviour:
   - {fileID: 8862848072893908355, guid: 16f73289b244f094b94cbedc4b70d59c, type: 3}
   - {fileID: 1254319795213877453, guid: fbc2bda8383f0b34285fbe525a9ef560, type: 3}
   - {fileID: 377588104477088138, guid: a0975058e5202bc49ac14ab0978ecbd3, type: 3}
+  Discard: []

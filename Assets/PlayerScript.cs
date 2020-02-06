@@ -17,9 +17,4 @@ public class PlayerScript : MonoBehaviour
             Debug.Log("You aren't crazy");
         }
     }
-    void OnMouseUp()
-    {
-        deck.Draw();
-        Debug.Log("You aren't crazy");
-    }
 }

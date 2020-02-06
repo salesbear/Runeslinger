@@ -11,26 +11,15 @@ public class CardScript : MonoBehaviour
 
     public void Start()
     {
-        stack.AddToHand(gameObject);
     }
     public void PlayCard()
     {
         Debug.Log("You Played Card");
-        stack.AddToDiscard(gameObject);
         Destroy(gameObject);
     }
     void OnMouseDown()
     {
         Debug.Log("You Played Card");
-        stack.AddToDiscard(gameObject);
         Destroy(gameObject);
-    }
-
-    public void Move(Transform destination)
-    {
-        transform.position = destination.position;
-    }
-    private void Update()
-    {
     }
 }

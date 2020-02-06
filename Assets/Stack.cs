@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class Stack : MonoBehaviour
 {
-    [SerializeField] GameObject card1;
-    [SerializeField] GameObject card2;
-    [SerializeField] GameObject card3;
-    public int field;
+    [SerializeField] GameObject[] PossibleCards = new GameObject[6];
     [SerializeField] public Transform[] Placements = new Transform[6];
     public Stack<GameObject> Deck = new Stack<GameObject>();
     public List<GameObject> Discard = new List<GameObject>();
-    private List<GameObject> Hand = new List<GameObject>();
-    //private bool[] placements = new bool[];
     int randNumber;
 
     private void Start()
     {
-        Discard.Add(card1);
-        Discard.Add(card2);
-        Discard.Add(card3);
-        Discard.Add(card1);
-        Discard.Add(card2);
-        Discard.Add(card3);
+        Discard.Add(PossibleCards[0]);
+        Discard.Add(PossibleCards[1]);
+        Discard.Add(PossibleCards[2]);
+        Discard.Add(PossibleCards[3]);
+        Discard.Add(PossibleCards[4]);
+        Discard.Add(PossibleCards[5]);
+        Discard.Add(PossibleCards[0]);
+        Discard.Add(PossibleCards[1]);
+        Discard.Add(PossibleCards[2]);
+        Discard.Add(PossibleCards[3]);
+        Discard.Add(PossibleCards[4]);
+        Discard.Add(PossibleCards[5]);
     }
 
     public void Shuffle()
@@ -33,6 +34,7 @@ public class Stack : MonoBehaviour
             Deck.Push(Discard[randNumber]);
             Discard.RemoveAt(randNumber);
         }
+        Discard.Clear();
     }
 
     public void Draw()
@@ -48,16 +50,5 @@ public class Stack : MonoBehaviour
             Discard.Add(popped);
             Instantiate(popped, Placements[i].transform.position, Quaternion.identity);
         }
-    }
-
-    public void AddToDiscard(GameObject played)
-    {
-        Discard.Add(played);
-        Hand.Remove(played);
-    }
-
-    public void AddToHand(GameObject card)
-    {
-        Hand.Add(card);
     }
 }
