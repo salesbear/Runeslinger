@@ -191,7 +191,7 @@ PrefabInstance:
         type: 3}
       propertyPath: card
       value: 
-      objectReference: {fileID: 11400000, guid: 19198dc7abce74b4e8573903bc6b02b2,
+      objectReference: {fileID: 11400000, guid: ef2119c6b4e7b934d94264c1cd2e771e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3040c1ea3dd497a4490f16a0b474744f, type: 3}
@@ -266,7 +266,7 @@ PrefabInstance:
         type: 3}
       propertyPath: card
       value: 
-      objectReference: {fileID: 11400000, guid: 5b00852f5a0ce1d4d8b6a8ef8431c83f,
+      objectReference: {fileID: 11400000, guid: cdc68f9754d45ec439e48f1714651335,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3040c1ea3dd497a4490f16a0b474744f, type: 3}
@@ -486,5 +486,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5536637327101232225, guid: 3040c1ea3dd497a4490f16a0b474744f,
+        type: 3}
+      propertyPath: card
+      value: 
+      objectReference: {fileID: 11400000, guid: 19a75c1e200b5de46afb53690ea00347,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3040c1ea3dd497a4490f16a0b474744f, type: 3}
