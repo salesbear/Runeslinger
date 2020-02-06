@@ -6,18 +6,6 @@ public class MainMenuUIController : MonoBehaviour
 {
     [SerializeField] GameObject[] panels;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnEnable()
     {
         MainMenuController.StateChanged += OnStateChanged;
@@ -28,9 +16,11 @@ public class MainMenuUIController : MonoBehaviour
         MainMenuController.StateChanged -= OnStateChanged;
     }
 
+    //None = 0, Root = 1, Settings = 2, Credits = 3
     void OnStateChanged(MenuState newState)
     {
         int index = (int)newState - 1;
+        //Debug.Log(index);
         DisablePanels();
         panels[index].gameObject.SetActive(true);
     }
