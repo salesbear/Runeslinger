@@ -13,7 +13,6 @@ public enum TargetingOption
 
 public enum CardClass
 {
-    Classless,
     Fire,
     Water, 
     Earth,

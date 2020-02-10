@@ -46,7 +46,6 @@ public class CardDisplay : MonoBehaviour
 
             cardImage.sprite = card.cardImage;
 
-            /*
             if (cardClass.ToString() == "Fire")
             {
                 cardFrontBackgroundImage.color = new Color32(217, 30, 32, 232);
@@ -83,7 +82,6 @@ public class CardDisplay : MonoBehaviour
                 // cardFrontFrameImage = 
                 // cardBackFrameImage =
             }
-            */
 
             /*
             if (previewManager != null)
