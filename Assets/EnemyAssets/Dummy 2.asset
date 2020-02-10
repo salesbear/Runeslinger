@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b12d4910493323c499eb822ea33f7368, type: 3}
-  m_Name: Dummy
+  m_Name: Dummy 2
   m_EditorClassIdentifier: 
   enemyName: Dummy
-  maxHP: 12
-  currentHP: 6
+  maxHP: 14
+  currentHP: -40
   currentShield: 0
   hiRollDmg: 10
   loRollDmg: 6
   shielding: 0
   enemySprite: {fileID: 21300000, guid: 424a1f41af271f8418d5da7e3198911b, type: 3}
-  behaviorStep: 0
+  behaviorStep: 5
   behavior: 010000000000000002000000030000000400000005000000

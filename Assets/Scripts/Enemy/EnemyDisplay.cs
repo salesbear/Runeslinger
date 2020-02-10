@@ -27,10 +27,34 @@ public class EnemyDisplay : MonoBehaviour
     public Sprite debuff;
     public Sprite other;
 
+    private void OnEnable()
+    {
+        enemy.EnemyUIUpdate += UpdateUI;
+        enemy.Die += OnDie;
+    }
+
+    private void OnDisable()
+    {
+        enemy.EnemyUIUpdate -= UpdateUI;
+        enemy.Die -= OnDie;
+    }
+
     void Start()
     {
-        enemy.SetUp();
-        ReadEnemyFromAsset();      
+        enemy.SetUp(); 
+    }
+
+    private void UpdateUI()
+    {
+        ReadEnemyFromAsset();
+    }
+    
+    void OnDie()
+    {
+        enemy.currentHP = 0;
+        ReadEnemyFromAsset();
+
+        this.gameObject.SetActive(false);
     }
 
     void ReadEnemyFromAsset()

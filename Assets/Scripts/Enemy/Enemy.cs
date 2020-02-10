@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public enum PreparedAction
@@ -13,9 +12,11 @@ public enum PreparedAction
 }
 
 [CreateAssetMenu(fileName = "NewEnemy", menuName = "Enemy")]
-public class Enemy : ScriptableObject
+public class Enemy : ScriptableObject, IDamagable
 {
     //TODO: Actions to alert EnemyDisplay that the Enemy's Stats have changed
+    public event Action EnemyUIUpdate = delegate { };
+    public event Action Die = delegate { };
 
     public string enemyName;
     public int maxHP;
@@ -41,37 +42,38 @@ public class Enemy : ScriptableObject
         {
             RollDamage();
         }
+        EnemyUIUpdate?.Invoke();
     }
 
-    public void stepBehavior()
+    public void StepBehavior()
     {
         //check to make sure shit hasn't just gone completely south
-        if(behaviorStep > behavior.Length || behaviorStep < 0)
+        if (behaviorStep > behavior.Length || behaviorStep < 0)
         {
             //if it has, reset
             behaviorStep = 0;
-            return;
         }
-
-        //otherwise, business as normal.
-        behaviorStep++;
-        //loop behavior
-        if(behaviorStep > behavior.Length)
+        else
         {
-            behaviorStep = 0;
+            //otherwise, business as normal.
+            behaviorStep++;
+            //loop behavior
+            if (behaviorStep > behavior.Length)
+            {
+                behaviorStep = 0;
+            }
         }
-
         preparedAction = behavior[behaviorStep];
-
         if(preparedAction == PreparedAction.Attack)
         {
             RollDamage();
         }
+        EnemyUIUpdate?.Invoke();
     }
 
     public void RollDamage()
     {
-        rolledDamage = Random.Range(loRollDmg, hiRollDmg);
+        rolledDamage = UnityEngine.Random.Range(loRollDmg, hiRollDmg);
     }
 
     //public void DealDamage(Player target)
@@ -81,11 +83,11 @@ public class Enemy : ScriptableObject
     }
 
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damageTaken)
     {
         if (currentShield > 0)
         {
-            currentShield -= damage;
+            currentShield -= damageTaken;
             if (currentShield < 0)
             {
                 currentHP += currentShield; //any negative shield is carried over as HP damage
@@ -93,28 +95,26 @@ public class Enemy : ScriptableObject
         }
         else
         {
-            currentHP -= damage;
+            currentHP -= damageTaken;
         }
 
         if (currentHP <= 0)
         {
-            Die();
+            Die?.Invoke();
         }
+        EnemyUIUpdate?.Invoke();
     }
 
     public void Shield(int shieldAmount)
     {
         currentShield += shieldAmount;
+        EnemyUIUpdate?.Invoke();
     }
     public void Shield(Enemy target, int shieldAmount) //overload for shielding another enemy
     {
         target.currentShield += shieldAmount;
+        EnemyUIUpdate?.Invoke();
     }
     
-
-    public void Die()
-    {
-        GameObject.Destroy(this);
-    }
 
 }
