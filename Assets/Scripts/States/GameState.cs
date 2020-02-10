@@ -6,5 +6,6 @@
     Pause,
     Campsite,
     Combat,
-    ResultScreen
+    ResultScreen,
+    ViewDeck
 }

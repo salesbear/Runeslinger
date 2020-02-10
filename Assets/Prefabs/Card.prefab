@@ -85,8 +85,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5536637327101232224}
   - component: {fileID: 8650720697247717111}
+  - component: {fileID: -4392402568041960094}
   - component: {fileID: 8650720697247717108}
   - component: {fileID: 5536637327101232225}
+  - component: {fileID: -8160941179483518074}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -123,6 +125,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9161131, y: 3.3739295, z: 0.01}
   m_Center: {x: 0.012233615, y: 0.039709806, z: 0}
+--- !u!114 &-4392402568041960094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5536637327101232231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3a0ddb72785c614f87017a118ad981e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8650720697247717108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +179,18 @@ MonoBehaviour:
   gritImage: {fileID: 5536637329029806913}
   cardTopRibbonImage: {fileID: 5536637328101842368}
   cardBottomRibbonImage: {fileID: 5536637327509723184}
+--- !u!114 &-8160941179483518074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5536637327101232231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd02c17f52662a4598668cdd0a49dc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5536637327162804174
 GameObject:
   m_ObjectHideFlags: 0

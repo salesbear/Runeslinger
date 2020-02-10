@@ -13,6 +13,7 @@ public enum TargetingOption
 
 public enum CardClass
 {
+    Classless,
     Fire,
     Water, 
     Earth,
@@ -38,6 +39,14 @@ public class Card : ScriptableObject
     public string description;
     public Sprite cardImage;
     public int gritCost;
+    [Tooltip("The cards you draw on play")]
+    public int cardsDrawn = 0 ;
+    [Tooltip("The amount of damage you do, negative for healing")]
+    public int damage = 0;
+    [Tooltip("The amount you shield the player")]
+    public int shield = 0;
+    [Tooltip("The amount of grit you gain")]
+    public int gritGained = 0;
 
     public TargetingOption target;
 }
