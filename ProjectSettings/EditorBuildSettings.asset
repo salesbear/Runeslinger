@@ -5,7 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: dd763b0f80cc091419326d09ab51c067
+  - enabled: 1
+    path: Assets/Scenes/LevelSelect.unity
+    guid: 7a67a703f2b4cf940b8260e73a022e71
+  - enabled: 1
+    path: Assets/Scenes/Combat.unity
+    guid: f76c9cf67f3ff8a4ea105e1650a2ffde
+  - enabled: 1
+    path: Assets/Scenes/Campsite.unity
+    guid: 3294617929c052240969910f148b6d69
+  - enabled: 0
+    path: Assets/Scenes/ResultScreen.unity
+    guid: e6ae8d4547a29ab4f9181443e4c444cb
   m_configObjects: {}
