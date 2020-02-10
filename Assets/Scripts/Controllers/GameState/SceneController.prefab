@@ -43,10 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de39a45b9f851a4f9b4f2f0915a964c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statesToWatch: 0100000002000000040000000500000006000000
+  statesToWatch: 010000000200000004000000050000000600000007000000
   sceneNames:
   - MainMenu
   - LevelSelect
   - Campsite
   - Combat
   - ResultScreen
+  - ViewDeck
