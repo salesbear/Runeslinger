@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3681588313385037792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3681588313385037794}
+  - component: {fileID: 3681588313385037797}
+  - component: {fileID: 3681588313385037796}
+  m_Layer: 0
+  m_Name: LevelController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3681588313385037794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3681588313385037792}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3681588313385037797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3681588313385037792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6adfcf962cd8b9f44b00162bebe5c012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  shield: 0
+  deck: {fileID: 3681588313385037796}
+  card: {fileID: 1342034871789455630, guid: 2d853fe1e58369345a139e91d73c2442, type: 3}
+  target: {fileID: 1795766638147648354, guid: bc93864ef47e95b4eb1514e279de4d5d, type: 3}
+--- !u!114 &3681588313385037796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3681588313385037792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb181a0a950df444d9cd90453e002dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PossibleCards:
+  - {fileID: 8609372275368051883, guid: 85556ff12f33b6846be4fbb1fc838635, type: 3}
+  - {fileID: 9004199876624356303, guid: 90c55b5543e7879448cddff14e920ee3, type: 3}
+  - {fileID: 4381733267658560522, guid: 2881db2645ed31a4dba6a0c128137738, type: 3}
+  Instances: 040000000400000004000000
+  Placements:
+  - {fileID: 5278855932125669903, guid: 53a45cf6097cfb049927b28a282fed7b, type: 3}
+  - {fileID: 7763997302242889629, guid: f1145ca740272e640a5f0a8a2624441e, type: 3}
+  - {fileID: 8640396187707887687, guid: 550359cde4fd115428b2f51ffe4578d6, type: 3}
+  - {fileID: 8862848072893908355, guid: 16f73289b244f094b94cbedc4b70d59c, type: 3}
+  - {fileID: 1254319795213877453, guid: fbc2bda8383f0b34285fbe525a9ef560, type: 3}
+  - {fileID: 377588104477088138, guid: a0975058e5202bc49ac14ab0978ecbd3, type: 3}
+  Discard: []
+  placements: 000000000000
