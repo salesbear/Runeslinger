@@ -746,6 +746,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 747708240}
   m_CullTransparentMesh: 0
+--- !u!1 &752817582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 752817584}
+  - component: {fileID: 752817583}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &752817583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752817582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0392a11f30b0d314d83c84cc444c75c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerClass:
+    maxHealth: 30
+    currentHealth: 30
+    deckList:
+    - {fileID: 11400000, guid: a4f2a4a97529a8a459564bd6763068ad, type: 2}
+    - {fileID: 11400000, guid: 649a6d0cec57c8745a44090a3acfed17, type: 2}
+    - {fileID: 11400000, guid: 2e3cccb5c44605346adfbbe3f011ef8f, type: 2}
+    - {fileID: 11400000, guid: 1237a5b9345688248bb0e7769cbab790, type: 2}
+    - {fileID: 11400000, guid: ef484cfa410b12c4f8280fcdc1ffefb6, type: 2}
+    - {fileID: 11400000, guid: de2b2b5fcdb96f54e9b4be68a7c03555, type: 2}
+    - {fileID: 11400000, guid: 1a85885f9f7f1e446a442c7a5ae365bb, type: 2}
+    - {fileID: 11400000, guid: ef2119c6b4e7b934d94264c1cd2e771e, type: 2}
+    - {fileID: 11400000, guid: cdc68f9754d45ec439e48f1714651335, type: 2}
+    - {fileID: 11400000, guid: da1b8581e69f90e449076b6b74d09755, type: 2}
+    maxGrit: 4
+    currentGrit: 4
+    accuracyThisTurn: 0
+    accuracyThisBattle: 0
+    shield: 0
+--- !u!4 &752817584
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752817582}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.79, y: 1.183625, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &776637618
 GameObject:
   m_ObjectHideFlags: 0
