@@ -17,6 +17,7 @@ public class Campfire : MonoBehaviour
 
     public void HealPlayer()
     {
+        /*
         if (player.currentHealth < player.maxHealth)
         {
             if (player.currentHealth + healAmount <= player.maxHealth)
@@ -24,5 +25,7 @@ public class Campfire : MonoBehaviour
             else
                 player.currentHealth = player.maxHealth;
         }
+        */
+        player.currentHealth -= 5;
     }
 }
