@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    BaseClassless playerClass = new BaseClassless();
+    public BaseClassless playerClass;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerClass = new BaseClassless();
         playerClass.Classless();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(playerClass.maxHealth);
+        
     }
 }

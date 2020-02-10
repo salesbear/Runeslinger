@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class BaseClassless : BaseCharacterClass
 {
     public void Classless()
     {
         maxHealth = 30;
-        currentHealth = 30;
+        currentHealth = 29;
 
         maxGrit = 4;
         currentGrit = 4;
