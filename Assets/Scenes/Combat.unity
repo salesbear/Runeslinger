@@ -9981,6 +9981,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4601971244392130289, guid: ef5f12edcfa1ebe41a6b066b6445591c,
+        type: 3}
+      propertyPath: playerTurnEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4601971244392130289, guid: ef5f12edcfa1ebe41a6b066b6445591c,
+        type: 3}
+      propertyPath: playerTurnEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4601971244392130289, guid: ef5f12edcfa1ebe41a6b066b6445591c,
+        type: 3}
+      propertyPath: playerTurnEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef5f12edcfa1ebe41a6b066b6445591c, type: 3}
 --- !u!114 &7060422671071741746 stripped
