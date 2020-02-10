@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/ResultScreen.unity
     guid: e6ae8d4547a29ab4f9181443e4c444cb
+  - enabled: 1
+    path: Assets/Scenes/ViewDeck.unity
+    guid: 7b86747c5fedfad41bf042e67790c549
   m_configObjects: {}
