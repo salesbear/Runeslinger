@@ -37,6 +37,7 @@ public class Enemy : ScriptableObject, IDamagable
 
     public void SetUp()
     {
+        currentHP = maxHP;
         preparedAction = behavior[behaviorStep];
         if (preparedAction == PreparedAction.Attack)
         {
