@@ -5,28 +5,24 @@ using UnityEngine;
 public class Campfire : MonoBehaviour
 {
     PlayerStats playerStats;
+    BaseClassless player;
     public int healAmount;
 
     // Start is called before the first frame update
     void Start()
     {
         playerStats = FindObjectOfType<PlayerStats>();
+        player = playerStats.playerClass;
     }
 
     public void HealPlayer()
     {
-        Debug.Log(playerStats.playerClass.currentHealth);
-        if (playerStats.playerClass.currentHealth < playerStats.playerClass.maxHealth)
+        if (player.currentHealth < player.maxHealth)
         {
-            if (playerStats.playerClass.currentHealth + healAmount <= playerStats.playerClass.maxHealth)
-            {
-                playerStats.playerClass.currentHealth += healAmount;
-            }
+            if (player.currentHealth + healAmount <= player.maxHealth)
+                player.currentHealth += healAmount;
             else
-            {
-                playerStats.playerClass.currentHealth = playerStats.playerClass.maxHealth;
-            }
+                player.currentHealth = player.maxHealth;
         }
-        Debug.Log(playerStats.playerClass.currentHealth);
     }
 }

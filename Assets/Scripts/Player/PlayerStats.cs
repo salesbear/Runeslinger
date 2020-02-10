@@ -10,12 +10,5 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         playerClass = new BaseClassless();
-        playerClass.Classless();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
