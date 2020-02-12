@@ -5,17 +5,26 @@ using UnityEngine;
 [System.Serializable]
 public class BaseClassless 
 {
+    [System.Serializable]
+    public struct Status
+    {
+        public int gritApplied;
+        public int accuracyApplied;
+        public int shieldApplied;
+        public int numTurnsLeft;
+    }
+
     [Header("Essentials")]
     public int maxHealth;
     public int currentHealth;
-    public Card[] deckList;
+    public Object[] deckList;
 
     [Header("Combat")]
     public int maxGrit;
     public int currentGrit;
-    public int accuracyThisTurn;
-    public int accuracyThisBattle;
+    public int accuracy;
     public int shield;
+    public Status[] status = new Status[10];
 
     public BaseClassless()
     {
@@ -24,8 +33,7 @@ public class BaseClassless
 
         maxGrit = 4;
         currentGrit = 4;
-        accuracyThisTurn = 0;
-        accuracyThisBattle = 0;
+        accuracy = 0;
         shield = 0;
     }
 }

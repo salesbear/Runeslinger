@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-
 public class GameStateController : MonoBehaviour
 {
     public GameState state { get; private set; }
@@ -12,6 +11,7 @@ public class GameStateController : MonoBehaviour
     public GameState m_startingState;
     //the previous state, used for unpausing
     public GameState m_previousState { get; private set; }
+
     // Start is called before the first frame update
     void Start()
     {
