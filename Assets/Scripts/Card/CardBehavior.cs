@@ -15,7 +15,12 @@ public class CardBehavior : MonoBehaviour
         card = GetComponent<CardDisplay>().card;
         if (card.target == TargetingOption.Enemies)
         {
-            //targets = FindObjectsOfType<Enemy>().gameObject
+            targets = new List<GameObject>();
+            EnemyDisplay[] enemies = FindObjectsOfType<EnemyDisplay>();
+            foreach (EnemyDisplay enemyDisplay in enemies)
+            {
+                targets.Add(enemyDisplay.gameObject);
+            }
         }
         else if (card.target == TargetingOption.Player)
         {

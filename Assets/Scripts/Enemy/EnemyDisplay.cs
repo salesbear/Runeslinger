@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class EnemyDisplay : MonoBehaviour
+public class EnemyDisplay : MonoBehaviour, IDamagable
 {
     public Enemy enemy;
 
@@ -101,6 +101,11 @@ public class EnemyDisplay : MonoBehaviour
                 rolledDMG.gameObject.SetActive(false);
             }
         }
+    }
+
+    public void TakeDamage(int damageTaken)
+    {
+        enemy.TakeDamage(damageTaken);
     }
 }
 
