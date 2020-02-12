@@ -15,8 +15,8 @@ public class Stack : MonoBehaviour
 
     private void Awake()
     {
-        // Gets Component from the 3rd child which should be the hand
-        HandLayout = transform.GetChild(2).GetComponent<HorizontalLayoutGroup>();
+        // Get the hand layout
+        HandLayout = GetComponentInChildren<HorizontalLayoutGroup>();
         HandLayout.enabled = false;
     }
     private void Start()
