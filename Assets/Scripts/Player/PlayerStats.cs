@@ -56,6 +56,13 @@ public class PlayerStats : MonoBehaviour, IDamagable
     }
 
     // status is played during player turn
+    /// <summary>
+    /// create a status effect on the player
+    /// </summary>
+    /// <param name="whichStatus">the status you're applying, 1 = grit, 2 = accuracy, 3 = shield</param>
+    /// <param name="pos">this is PlayerStats.instance.posStatus, probably shouldn't be a parameter</param>
+    /// <param name="status">the amount you're applying</param>
+    /// <param name="turns">the number of turns to apply it for</param>
     public void CallStatus(int whichStatus, int pos, int status, int turns)
     {
         // 1- grit, 2- accuracy, 3- shield

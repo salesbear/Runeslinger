@@ -7,21 +7,22 @@ public class CardBehavior : MonoBehaviour
 {
     //the card we're playing
     private Card card;
-    private List<GameObject> targets;
+    private List<GameObject> targets = new List<GameObject>();
     
     private void Awake()
     {
         //get the card we set in card display
         card = GetComponent<CardDisplay>().card;
+        //if we're targeting all enemies, find all enemies and add them to targets
         if (card.target == TargetingOption.Enemies)
         {
-            targets = new List<GameObject>();
             EnemyDisplay[] enemies = FindObjectsOfType<EnemyDisplay>();
             foreach (EnemyDisplay enemyDisplay in enemies)
             {
                 targets.Add(enemyDisplay.gameObject);
             }
         }
+        //else if we're targeting the player, add the player to our targets
         else if (card.target == TargetingOption.Player)
         {
             targets.Add(PlayerStats.instance.gameObject);
@@ -39,7 +40,7 @@ public class CardBehavior : MonoBehaviour
 
     protected void Shield(int shieldAmount)
     {
-        PlayerStats.instance.GainShieldForXTurns(PlayerStats.instance.posStatus, shieldAmount, 1);
+        PlayerStats.instance.CallStatus(3, PlayerStats.instance.posStatus, shieldAmount, 1);
     }
 
     protected void DrawCards(int amt)
@@ -49,12 +50,12 @@ public class CardBehavior : MonoBehaviour
 
     protected void SpendGrit(int cost)
     {
-        PlayerStats.instance.GainGritForXTurns(PlayerStats.instance.posStatus, -cost, 1);
+        PlayerStats.instance.CallStatus(1,PlayerStats.instance.posStatus,-cost,1);
     }
 
     protected void GainGrit(int amt)
     {
-        PlayerStats.instance.GainGritForXTurns(PlayerStats.instance.posStatus, amt, 1);
+        PlayerStats.instance.CallStatus(1,PlayerStats.instance.posStatus,amt,1);
     }
 
     public void PlayCard()
@@ -66,6 +67,11 @@ public class CardBehavior : MonoBehaviour
         //deck.DiscardCard(gameObject);
     }
 
+    /// <summary>
+    /// sets target to be the game object in the parameter
+    /// clears previous targets
+    /// </summary>
+    /// <param name="target"></param>
     public void SetTarget(GameObject target)
     {
         targets.Clear();
@@ -74,6 +80,6 @@ public class CardBehavior : MonoBehaviour
 
     public bool HasTarget()
     {
-        return (targets != null);
+        return (targets.Count >= 1);
     }
 }
