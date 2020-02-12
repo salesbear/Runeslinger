@@ -7993,6 +7993,99 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1898176626}
   m_CullTransparentMesh: 0
+--- !u!1 &1922757645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1922757647}
+  - component: {fileID: 1922757646}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1922757646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922757645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0392a11f30b0d314d83c84cc444c75c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerClass:
+    maxHealth: 30
+    currentHealth: 30
+    deckList: []
+    maxGrit: 4
+    currentGrit: 4
+    accuracy: 0
+    shield: 0
+    status:
+    - gritApplied: 0
+      accuracyApplied: 0
+      shieldApplied: 0
+      numTurnsLeft: 0
+    - gritApplied: 0
+      accuracyApplied: 0
+      shieldApplied: 0
+      numTurnsLeft: 0
+    - gritApplied: 0
+      accuracyApplied: 0
+      shieldApplied: 0
+      numTurnsLeft: 0
+    - gritApplied: 0
+      accuracyApplied: 0
+      shieldApplied: 0
+      numTurnsLeft: 0
+    - gritApplied: 0
+      accuracyApplied: 0
+      shieldApplied: 0
+      numTurnsLeft: 0
+    - gritApplied: 0
+      accuracyApplied: 0
+      shieldApplied: 0
+      numTurnsLeft: 0
+    - gritApplied: 0
+      accuracyApplied: 0
+      shieldApplied: 0
+      numTurnsLeft: 0
+    - gritApplied: 0
+      accuracyApplied: 0
+      shieldApplied: 0
+      numTurnsLeft: 0
+    - gritApplied: 0
+      accuracyApplied: 0
+      shieldApplied: 0
+      numTurnsLeft: 0
+    - gritApplied: 0
+      accuracyApplied: 0
+      shieldApplied: 0
+      numTurnsLeft: 0
+  posStatus: 0
+--- !u!4 &1922757647
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922757645}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.19964992, y: 1.3057266, z: -175.79102}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1948171133
 GameObject:
   m_ObjectHideFlags: 0

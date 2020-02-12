@@ -14,11 +14,10 @@ public class CombatController : MonoBehaviour
 
     private void Start()
     {
-        playerStats = FindObjectOfType<PlayerStats>();
-        playerTurnEvent.AddListener(delegate { playerStats.GainGritForXTurns(1, 1, 3); });
-        //playerTurnEvent.RemoveListener(delegate { playerStats.GainGritForXTurns(0, 1, 3); });
-
         ChangeState(CombatState.PlayerTurn);
+
+        playerStats = FindObjectOfType<PlayerStats>();
+        playerStats.HookUpToCombatController();
     }
 
     /// <summary>
@@ -32,8 +31,16 @@ public class CombatController : MonoBehaviour
         state = (CombatState)stateIndex;
         StateChanged.Invoke(state);
 
+        // when player turn begins, decrement status counters
         if (stateIndex == 1)
-            playerTurnEvent.Invoke();
+        {
+            if (playerStats.playerClass.status[0].numTurnsLeft != 0)
+            {
+                playerTurnEvent.AddListener(delegate { playerStats.DecrementStatus(); });
+                playerTurnEvent.Invoke();
+                playerTurnEvent.RemoveAllListeners();
+            }
+        }
     }
 
     /// <summary>
