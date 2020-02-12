@@ -27,6 +27,7 @@ public class Enemy : ScriptableObject, IDamagable
     public int loRollDmg;
     public int rolledDamage { get; private set; } //the damage number that will appear on the icon thingy
 
+    [Tooltip("How much shield the enemy can give itself")]
     public int shielding; //how much shield the enemy can give itself
 
     public PreparedAction preparedAction { get; private set; } 
@@ -83,6 +84,11 @@ public class Enemy : ScriptableObject, IDamagable
         target.TakeDamage(rolledDamage);
     }
 
+    //overloaded method to deal with players
+    public void DealDamage(IDamagable target)
+    {
+        target.TakeDamage(rolledDamage);
+    }
 
     public void TakeDamage(int damageTaken)
     {
