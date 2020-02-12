@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-public class PlayerStats : MonoBehaviour
+public class PlayerStats : MonoBehaviour, IDamagable
 {
-    static PlayerStats instance;
+    public static PlayerStats instance;
     
     private void Awake()
     {
@@ -172,5 +172,10 @@ public class PlayerStats : MonoBehaviour
         playerClass.currentGrit = 4;
         playerClass.accuracy = 0;
         playerClass.shield = 0;
+    }
+
+    public void TakeDamage(int damageTaken)
+    {
+        playerClass.currentHealth -= damageTaken;
     }
 }

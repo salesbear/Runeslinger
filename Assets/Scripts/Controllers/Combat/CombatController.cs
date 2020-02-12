@@ -31,8 +31,8 @@ public class CombatController : MonoBehaviour
         state = (CombatState)stateIndex;
         StateChanged.Invoke(state);
 
-        // when player turn is over, decrement status counters
-        if (stateIndex == 2)
+        // when player turn begins, decrement status counters
+        if (stateIndex == 1)
         {
             if (playerStats.playerClass.status[0].numTurnsLeft != 0)
             {

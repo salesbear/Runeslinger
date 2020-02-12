@@ -8,6 +8,7 @@ public class CardBehavior : MonoBehaviour
     //the card we're playing
     private Card card;
     private List<GameObject> targets;
+    
     private void Awake()
     {
         //get the card we set in card display
@@ -18,7 +19,7 @@ public class CardBehavior : MonoBehaviour
         }
         else if (card.target == TargetingOption.Player)
         {
-            //targets.Add(Player.instance.gameObject)
+            targets.Add(PlayerStats.instance.gameObject);
         }
     }
 
@@ -33,7 +34,7 @@ public class CardBehavior : MonoBehaviour
 
     protected void Shield(int shieldAmount)
     {
-        //player.instance.GainShield(shieldAmount)
+        PlayerStats.instance.GainShieldForXTurns(PlayerStats.instance.posStatus, shieldAmount, 1);
     }
 
     protected void DrawCards(int amt)
@@ -43,12 +44,12 @@ public class CardBehavior : MonoBehaviour
 
     protected void SpendGrit(int cost)
     {
-        //player.instance.LoseGrit() (could also be GainGrit with a negative value
+        PlayerStats.instance.GainGritForXTurns(PlayerStats.instance.posStatus, -cost, 1);
     }
 
     protected void GainGrit(int amt)
     {
-        //player.instance.GainGrit()
+        PlayerStats.instance.GainGritForXTurns(PlayerStats.instance.posStatus, amt, 1);
     }
 
     public void PlayCard()
