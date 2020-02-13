@@ -28,6 +28,18 @@ public class PlayerStats : MonoBehaviour, IDamagable
             
     }
 
+    void OnEnable()
+    {
+        GameStateController.StateChanged += GameStateChanged;
+        CombatController.StateChanged += CombatStateChanged;
+    }
+
+    void OnDisable()
+    {
+        GameStateController.StateChanged -= GameStateChanged;
+        CombatController.StateChanged -= CombatStateChanged;
+    }
+
     CombatController combatController;
 
     public int posStatus = 0;
@@ -67,6 +79,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
     public void CallStatus(int whichStatus, int pos, int status, int turns)
     {
         // 1- grit, 2- accuracy, 3- shield
+        //this doesn't work super great because the combat controller isn't always in the same scene as the player, maybe try to use static events instead
         switch (whichStatus)
         {
             case 1:
@@ -93,6 +106,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
     public void GainGritForXTurns(int pos, int grit, int turns)
     {
         playerClass.currentGrit += grit;
+        Debug.Log(pos);
         playerClass.status[pos].gritApplied = grit;
         playerClass.status[pos].numTurnsLeft = turns;
     }
@@ -146,6 +160,19 @@ public class PlayerStats : MonoBehaviour, IDamagable
                     count++;
                 }
             }
+            //this is a brute force solution for a systemic problem
+            if (playerClass.shield < 0)
+            {
+                playerClass.shield = 0;
+            }
+            if (playerClass.accuracy < 0)
+            {
+                playerClass.accuracy = 0;
+            }
+            if (playerClass.currentGrit > 4)
+            {
+                playerClass.currentGrit = 4;
+            }
         }
 
         // update status stack
@@ -184,7 +211,12 @@ public class PlayerStats : MonoBehaviour, IDamagable
 
     public void TakeDamage(int damageTaken)
     {
-        playerClass.currentHealth -= damageTaken;
+        playerClass.currentHealth -= (damageTaken - playerClass.shield);
+        playerClass.shield -= damageTaken;
+        if (playerClass.shield < 0)
+        {
+            playerClass.shield = 0;
+        }
         //if we die, change state to loss state because we lost
         if (playerClass.currentHealth <= 0)
         {
@@ -204,7 +236,25 @@ public class PlayerStats : MonoBehaviour, IDamagable
     {
         if (newState == GameState.MainMenu)
         {
-            playerClass.currentHealth = playerClass.maxHealth;
+            ResetStats();
+        }
+    }
+
+    //what we have right now is super broken so I'm just brute forcing it so it works
+    public void CombatStateChanged(CombatState state)
+    {
+        if (state == CombatState.PlayerTurn)
+        {
+            playerClass.currentGrit = 4;
+            playerClass.shield = 0;
+            playerClass.accuracy = 0;
+        }
+        //okay this one is probably actually necessary
+        else if (state == CombatState.RewardScreen)
+        {
+            playerClass.currentGrit = 4;
+            playerClass.shield = 0;
+            playerClass.accuracy = 0;
         }
     }
 }

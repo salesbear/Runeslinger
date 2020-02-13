@@ -25,7 +25,7 @@ public class BaseClassless
     public int currentGrit;
     public int accuracy;
     public int shield;
-    public Status[] status = new Status[10];
+    public Status[] status = new Status[1000];
 
     public BaseClassless()
     {

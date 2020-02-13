@@ -7,7 +7,8 @@ public class EnemyController : MonoBehaviour
 {
     //all the enemies in the scene
     [ReadOnly]
-    [SerializeField] List<EnemyDisplay> enemies = new List<EnemyDisplay>();
+    public List<EnemyDisplay> enemies = new List<EnemyDisplay>();
+    
     //event to tell combat controller when enemies are done with their turn or dead
     public static event Action<int> EnemyState = delegate { };
 

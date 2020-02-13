@@ -8,7 +8,9 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
 {
     private EnemyController enemyController;
     public Enemy enemy;
-
+    //the rect transform for the enemy, used for some card stuff
+    [ReadOnly]
+    public RectTransform enemyTransform;
     [Header("Game Stuff")]
     public TextMeshProUGUI enemyName;
     public TextMeshProUGUI enemyHP;
@@ -43,6 +45,7 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
     void Awake()
     {
         enemyController = FindObjectOfType<EnemyController>();
+        enemyTransform = GetComponentInChildren<RectTransform>();
     }
     //use this to initialize variables
     void Start()

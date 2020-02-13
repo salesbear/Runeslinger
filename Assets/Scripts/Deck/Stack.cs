@@ -162,6 +162,10 @@ public class Stack : MonoBehaviour
         }
     }
 
+    public void DiscardCard(GameObject card)
+    {
+        MoveCard(1, card);
+    }
     /// <summary>
     /// draw amt cards
     /// </summary>

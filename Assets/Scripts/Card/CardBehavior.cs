@@ -6,9 +6,9 @@ using UnityEngine;
 public class CardBehavior : MonoBehaviour
 {
     //the card we're playing
-    private Card card;
-    private List<GameObject> targets = new List<GameObject>();
-    private Stack deck;
+    protected Card card;
+    protected List<GameObject> targets = new List<GameObject>();
+    protected Stack deck;
 
     private void Awake()
     {
@@ -33,12 +33,29 @@ public class CardBehavior : MonoBehaviour
         deck = FindObjectOfType<Stack>();
     }
 
-    protected void DealDamage(int damage, GameObject[] targets)
+    protected virtual void DealDamage(int damage, GameObject[] targets)
     {
         foreach (GameObject target in targets)
         {
+            //if there's a damageable component in the object, find it
             IDamagable targetDamagable = target.GetComponent<IDamagable>();
-            targetDamagable.TakeDamage(damage);
+            if (targetDamagable == null)
+            {
+                targetDamagable = target.GetComponentInParent<IDamagable>();
+            }
+            if (targetDamagable == null)
+            {
+                targetDamagable = target.GetComponentInChildren<IDamagable>();
+            }
+            //only apply accuracy if target is an enemy
+            if (card.target != TargetingOption.Player)
+            {
+                targetDamagable.TakeDamage(damage + PlayerStats.instance.playerClass.accuracy);
+            }
+            else
+            {
+                targetDamagable.TakeDamage(damage);
+            }
         }
     }
 
@@ -49,7 +66,7 @@ public class CardBehavior : MonoBehaviour
 
     protected void DrawCards(int amt)
     {
-        //deck.DrawCards(amt)
+        deck.DrawCards(amt);
     }
 
     protected void SpendGrit(int cost)
@@ -62,13 +79,21 @@ public class CardBehavior : MonoBehaviour
         PlayerStats.instance.CallStatus(1,PlayerStats.instance.posStatus,amt,1);
     }
 
-    public void PlayCard()
+    public virtual void PlayCard()
     {
-        DealDamage(card.damage,targets.ToArray());
-        Shield(card.shield);
-        SpendGrit(card.gritCost);
-        GainGrit(card.gritGained);
-        //deck.DiscardCard(gameObject);
+        if (card.gritCost <= PlayerStats.instance.playerClass.currentGrit)
+        {
+            DealDamage(card.damage,targets.ToArray());
+            Shield(card.shield);
+            SpendGrit(card.gritCost);
+            GainGrit(card.gritGained);
+            deck.DiscardCard(gameObject);
+            DrawCards(card.cardsDrawn);
+        }
+        else
+        {
+            deck.ResetHand();
+        }
     }
 
     /// <summary>
@@ -78,8 +103,12 @@ public class CardBehavior : MonoBehaviour
     /// <param name="target"></param>
     public void SetTarget(GameObject target)
     {
-        targets.Clear();
-        targets.Add(target);
+        //make sure we don't erase our targets if it's enemies
+        if (card.target == TargetingOption.Enemy)
+        {
+            targets.Clear();
+            targets.Add(target);
+        }
     }
 
     public bool HasTarget()
