@@ -17,14 +17,15 @@ public class BaseClassless
     [Header("Essentials")]
     public int maxHealth;
     public int currentHealth;
-    public Object[] deckList;
+    [HideInInspector]
+    public GameObject[] deckList;
 
     [Header("Combat")]
     public int maxGrit;
     public int currentGrit;
     public int accuracy;
     public int shield;
-    public Status[] status = new Status[10];
+    public Status[] status = new Status[1000];
 
     public BaseClassless()
     {

@@ -6,69 +6,113 @@ using UnityEngine;
 public class CardBehavior : MonoBehaviour
 {
     //the card we're playing
-    private Card card;
-    private List<GameObject> targets;
-    
+    protected Card card;
+    protected List<GameObject> targets = new List<GameObject>();
+    protected Stack deck;
+
     private void Awake()
     {
         //get the card we set in card display
         card = GetComponent<CardDisplay>().card;
+        //if we're targeting all enemies, find all enemies and add them to targets
         if (card.target == TargetingOption.Enemies)
         {
-            //targets = FindObjectsOfType<Enemy>().gameObject
+            EnemyDisplay[] enemies = FindObjectsOfType<EnemyDisplay>();
+            foreach (EnemyDisplay enemyDisplay in enemies)
+            {
+                targets.Add(enemyDisplay.gameObject);
+            }
         }
+        //else if we're targeting the player, add the player to our targets
         else if (card.target == TargetingOption.Player)
         {
             targets.Add(PlayerStats.instance.gameObject);
         }
+
+        //get the deck
+        deck = FindObjectOfType<Stack>();
     }
 
-    protected void DealDamage(int damage, GameObject[] targets)
+    protected virtual void DealDamage(int damage, GameObject[] targets)
     {
         foreach (GameObject target in targets)
         {
+            //if there's a damageable component in the object, find it
             IDamagable targetDamagable = target.GetComponent<IDamagable>();
-            targetDamagable.TakeDamage(damage);
+            if (targetDamagable == null)
+            {
+                targetDamagable = target.GetComponentInParent<IDamagable>();
+            }
+            if (targetDamagable == null)
+            {
+                targetDamagable = target.GetComponentInChildren<IDamagable>();
+            }
+            //only apply accuracy if target is an enemy
+            if (card.target != TargetingOption.Player)
+            {
+                targetDamagable.TakeDamage(damage + PlayerStats.instance.playerClass.accuracy);
+            }
+            else
+            {
+                targetDamagable.TakeDamage(damage);
+            }
         }
     }
 
     protected void Shield(int shieldAmount)
     {
-        PlayerStats.instance.GainShieldForXTurns(PlayerStats.instance.posStatus, shieldAmount, 1);
+        PlayerStats.instance.CallStatus(3, PlayerStats.instance.posStatus, shieldAmount, 1);
     }
 
     protected void DrawCards(int amt)
     {
-        //deck.DrawCards(amt)
+        deck.DrawCards(amt);
     }
 
     protected void SpendGrit(int cost)
     {
-        PlayerStats.instance.GainGritForXTurns(PlayerStats.instance.posStatus, -cost, 1);
+        PlayerStats.instance.CallStatus(1,PlayerStats.instance.posStatus,-cost,1);
     }
 
     protected void GainGrit(int amt)
     {
-        PlayerStats.instance.GainGritForXTurns(PlayerStats.instance.posStatus, amt, 1);
+        PlayerStats.instance.CallStatus(1,PlayerStats.instance.posStatus,amt,1);
     }
 
-    public void PlayCard()
+    public virtual void PlayCard()
     {
-        DealDamage(card.damage,targets.ToArray());
-        Shield(card.shield);
-        SpendGrit(card.gritCost);
-        GainGrit(card.gritGained);
-        //deck.DiscardCard(gameObject);
+        if (card.gritCost <= PlayerStats.instance.playerClass.currentGrit)
+        {
+            DealDamage(card.damage,targets.ToArray());
+            Shield(card.shield);
+            SpendGrit(card.gritCost);
+            GainGrit(card.gritGained);
+            deck.DiscardCard(gameObject);
+            DrawCards(card.cardsDrawn);
+        }
+        else
+        {
+            deck.ResetHand();
+        }
     }
 
+    /// <summary>
+    /// sets target to be the game object in the parameter
+    /// clears previous targets
+    /// </summary>
+    /// <param name="target"></param>
     public void SetTarget(GameObject target)
     {
-        targets.Clear();
-        targets.Add(target);
+        //make sure we don't erase our targets if it's enemies
+        if (card.target == TargetingOption.Enemy)
+        {
+            targets.Clear();
+            targets.Add(target);
+        }
     }
 
     public bool HasTarget()
     {
-        return (targets != null);
+        return (targets.Count >= 1);
     }
 }

@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 5536637327101232225}
   - component: {fileID: -8160941179483518074}
   m_Layer: 0
-  m_Name: Card
+  m_Name: Blanks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,6 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a0ddb72785c614f87017a118ad981e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playArea: {fileID: 0}
+  playerTransform: {fileID: 5536637327356266181}
 --- !u!114 &8650720697247717108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908003ef9c41ce42a8cb71e48cbd61f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  card: {fileID: 11400000, guid: a4f2a4a97529a8a459564bd6763068ad, type: 2}
   cardName: {fileID: 5536637328747877261}
   cardType: {fileID: 5536637328640424194}
   description: {fileID: 5536637328425571279}

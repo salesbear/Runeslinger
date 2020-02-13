@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 5536637327101232225}
   - component: {fileID: -8160941179483518074}
   m_Layer: 0
-  m_Name: Card
+  m_Name: Misfire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908003ef9c41ce42a8cb71e48cbd61f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  card: {fileID: 11400000, guid: ef2119c6b4e7b934d94264c1cd2e771e, type: 2}
   cardName: {fileID: 5536637328747877261}
   cardType: {fileID: 5536637328640424194}
   description: {fileID: 5536637328425571279}

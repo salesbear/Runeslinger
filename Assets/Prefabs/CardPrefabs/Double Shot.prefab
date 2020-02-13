@@ -88,9 +88,9 @@ GameObject:
   - component: {fileID: -4392402568041960094}
   - component: {fileID: 8650720697247717108}
   - component: {fileID: 5536637327101232225}
-  - component: {fileID: -8160941179483518074}
+  - component: {fileID: 1808883987916451694}
   m_Layer: 0
-  m_Name: Card
+  m_Name: Double Shot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,6 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a0ddb72785c614f87017a118ad981e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTransform: {fileID: 5536637327356266181}
+  enemyTransforms: []
 --- !u!114 &8650720697247717108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908003ef9c41ce42a8cb71e48cbd61f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  card: {fileID: 11400000, guid: 2e3cccb5c44605346adfbbe3f011ef8f, type: 2}
   cardName: {fileID: 5536637328747877261}
   cardType: {fileID: 5536637328640424194}
   description: {fileID: 5536637328425571279}
@@ -179,7 +181,7 @@ MonoBehaviour:
   gritImage: {fileID: 5536637329029806913}
   cardTopRibbonImage: {fileID: 5536637328101842368}
   cardBottomRibbonImage: {fileID: 5536637327509723184}
---- !u!114 &-8160941179483518074
+--- !u!114 &1808883987916451694
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,7 +190,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5536637327101232231}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cd02c17f52662a4598668cdd0a49dc6, type: 3}
+  m_Script: {fileID: 11500000, guid: 149b558b4c54f554e8cd402316f3bd24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5536637327162804174

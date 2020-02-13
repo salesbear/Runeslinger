@@ -6,8 +6,9 @@ using UnityEngine.Events;
 
 public class CombatController : MonoBehaviour
 {
-    public CombatState state { get; private set; }
-    public static event Action<CombatState> StateChanged;
+    [ReadOnly]
+    public CombatState state;
+    public static event Action<CombatState> StateChanged = delegate { };
 
     public UnityEvent playerTurnEvent;
     PlayerStats playerStats;
@@ -18,6 +19,17 @@ public class CombatController : MonoBehaviour
 
         playerStats = FindObjectOfType<PlayerStats>();
         playerStats.HookUpToCombatController();
+    }
+
+    private void OnEnable()
+    {
+        DeckController.DiscardDone += ChangeState;
+        EnemyController.EnemyState += ChangeState;
+    }
+    private void OnDisable()
+    {
+        DeckController.DiscardDone -= ChangeState;
+        EnemyController.EnemyState -= ChangeState;
     }
 
     /// <summary>

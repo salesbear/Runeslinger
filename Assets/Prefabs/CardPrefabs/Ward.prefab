@@ -803,11 +803,13 @@ GameObject:
   m_Component:
   - component: {fileID: 549405244617300051}
   - component: {fileID: 4489737134401350184}
+  - component: {fileID: -8161624935169731}
   - component: {fileID: 3364548988649514751}
+  - component: {fileID: 3453172195129947735}
   - component: {fileID: 7628303057083601935}
-  - component: {fileID: 6234587644903449729}
+  - component: {fileID: 4975596482416665100}
   m_Layer: 0
-  m_Name: Reload Card
+  m_Name: Ward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -820,9 +822,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4987765961183030295}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 302.90683, y: 141.76233, z: 0}
-  m_LocalScale: {x: 0.3505208, y: 0.3505208, z: 0.3505208}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 50, y: 50, z: 1}
   m_Children:
   - {fileID: 4660121286386559571}
   - {fileID: 2797949522799341177}
@@ -842,6 +844,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9161131, y: 3.3739295, z: 0.01}
   m_Center: {x: 0.012233615, y: 0.039709806, z: 0}
+--- !u!114 &-8161624935169731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4987765961183030295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd02c17f52662a4598668cdd0a49dc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3364548988649514751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -858,6 +872,19 @@ MonoBehaviour:
   cardBack: {fileID: 9128685823550789826}
   targetFacePoint: {fileID: 2797949522799341177}
   collider: {fileID: 4489737134401350184}
+--- !u!114 &3453172195129947735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4987765961183030295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3a0ddb72785c614f87017a118ad981e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 6257058051290655451}
 --- !u!114 &7628303057083601935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -870,7 +897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908003ef9c41ce42a8cb71e48cbd61f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 11400000, guid: f0d14894d19c1ad41a0790ae96b0c815, type: 2}
+  card: {fileID: 11400000, guid: da1b8581e69f90e449076b6b74d09755, type: 2}
   cardName: {fileID: 9185617320111082404}
   cardType: {fileID: 6297175955922752334}
   description: {fileID: 7330118497258598834}
@@ -884,7 +911,7 @@ MonoBehaviour:
   gritImage: {fileID: 8111657217086475904}
   cardTopRibbonImage: {fileID: 299271110785728326}
   cardBottomRibbonImage: {fileID: 3478590311319151158}
---- !u!114 &6234587644903449729
+--- !u!114 &4975596482416665100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -896,8 +923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab331aab49fd014895d6f038f5866f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  shield: 0
+  stack: {fileID: 0}
 --- !u!1 &5302577478145106732
 GameObject:
   m_ObjectHideFlags: 0

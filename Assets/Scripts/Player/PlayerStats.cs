@@ -3,33 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+
 public class PlayerStats : MonoBehaviour, IDamagable
 {
     public static PlayerStats instance;
-    
+    //our deck container which holds our starting deck, should be in a child object
+    private DeckContainer theDeck;
+    public BaseClassless playerClass = new BaseClassless();
+
     private void Awake()
     {
         if (instance == null)
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
+            theDeck = GetComponentInChildren<DeckContainer>();
+            playerClass.deckList = theDeck.deck;
         }
+        //I know technically speaking you don't need brackets for single lines but I like them because it helps me understand the code
         else if (instance != this)
+        {
             Destroy(gameObject);
+        }
+            
     }
 
-    public BaseClassless playerClass;
+    void OnEnable()
+    {
+        GameStateController.StateChanged += GameStateChanged;
+        CombatController.StateChanged += CombatStateChanged;
+    }
+
+    void OnDisable()
+    {
+        GameStateController.StateChanged -= GameStateChanged;
+        CombatController.StateChanged -= CombatStateChanged;
+    }
 
     CombatController combatController;
 
     public int posStatus = 0;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerClass = new BaseClassless();
-        playerClass.deckList = Resources.LoadAll("CardAssets", typeof(Card));
-    }
 
     private void Update()
     {
@@ -56,9 +69,17 @@ public class PlayerStats : MonoBehaviour, IDamagable
     }
 
     // status is played during player turn
+    /// <summary>
+    /// create a status effect on the player
+    /// </summary>
+    /// <param name="whichStatus">the status you're applying, 1 = grit, 2 = accuracy, 3 = shield</param>
+    /// <param name="pos">this is PlayerStats.instance.posStatus, probably shouldn't be a parameter</param>
+    /// <param name="status">the amount you're applying</param>
+    /// <param name="turns">the number of turns to apply it for</param>
     public void CallStatus(int whichStatus, int pos, int status, int turns)
     {
         // 1- grit, 2- accuracy, 3- shield
+        //this doesn't work super great because the combat controller isn't always in the same scene as the player, maybe try to use static events instead
         switch (whichStatus)
         {
             case 1:
@@ -85,6 +106,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
     public void GainGritForXTurns(int pos, int grit, int turns)
     {
         playerClass.currentGrit += grit;
+        Debug.Log(pos);
         playerClass.status[pos].gritApplied = grit;
         playerClass.status[pos].numTurnsLeft = turns;
     }
@@ -138,6 +160,19 @@ public class PlayerStats : MonoBehaviour, IDamagable
                     count++;
                 }
             }
+            //this is a brute force solution for a systemic problem
+            if (playerClass.shield < 0)
+            {
+                playerClass.shield = 0;
+            }
+            if (playerClass.accuracy < 0)
+            {
+                playerClass.accuracy = 0;
+            }
+            if (playerClass.currentGrit > 4)
+            {
+                playerClass.currentGrit = 4;
+            }
         }
 
         // update status stack
@@ -176,6 +211,50 @@ public class PlayerStats : MonoBehaviour, IDamagable
 
     public void TakeDamage(int damageTaken)
     {
-        playerClass.currentHealth -= damageTaken;
+        playerClass.currentHealth -= (damageTaken - playerClass.shield);
+        playerClass.shield -= damageTaken;
+        if (playerClass.shield < 0)
+        {
+            playerClass.shield = 0;
+        }
+        //if we die, change state to loss state because we lost
+        if (playerClass.currentHealth <= 0)
+        {
+            //find our combat controller (maybe should be using a singleton pattern for combat controller)
+            CombatController combatController = FindObjectOfType<CombatController>();
+            //change state to loss
+            combatController.ChangeState(CombatState.Loss);
+        }
+        //if we healed over our max health, change health so it's back to max health
+        else if (playerClass.currentHealth >= playerClass.maxHealth)
+        {
+            playerClass.currentHealth = playerClass.maxHealth;
+        }
+    }
+
+    public void GameStateChanged(GameState newState)
+    {
+        if (newState == GameState.MainMenu)
+        {
+            ResetStats();
+        }
+    }
+
+    //what we have right now is super broken so I'm just brute forcing it so it works
+    public void CombatStateChanged(CombatState state)
+    {
+        if (state == CombatState.PlayerTurn)
+        {
+            playerClass.currentGrit = 4;
+            playerClass.shield = 0;
+            playerClass.accuracy = 0;
+        }
+        //okay this one is probably actually necessary
+        else if (state == CombatState.RewardScreen)
+        {
+            playerClass.currentGrit = 4;
+            playerClass.shield = 0;
+            playerClass.accuracy = 0;
+        }
     }
 }

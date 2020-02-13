@@ -4,10 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class EnemyDisplay : MonoBehaviour
+public class EnemyDisplay : MonoBehaviour, IDamagable
 {
+    private EnemyController enemyController;
     public Enemy enemy;
-
+    //the rect transform for the enemy, used for some card stuff
+    [ReadOnly]
+    public RectTransform enemyTransform;
     [Header("Game Stuff")]
     public TextMeshProUGUI enemyName;
     public TextMeshProUGUI enemyHP;
@@ -38,10 +41,18 @@ public class EnemyDisplay : MonoBehaviour
         enemy.EnemyUIUpdate -= UpdateUI;
         enemy.Die -= OnDie;
     }
-
+    //register with enemy controller on awake
+    void Awake()
+    {
+        enemyController = FindObjectOfType<EnemyController>();
+        enemyTransform = GetComponentInChildren<RectTransform>();
+    }
+    //use this to initialize variables
     void Start()
     {
-        enemy.SetUp(); 
+        enemyController.AddEnemy(this);
+        enemy.SetUp();
+        UpdateUI();
     }
 
     private void UpdateUI()
@@ -53,7 +64,8 @@ public class EnemyDisplay : MonoBehaviour
     {
         enemy.currentHP = 0;
         ReadEnemyFromAsset();
-
+        //take self off enemy controller list on death
+        enemyController.RemoveEnemy(this);
         this.gameObject.SetActive(false);
     }
 
@@ -101,6 +113,11 @@ public class EnemyDisplay : MonoBehaviour
                 rolledDMG.gameObject.SetActive(false);
             }
         }
+    }
+
+    public void TakeDamage(int damageTaken)
+    {
+        enemy.TakeDamage(damageTaken);
     }
 }
 
