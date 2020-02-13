@@ -76,6 +76,11 @@ public class Stack : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// moves a card to specified location
+    /// </summary>
+    /// <param name="position">where to move card, 0 = Deck, 1 = Discard, 2 = hand</param>
+    /// <param name="card"></param>
     public void MoveCard(int position, GameObject card)
     {
         ToggleHandLayout(true);

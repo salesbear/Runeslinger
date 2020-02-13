@@ -3,19 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+
 public class PlayerStats : MonoBehaviour, IDamagable
 {
     public static PlayerStats instance;
-    
+    //our deck container which holds our starting deck, should be in a child object
+    private DeckContainer theDeck;
     private void Awake()
     {
         if (instance == null)
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
+            theDeck = GetComponentInChildren<DeckContainer>();
         }
+        //I know technically speaking you don't need brackets for single lines but I like them because it helps me understand the code
         else if (instance != this)
+        {
             Destroy(gameObject);
+        }
+            
     }
 
     public BaseClassless playerClass;
@@ -28,7 +35,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
     void Start()
     {
         playerClass = new BaseClassless();
-        playerClass.deckList = Resources.LoadAll("CardAssets", typeof(Card));
+        playerClass.deckList = theDeck.deck;
     }
 
     private void Update()
@@ -184,5 +191,16 @@ public class PlayerStats : MonoBehaviour, IDamagable
     public void TakeDamage(int damageTaken)
     {
         playerClass.currentHealth -= damageTaken;
+        //if we die, change state to loss state because we lost
+        if (playerClass.currentHealth <= 0)
+        {
+            CombatController combatController = FindObjectOfType<CombatController>();
+            combatController.ChangeState(CombatState.Loss);
+        }
+        //if we healed over our max health, change health so it's back to max health
+        else if (playerClass.currentHealth >= playerClass.maxHealth)
+        {
+            playerClass.currentHealth = playerClass.maxHealth;
+        }
     }
 }

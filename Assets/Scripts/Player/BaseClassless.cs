@@ -17,7 +17,8 @@ public class BaseClassless
     [Header("Essentials")]
     public int maxHealth;
     public int currentHealth;
-    public Object[] deckList;
+    [HideInInspector]
+    public GameObject[] deckList;
 
     [Header("Combat")]
     public int maxGrit;
