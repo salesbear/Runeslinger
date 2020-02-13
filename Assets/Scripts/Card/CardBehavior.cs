@@ -8,7 +8,8 @@ public class CardBehavior : MonoBehaviour
     //the card we're playing
     private Card card;
     private List<GameObject> targets = new List<GameObject>();
-    
+    private Stack deck;
+
     private void Awake()
     {
         //get the card we set in card display
@@ -27,6 +28,9 @@ public class CardBehavior : MonoBehaviour
         {
             targets.Add(PlayerStats.instance.gameObject);
         }
+
+        //get the deck
+        deck = FindObjectOfType<Stack>();
     }
 
     protected void DealDamage(int damage, GameObject[] targets)

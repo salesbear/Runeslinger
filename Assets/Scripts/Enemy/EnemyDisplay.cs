@@ -6,6 +6,7 @@ using TMPro;
 
 public class EnemyDisplay : MonoBehaviour, IDamagable
 {
+    private EnemyController enemyController;
     public Enemy enemy;
 
     [Header("Game Stuff")]
@@ -38,10 +39,17 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
         enemy.EnemyUIUpdate -= UpdateUI;
         enemy.Die -= OnDie;
     }
-
+    //register with enemy controller on awake
+    void Awake()
+    {
+        enemyController = FindObjectOfType<EnemyController>();
+    }
+    //use this to initialize variables
     void Start()
     {
-        enemy.SetUp(); 
+        enemyController.AddEnemy(this);
+        enemy.SetUp();
+        UpdateUI();
     }
 
     private void UpdateUI()
@@ -53,7 +61,8 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
     {
         enemy.currentHP = 0;
         ReadEnemyFromAsset();
-
+        //take self off enemy controller list on death
+        enemyController.RemoveEnemy(this);
         this.gameObject.SetActive(false);
     }
 

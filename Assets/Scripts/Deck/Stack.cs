@@ -2,15 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+//used to convert from array to list, apparently this is a slow thing to do so maybe we should refactor some stuff
+using System.Linq;
 public class Stack : MonoBehaviour
 {
+    public struct Placement
+    {
+        public Transform point;
+        public bool hasCard;
+        public GameObject card;
+    }
+
     [SerializeField] List<GameObject> PossibleCards = new List<GameObject>();
-    [SerializeField] List<int> Instances = new List<int>();
+    //[SerializeField] List<int> Instances = new List<int>();
+    [SerializeField] Transform[] CardSpawnPoints;
     [SerializeField] GameObject DeckPile;
     [SerializeField] GameObject DiscardPile;
     [SerializeField] GameObject HandPile;
     [SerializeField] Transform placement;
+
+    private Placement[] cardPlacements = new Placement[6];
+    //idk why this isn't working, ugh
     private HorizontalLayoutGroup HandLayout;
 
     private void Awake()
@@ -21,14 +33,16 @@ public class Stack : MonoBehaviour
     }
     private void Start()
     {
+        //get our possible cards from our player's deck
+        PossibleCards = PlayerStats.instance.playerClass.deckList.OfType<GameObject>().ToList();
         // Creates starting deck
-        for(int i = 0; i < PossibleCards.Count; i++)
+        for (int i = 0; i < PossibleCards.Count; i++)
         {
-            for(int y = 0; y < Instances[i]; y++)
-            {
-                GameObject temp = PossibleCards[i];
-                Instantiate(temp,placement.position,placement.rotation, DiscardPile.transform);
-            }
+            //for(int y = 0; y < Instances[i]; y++)
+            //{
+            GameObject temp = PossibleCards[i];
+            Instantiate(temp,placement.position,placement.rotation, DiscardPile.transform);
+            //}
         }
         // Checks deck size
         if(DiscardPile.transform.childCount < 12)
@@ -39,15 +53,21 @@ public class Stack : MonoBehaviour
         {
             Debug.Log("Too Many Cards");
         }
-    }
-
-    public void FixedUpdate()
-    {
-        if(HandLayout.enabled == true)
+        //initialize card placements
+        for (int i = 0; i < cardPlacements.Length; i++)
         {
-            ToggleHandLayout(false);
+            cardPlacements[i].point = CardSpawnPoints[i];
+            cardPlacements[i].hasCard = false;
         }
     }
+
+    //public void FixedUpdate()
+    //{
+    //    if(HandLayout.enabled == true)
+    //    {
+    //        ToggleHandLayout(false);
+    //    }
+    //}
 
     public void Shuffle()
     {
@@ -64,8 +84,8 @@ public class Stack : MonoBehaviour
 
     public void Draw()
     {
-        ToggleHandLayout(true);
-        if (HandPile.transform.childCount < 6)
+        //ToggleHandLayout(true);
+        if (GetOpenSpot() > -1)
         {
             if (DeckPile.transform.childCount == 0)
             {
@@ -83,21 +103,42 @@ public class Stack : MonoBehaviour
     /// <param name="card"></param>
     public void MoveCard(int position, GameObject card)
     {
-        ToggleHandLayout(true);
+        //ToggleHandLayout(true);
         if (position == 0)
         {
+            //if the card's in hand remove it
+            int cardSpot = GetCardSpot(card);
+            if (cardSpot > -1)
+            {
+                cardPlacements[cardSpot].hasCard = false;
+                cardPlacements[cardSpot].card = null;
+            }
             Debug.Log("put in Deck");
             card.transform.SetParent(DeckPile.transform, false);
         }
         if (position == 1)
         {
+            //if the card's in hand remove it
+            int cardSpot = GetCardSpot(card);
+            if (cardSpot > -1)
+            {
+                cardPlacements[cardSpot].hasCard = false;
+                cardPlacements[cardSpot].card = null;
+            }
             Debug.Log("put in Discard");
             card.transform.SetParent(DiscardPile.transform, false);
         }
         if (position == 2)
         {
             Debug.Log("put in Hand");
-            card.transform.SetParent(HandPile.transform, false);
+            card.transform.SetParent(HandPile.transform);
+            int openSpot = GetOpenSpot();
+            if (openSpot != -1)
+            {
+                card.transform.position = cardPlacements[openSpot].point.position;
+                cardPlacements[openSpot].hasCard = true;
+                cardPlacements[openSpot].card = card;
+            }
         }
     }
 
@@ -105,5 +146,81 @@ public class Stack : MonoBehaviour
     {
         HandLayout.enabled = setting;
         Debug.Log("Hand Layout Set to " + setting);
+    }
+
+    /// <summary>
+    /// Discard all the remaining cards in your hand
+    /// </summary>
+    public void DiscardHand()
+    {
+        for (int i = 0; i < cardPlacements.Length; i++)
+        {
+            if (cardPlacements[i].hasCard)
+            {
+                MoveCard(1, cardPlacements[i].card);
+            }
+        }
+    }
+
+    /// <summary>
+    /// draw amt cards
+    /// </summary>
+    /// <param name="amt"></param>
+    public void DrawCards(int amt)
+    {
+        for (int i = 0; i < amt; i++)
+        {
+            Draw();
+        }
+    }
+
+    //returns the index of the first open spot or -1 if all are taken
+    private int GetOpenSpot()
+    {
+        for (int i = 0; i < cardPlacements.Length; i++)
+        {
+            if (!cardPlacements[i].hasCard)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+    //returns the index where the card is in hand, or -1 if it's not in hand
+    private int GetCardSpot(GameObject card)
+    {
+        for (int i = 0; i < cardPlacements.Length; i++)
+        {
+            if (cardPlacements[i].card == card)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+    /// <summary>
+    /// resets a specific card's position
+    /// </summary>
+    /// <param name="card"></param>
+    public void ResetCard(GameObject card)
+    {
+        int cardIndex = GetCardSpot(card);
+        if (cardIndex > -1)
+        {
+            card.transform.position = cardPlacements[cardIndex].point.position;
+        }
+    }
+    /// <summary>
+    /// resets positions for all cards in hand
+    /// </summary>
+    public void ResetHand()
+    {
+        foreach (Placement placement in cardPlacements)
+        {
+            if (placement.hasCard)
+            {
+                placement.card.transform.position = placement.point.position;
+            }
+        }
     }
 }

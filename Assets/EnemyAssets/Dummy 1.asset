@@ -20,5 +20,5 @@ MonoBehaviour:
   loRollDmg: 6
   shielding: 0
   enemySprite: {fileID: 21300000, guid: 424a1f41af271f8418d5da7e3198911b, type: 3}
-  behaviorStep: 0
-  behavior: 010000000000000002000000030000000400000005000000
+  behaviorStep: 1
+  behavior: 000000000100000002000000010000000000000001000000

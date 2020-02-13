@@ -4,8 +4,8 @@
     PlayerTurn,
     EnemyTurn,
     Discard,
-    Loss,
-    Victory,
-    RewardScreen,
-    ViewDeck
+    Loss, //4
+    Victory, //5
+    RewardScreen, //6
+    ViewDeck //7
 }

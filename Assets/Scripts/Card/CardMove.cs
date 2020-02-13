@@ -7,13 +7,14 @@ public class CardMove : MonoBehaviour
 {
     CardDisplay theCard;
     CardBehavior m_cardBehavior;
-
+    Stack deck;
     bool m_playable = false;
 
     private void Awake()
     {
         theCard = GetComponent<CardDisplay>();
         m_cardBehavior = GetComponent<CardBehavior>();
+        deck = FindObjectOfType<Stack>();
     }
 
     private void OnMouseDown()
@@ -45,11 +46,11 @@ public class CardMove : MonoBehaviour
         if (m_playable && m_cardBehavior.HasTarget())
         {
             m_cardBehavior.PlayCard();
-            //deck.ResetHand();
         }
         else
         {
-            //deck.ResetHand();
+            //if we're not playing it put it back in hand
+            deck.ResetCard(this.gameObject);
         }
     }
 

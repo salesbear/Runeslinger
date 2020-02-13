@@ -809,7 +809,7 @@ GameObject:
   - component: {fileID: 7628303057083601935}
   - component: {fileID: 4975596482416665100}
   m_Layer: 0
-  m_Name: Magic Guard Card
+  m_Name: Ward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -823,8 +823,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4987765961183030295}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 302.90683, y: 141.76233, z: 0}
-  m_LocalScale: {x: 54.04725, y: 54.04725, z: 18.944687}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 50, y: 50, z: 1}
   m_Children:
   - {fileID: 4660121286386559571}
   - {fileID: 2797949522799341177}

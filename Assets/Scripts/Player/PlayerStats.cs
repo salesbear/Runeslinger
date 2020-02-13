@@ -9,6 +9,8 @@ public class PlayerStats : MonoBehaviour, IDamagable
     public static PlayerStats instance;
     //our deck container which holds our starting deck, should be in a child object
     private DeckContainer theDeck;
+    public BaseClassless playerClass = new BaseClassless();
+
     private void Awake()
     {
         if (instance == null)
@@ -16,6 +18,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
             DontDestroyOnLoad(gameObject);
             instance = this;
             theDeck = GetComponentInChildren<DeckContainer>();
+            playerClass.deckList = theDeck.deck;
         }
         //I know technically speaking you don't need brackets for single lines but I like them because it helps me understand the code
         else if (instance != this)
@@ -25,18 +28,9 @@ public class PlayerStats : MonoBehaviour, IDamagable
             
     }
 
-    public BaseClassless playerClass;
-
     CombatController combatController;
 
     public int posStatus = 0;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerClass = new BaseClassless();
-        playerClass.deckList = theDeck.deck;
-    }
 
     private void Update()
     {
@@ -194,11 +188,21 @@ public class PlayerStats : MonoBehaviour, IDamagable
         //if we die, change state to loss state because we lost
         if (playerClass.currentHealth <= 0)
         {
+            //find our combat controller (maybe should be using a singleton pattern for combat controller)
             CombatController combatController = FindObjectOfType<CombatController>();
+            //change state to loss
             combatController.ChangeState(CombatState.Loss);
         }
         //if we healed over our max health, change health so it's back to max health
         else if (playerClass.currentHealth >= playerClass.maxHealth)
+        {
+            playerClass.currentHealth = playerClass.maxHealth;
+        }
+    }
+
+    public void GameStateChanged(GameState newState)
+    {
+        if (newState == GameState.MainMenu)
         {
             playerClass.currentHealth = playerClass.maxHealth;
         }
