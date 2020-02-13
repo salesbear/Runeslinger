@@ -15,6 +15,7 @@ MonoBehaviour:
   cardName: Double Shot
   cardClass: 0
   cardType: 1
+  cardRarity: 2
   description: Deal 2 damage to target twice
   cardImage: {fileID: 21300000, guid: b8e8bcc74b9b6e543bc8870d140d857b, type: 3}
   gritCost: 2
