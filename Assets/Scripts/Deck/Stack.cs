@@ -19,6 +19,7 @@ public class Stack : MonoBehaviour
     [SerializeField] GameObject DeckPile;
     [SerializeField] GameObject DiscardPile;
     [SerializeField] GameObject HandPile;
+    [SerializeField] GameObject ExilePile;
     [SerializeField] Transform placement;
 
     private Placement[] cardPlacements = new Placement[6];
@@ -91,8 +92,11 @@ public class Stack : MonoBehaviour
             {
                 Shuffle();
             }
-            Debug.Log("Popped");
-            MoveCard(2, DeckPile.transform.GetChild(0).gameObject);
+            if (DeckPile.transform.childCount != 0)
+            {
+                Debug.Log("Popped");
+                MoveCard(2, DeckPile.transform.GetChild(0).gameObject);
+            }
         }
     }
 
@@ -140,6 +144,11 @@ public class Stack : MonoBehaviour
                 cardPlacements[openSpot].card = card;
             }
         }
+        if (position == 3)
+        {
+            Debug.Log("put in Exile");
+            card.transform.SetParent(ExilePile.transform);
+        }
     }
 
     public void ToggleHandLayout(bool setting)
@@ -176,6 +185,11 @@ public class Stack : MonoBehaviour
         {
             Draw();
         }
+    }
+
+    public void ExileCard(GameObject card)
+    {
+        MoveCard(3, card);
     }
 
     //returns the index of the first open spot or -1 if all are taken
