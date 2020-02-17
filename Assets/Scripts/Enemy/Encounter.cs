@@ -6,13 +6,13 @@ using UnityEngine;
 public class Encounter : ScriptableObject
 {
     
-    public int powerLevel;
+    [SerializeField] int powerLevel;
 
     [SerializeField] Enemy enemy1;
     [SerializeField] Enemy enemy2;
     [SerializeField] Enemy enemy3;
-    public GameObject enemyPrefab;
-    //enemy spawn points (?)
+    [SerializeField] static GameObject enemyPrefab;
+    [SerializeField] Transform[] spawnPoints = new Transform[3];
 
     Enemy[] encounterData;
 
