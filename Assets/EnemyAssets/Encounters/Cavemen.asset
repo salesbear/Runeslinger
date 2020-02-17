@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7dd481db4680e2f4080e69bbacbf8abb, type: 3}
-  m_Name: Dummy
+  m_Name: Cavemen
   m_EditorClassIdentifier: 
   powerLevel: 0
-  enemy1: {fileID: 11400000, guid: 54e81707f3f0bad4a8e952f0b711b13e, type: 2}
-  enemy2: {fileID: 0}
+  enemy1: {fileID: 11400000, guid: 744db3d61467f224b9949b11a153ef83, type: 2}
+  enemy2: {fileID: 11400000, guid: 744db3d61467f224b9949b11a153ef83, type: 2}
   enemy3: {fileID: 0}
   enemyPrefab: {fileID: 7894800204291360023, guid: 55832112f211d984d82fbb2fcb9fe881,
     type: 3}

@@ -6,23 +6,18 @@ using UnityEngine;
 public class Encounter : ScriptableObject
 {
     
-    [SerializeField] int powerLevel;
+    [SerializeField] public int powerLevel;
 
-    [SerializeField] Enemy enemy1;
-    [SerializeField] Enemy enemy2;
-    [SerializeField] Enemy enemy3;
-    [SerializeField] static GameObject enemyPrefab;
-    [SerializeField] Transform[] spawnPoints = new Transform[3];
+    [Tooltip("Do NOT use multiple of the Same Enemy, things will break")]
+    [SerializeField] public Enemy enemy1;
+    [SerializeField] public Enemy enemy2;
+    [SerializeField] public Enemy enemy3;
+    [SerializeField] public EnemyDisplay enemyPrefab;
 
-    Enemy[] encounterData;
+    public Enemy[] encounterData;
 
-    public void ActivateEncounter()
+    public void SetUp()
     {
         encounterData =  new Enemy[] { enemy1, enemy2, enemy3 };
-        foreach (Enemy enemy in encounterData)
-        {
-            Debug.Log("Spawned Enemy");
-            //Instantiate(enemyPrefab at enemy spawn point 1,2,3)
-        }
     }
 }
