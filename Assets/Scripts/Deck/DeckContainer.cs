@@ -10,7 +10,9 @@ public class DeckContainer : MonoBehaviour
     public GameObject[] CommonCards = new GameObject[4];
     public GameObject[] UncommonCards = new GameObject[5];
     public GameObject[] RareCards = new GameObject[3];
-    public void Awake()
+
+    //This is currently set to activate when the New Game Button is pressed
+    public void RandomizeStartingDeck()
     {
         int i = 0;
         for (i = i; i < 4; i++)
@@ -21,12 +23,10 @@ public class DeckContainer : MonoBehaviour
         {
             deck[i] = StarterCards[1];
         }
-        for(i = i; i < 11; i++)
+        for (i = i; i < 11; i++)
         {
             deck[i] = CommonCards[UnityEngine.Random.Range(0, CommonCards.Length)];
         }
         deck[i] = UncommonCards[UnityEngine.Random.Range(0, UncommonCards.Length)];
-        //deck[i] = 
-        //deck.Add
     }
 }
