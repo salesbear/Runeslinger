@@ -61,7 +61,7 @@ public class CardBehavior : MonoBehaviour
 
     protected void Shield(int shieldAmount)
     {
-        PlayerStats.instance.CallStatus(3, PlayerStats.instance.posStatus, shieldAmount, 1);
+        PlayerStats.instance.CallStatus(3, shieldAmount, 1);
     }
 
     protected void DrawCards(int amt)
@@ -71,12 +71,12 @@ public class CardBehavior : MonoBehaviour
 
     protected void SpendGrit(int cost)
     {
-        PlayerStats.instance.CallStatus(1,PlayerStats.instance.posStatus,-cost,1);
+        PlayerStats.instance.CallStatus(1, -cost, 1);
     }
 
     protected void GainGrit(int amt)
     {
-        PlayerStats.instance.CallStatus(1,PlayerStats.instance.posStatus,amt,1);
+        PlayerStats.instance.CallStatus(1 , amt, 1);
     }
 
     public virtual void PlayCard()
