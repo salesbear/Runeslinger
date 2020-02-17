@@ -82,7 +82,11 @@ public class CardMove : MonoBehaviour
                 deck.ResetCard(gameObject);
             }
         }
-        
+        else
+        {
+            //if we're not playing it put it back in hand
+            deck.ResetCard(gameObject);
+        }
     }
 
     //private void OnTriggerEnter2D(Collider2D collision)

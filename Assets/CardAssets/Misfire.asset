@@ -15,6 +15,7 @@ MonoBehaviour:
   cardName: Misfire
   cardClass: 0
   cardType: 0
+  cardRarity: 4
   description: Unplayable
   cardImage: {fileID: 21300000, guid: b8e8bcc74b9b6e543bc8870d140d857b, type: 3}
   gritCost: 0
