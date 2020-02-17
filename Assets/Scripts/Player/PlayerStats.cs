@@ -121,18 +121,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
 
     public void DecrementStatus()
     {
-        for (int i = 0; i < playerClass.status.Count; i++)
-        {
-            playerClass.status[i].numTurnsLeft--;
-
-            if (playerClass.status[i].numTurnsLeft == 0)
-            {
-                playerClass.currentGrit -= playerClass.status[i].gritApplied;
-                playerClass.accuracy -= playerClass.status[i].accuracyApplied;
-                playerClass.shield -= playerClass.status[i].shieldApplied;
-                playerClass.status.Remove(playerClass.status[i]);
-            }
-        }
+        playerClass.status.Clear();
     }
 
     public void ResetStats()

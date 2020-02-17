@@ -46,12 +46,9 @@ public class CombatController : MonoBehaviour
         // when player turn begins, decrement status counters
         if (stateIndex == 1)
         {
-            if (playerStats.playerClass.status[0].numTurnsLeft != 0)
-            {
-                playerTurnEvent.AddListener(delegate { playerStats.DecrementStatus(); });
-                playerTurnEvent.Invoke();
-                playerTurnEvent.RemoveAllListeners();
-            }
+            playerTurnEvent.AddListener(delegate { playerStats.DecrementStatus(); });
+            playerTurnEvent.Invoke();
+            playerTurnEvent.RemoveAllListeners();
         }
     }
 
