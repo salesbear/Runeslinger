@@ -147,7 +147,7 @@ public class Stack : MonoBehaviour
         if (position == 3)
         {
             Debug.Log("put in Exile");
-            card.transform.SetParent(ExilePile.transform);
+            card.transform.SetParent(ExilePile.transform, false);
         }
     }
 
@@ -175,6 +175,11 @@ public class Stack : MonoBehaviour
     {
         MoveCard(1, card);
     }
+
+    public void ExileCard(GameObject card)
+    {
+        MoveCard(3, card);
+    }
     /// <summary>
     /// draw amt cards
     /// </summary>
@@ -185,11 +190,6 @@ public class Stack : MonoBehaviour
         {
             Draw();
         }
-    }
-
-    public void ExileCard(GameObject card)
-    {
-        MoveCard(3, card);
     }
 
     //returns the index of the first open spot or -1 if all are taken

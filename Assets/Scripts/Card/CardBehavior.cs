@@ -87,7 +87,14 @@ public class CardBehavior : MonoBehaviour
             Shield(card.shield);
             SpendGrit(card.gritCost);
             GainGrit(card.gritGained);
-            deck.DiscardCard(gameObject);
+            if(card.cardType == CardType.Ability)
+            {
+                deck.ExileCard(gameObject);
+            }
+            else
+            {
+                deck.DiscardCard(gameObject);
+            }
             DrawCards(card.cardsDrawn);
         }
         else
