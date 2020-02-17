@@ -19,6 +19,7 @@ public class Stack : MonoBehaviour
     [SerializeField] GameObject DeckPile;
     [SerializeField] GameObject DiscardPile;
     [SerializeField] GameObject HandPile;
+    [SerializeField] GameObject ExilePile;
     [SerializeField] Transform placement;
 
     private Placement[] cardPlacements = new Placement[6];
@@ -91,8 +92,11 @@ public class Stack : MonoBehaviour
             {
                 Shuffle();
             }
-            Debug.Log("Popped");
-            MoveCard(2, DeckPile.transform.GetChild(0).gameObject);
+            if (DeckPile.transform.childCount != 0)
+            {
+                Debug.Log("Popped");
+                MoveCard(2, DeckPile.transform.GetChild(0).gameObject);
+            }
         }
     }
 
@@ -140,6 +144,17 @@ public class Stack : MonoBehaviour
                 cardPlacements[openSpot].card = card;
             }
         }
+        if (position == 3)
+        {
+            int cardSpot = GetCardSpot(card);
+            if (cardSpot > -1)
+            {
+                cardPlacements[cardSpot].hasCard = false;
+                cardPlacements[cardSpot].card = null;
+            }
+            Debug.Log("put in Exile");
+            card.transform.SetParent(ExilePile.transform, false);
+        }
     }
 
     public void ToggleHandLayout(bool setting)
@@ -165,6 +180,11 @@ public class Stack : MonoBehaviour
     public void DiscardCard(GameObject card)
     {
         MoveCard(1, card);
+    }
+
+    public void ExileCard(GameObject card)
+    {
+        MoveCard(3, card);
     }
     /// <summary>
     /// draw amt cards
