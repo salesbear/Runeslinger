@@ -5,15 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class BaseClassless 
 {
-    [System.Serializable]
-    public struct Status
-    {
-        public int gritApplied;
-        public int accuracyApplied;
-        public int shieldApplied;
-        public int numTurnsLeft;
-    }
-
     [Header("Essentials")]
     public int maxHealth;
     public int currentHealth;
@@ -25,7 +16,7 @@ public class BaseClassless
     public int currentGrit;
     public int accuracy;
     public int shield;
-    public Status[] status = new Status[1000];
+    public List<Status> status = new List<Status>();
 
     public BaseClassless()
     {

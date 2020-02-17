@@ -6,7 +6,7 @@ public class LockOn : CardBehavior
 {
     public override void PlayCard()
     {
-        PlayerStats.instance.CallStatus(2, PlayerStats.instance.posStatus, 2, 1);
+        PlayerStats.instance.CallStatus(2, 2, 1);
         base.PlayCard();
     }
 }
