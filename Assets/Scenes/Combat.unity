@@ -5698,6 +5698,16 @@ PrefabInstance:
       propertyPath: m_Value
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7610696003139022562, guid: 55832112f211d984d82fbb2fcb9fe881,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7610696003139022562, guid: 55832112f211d984d82fbb2fcb9fe881,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7894800204612924913, guid: 55832112f211d984d82fbb2fcb9fe881,
         type: 3}
       propertyPath: m_RootOrder
@@ -5717,16 +5727,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7610696003139022562, guid: 55832112f211d984d82fbb2fcb9fe881,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7610696003139022562, guid: 55832112f211d984d82fbb2fcb9fe881,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 368938636298376728, guid: 55832112f211d984d82fbb2fcb9fe881,
         type: 3}
@@ -8451,12 +8451,12 @@ PrefabInstance:
     - target: {fileID: 3082504473550832773, guid: 5e09af61b2964be4d8a77f618175787f,
         type: 3}
       propertyPath: statesToWatch.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3082504473550832773, guid: 5e09af61b2964be4d8a77f618175787f,
         type: 3}
       propertyPath: sceneNames.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3082504473550832773, guid: 5e09af61b2964be4d8a77f618175787f,
         type: 3}

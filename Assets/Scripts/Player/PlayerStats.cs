@@ -183,6 +183,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
             playerClass.currentGrit = 4;
             playerClass.shield = 0;
             playerClass.accuracy = 0;
+            instance.roundsWon++;
         }
     }
 }
