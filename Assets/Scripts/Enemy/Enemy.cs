@@ -21,7 +21,8 @@ public class Enemy : ScriptableObject, IDamagable
     public string enemyName;
     public int maxHP;
     public int currentHP; //should usually be equal to maxHP
-    public int currentShield; //should usually be 0
+    public int startingShield; //usually is 0
+    [HideInInspector] public int currentShield;
 
     public int hiRollDmg;
     public int loRollDmg;
@@ -32,13 +33,16 @@ public class Enemy : ScriptableObject, IDamagable
 
     public PreparedAction preparedAction { get; private set; } 
     public Sprite enemySprite;
-    
-    public int behaviorStep;    //usually should be 0
+
+    public int startingStep; //usually should be 0
+    [HideInInspector] public int behaviorStep;    
     public PreparedAction[] behavior = new PreparedAction[5];
 
     public void SetUp()
     {
         currentHP = maxHP;
+        currentShield = startingShield;
+        behaviorStep = startingStep;
         preparedAction = behavior[behaviorStep];
         if (preparedAction == PreparedAction.Attack)
         {
@@ -98,6 +102,7 @@ public class Enemy : ScriptableObject, IDamagable
             if (currentShield < 0)
             {
                 currentHP += currentShield; //any negative shield is carried over as HP damage
+                currentShield = 0;
             }
         }
         else
@@ -123,5 +128,8 @@ public class Enemy : ScriptableObject, IDamagable
         EnemyUIUpdate?.Invoke();
     }
     
-
+    public void RemoveShield()
+    {
+        currentShield = 0;
+    }
 }

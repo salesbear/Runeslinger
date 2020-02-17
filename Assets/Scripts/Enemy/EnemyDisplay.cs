@@ -14,7 +14,9 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
     [Header("Game Stuff")]
     public TextMeshProUGUI enemyName;
     public TextMeshProUGUI enemyHP;
+    public TextMeshProUGUI shieldValue;
     public Slider enemyHPBar;
+    public Slider enemyShield;
     public TextMeshProUGUI rolledDMG;
 
 
@@ -78,6 +80,17 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
             enemyHPBar.maxValue = enemy.maxHP;
             enemyHPBar.minValue = 0;
             enemyHPBar.value = enemy.currentHP;
+            if(enemy.currentShield != 0)
+            {
+                enemyShield.gameObject.SetActive(true);
+                shieldValue.text = enemy.currentShield.ToString();
+            }
+            else
+            {
+                enemyShield.gameObject.SetActive(false);
+                shieldValue.text = enemy.currentShield.ToString();
+            }
+
             enemyImage.sprite = enemy.enemySprite;
 
             //some hot bullshit incoming

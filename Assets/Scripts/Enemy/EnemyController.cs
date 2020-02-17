@@ -30,7 +30,7 @@ public class EnemyController : MonoBehaviour
     public void RemoveEnemy(EnemyDisplay enemy)
     {
         enemies.Remove(enemy);
-        if (enemies.Count == 0)
+        if (enemies.Count <= 0)
         {
             //tell the combat controller that the player killed all the enemies
             EnemyState.Invoke(6);
@@ -42,9 +42,13 @@ public class EnemyController : MonoBehaviour
     {
         if (state == CombatState.EnemyTurn)
         {
-            //do all the enemy actions
+            
             foreach (EnemyDisplay enemyDisplay in enemies)
             {
+                //clear any remaining enemy shield
+                enemyDisplay.enemy.RemoveShield();
+
+                //then do all the enemy actions
                 PreparedAction action = enemyDisplay.enemy.preparedAction;
                 if (action == PreparedAction.Attack)
                 {
@@ -60,6 +64,7 @@ public class EnemyController : MonoBehaviour
                 }
                 //go to next action in the pool
                 enemyDisplay.enemy.StepBehavior();
+                
             }
             //go to discard state
             EnemyState.Invoke(3);
