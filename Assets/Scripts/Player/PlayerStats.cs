@@ -10,7 +10,9 @@ public class PlayerStats : MonoBehaviour, IDamagable
     //our deck container which holds our starting deck, should be in a child object
     private DeckContainer theDeck;
     public BaseClassless playerClass = new BaseClassless();
-
+    //the number of rounds the player has won
+    [ReadOnly]
+    public int roundsWon = 0;
     private void Awake()
     {
         if (instance == null)

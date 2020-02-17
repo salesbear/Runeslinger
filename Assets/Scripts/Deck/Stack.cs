@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.Linq;
 public class Stack : MonoBehaviour
 {
+    [System.Serializable]
     public struct Placement
     {
         public Transform point;
