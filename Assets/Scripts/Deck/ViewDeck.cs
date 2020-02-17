@@ -5,7 +5,8 @@ using UnityEngine;
 public class ViewDeck : MonoBehaviour
 {
     public GameObject deckPanel;
-    GameObject[] cardsInDeck;
+    public GameObject[] cardsInDeckPanel;
+    public GameObject[] viewedCards;
     public Transform[] cardPlacements;
     public float cardScaleX;
     public float cardScaleY;
@@ -14,32 +15,41 @@ public class ViewDeck : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        Invoke("UpdateDeck", 0.5f);
+        UpdateDeck();
     }
 
     private void OnDisable()
     {
-       for (int i = 0; i < cardsInDeck.Length; i++)
-       {
-            Destroy(cardPlacements[i].GetChild(0));
-       }
+        for (int i = 0; i < viewedCards.Length; i++)
+        {
+            Destroy(viewedCards[i].gameObject);
+
+            viewedCards[i] = null;
+            cardsInDeckPanel[i] = null;
+        }
     }
 
     void UpdateDeck()
     {
-        cardsInDeck = new GameObject[deckPanel.transform.childCount];
-        
-        for (int i = 0; i < cardsInDeck.Length; i++)
+        // create array of cards that are in the deck currently
+        cardsInDeckPanel = new GameObject[deckPanel.transform.childCount];
+
+        // create array of cards to be displayed in view deck screen
+        viewedCards = new GameObject[deckPanel.transform.childCount];
+
+        // show cards in deck
+        for (int i = 0; i < cardsInDeckPanel.Length; i++)
         {
-            cardsInDeck[i] = deckPanel.transform.GetChild(i).gameObject;
+            // get cards that are childrened to the deck panel
+            cardsInDeckPanel[i] = deckPanel.transform.GetChild(i).gameObject;
 
             // create card and set its parent to an empty object in the card layout panel
-            GameObject cardPos = Instantiate(cardsInDeck[i]);
-            cardPos.transform.SetParent(cardPlacements[i]);
+            viewedCards[i] = Instantiate(cardsInDeckPanel[i]);
+            viewedCards[i].transform.SetParent(cardPlacements[i]);
 
             // set card's position and scale
-            cardPos.transform.localPosition = cardPlacements[i].position;
-            cardPos.transform.localScale = new Vector3(cardScaleX, cardScaleY, cardScaleZ);
+            viewedCards[i].transform.localPosition = Vector3.zero;
+            viewedCards[i].transform.localScale = new Vector3(cardScaleX, cardScaleY, cardScaleZ);
         }
     }
 }
