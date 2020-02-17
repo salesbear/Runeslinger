@@ -146,6 +146,12 @@ public class Stack : MonoBehaviour
         }
         if (position == 3)
         {
+            int cardSpot = GetCardSpot(card);
+            if (cardSpot > -1)
+            {
+                cardPlacements[cardSpot].hasCard = false;
+                cardPlacements[cardSpot].card = null;
+            }
             Debug.Log("put in Exile");
             card.transform.SetParent(ExilePile.transform, false);
         }
