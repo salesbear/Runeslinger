@@ -875,6 +875,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284627944}
   m_CullTransparentMesh: 0
+--- !u!114 &302321338 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1028264237}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e91803383b5594996ced5da1399ed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &318195046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,6 +1608,155 @@ PrefabInstance:
       propertyPath: playerClass.status.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: PossibleCards.Array.size
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: PossibleCards.Array.data[0]
+      value: 
+      objectReference: {fileID: 5536637327101232231, guid: e2612e9fe547e4040bd9d674d7325775,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: PossibleCards.Array.data[1]
+      value: 
+      objectReference: {fileID: 4987765961183030295, guid: ecf5915be90131849ae334ad51156583,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: PossibleCards.Array.data[2]
+      value: 
+      objectReference: {fileID: 5536637327101232231, guid: 40d166c135ff08e4498c053540ff82d9,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: PossibleCards.Array.data[3]
+      value: 
+      objectReference: {fileID: 8094273373364107103, guid: 0e97fe020f113c0478b2218cd446afd8,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: PossibleCards.Array.data[4]
+      value: 
+      objectReference: {fileID: 5536637327101232231, guid: fee53e8555462ff4e89fc401ed659806,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: PossibleCards.Array.data[5]
+      value: 
+      objectReference: {fileID: 5536637327101232231, guid: c94632c14283f844b9e5336705befdbf,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: PossibleCards.Array.data[6]
+      value: 
+      objectReference: {fileID: 8996105279139243189, guid: a5868d336b875694190197097f587def,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: PossibleCards.Array.data[7]
+      value: 
+      objectReference: {fileID: 5536637327101232231, guid: d8928291e890a67479426711c4923efc,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: PossibleCards.Array.data[8]
+      value: 
+      objectReference: {fileID: 5536637327101232231, guid: f7f3f5979f4544049acaaf54b522664b,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: PossibleCards.Array.data[9]
+      value: 
+      objectReference: {fileID: 5536637327101232231, guid: 478352ce5f2ae2741acd23a0fc9c50d1,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: StarterCards.Array.data[0]
+      value: 
+      objectReference: {fileID: 5536637327101232231, guid: e2612e9fe547e4040bd9d674d7325775,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: StarterCards.Array.data[1]
+      value: 
+      objectReference: {fileID: 4987765961183030295, guid: ecf5915be90131849ae334ad51156583,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: CommonCards.Array.data[0]
+      value: 
+      objectReference: {fileID: 5536637327101232231, guid: 40d166c135ff08e4498c053540ff82d9,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: CommonCards.Array.data[1]
+      value: 
+      objectReference: {fileID: 8094273373364107103, guid: 0e97fe020f113c0478b2218cd446afd8,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: CommonCards.Array.data[2]
+      value: 
+      objectReference: {fileID: 5536637327101232231, guid: fee53e8555462ff4e89fc401ed659806,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: CommonCards.Array.data[3]
+      value: 
+      objectReference: {fileID: 5536637327101232231, guid: c94632c14283f844b9e5336705befdbf,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: UncommonCards.Array.data[0]
+      value: 
+      objectReference: {fileID: 8996105279139243189, guid: a5868d336b875694190197097f587def,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: UncommonCards.Array.data[1]
+      value: 
+      objectReference: {fileID: 5536637327101232231, guid: d8928291e890a67479426711c4923efc,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: UncommonCards.Array.data[2]
+      value: 
+      objectReference: {fileID: 5536637327101232231, guid: f7f3f5979f4544049acaaf54b522664b,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: UncommonCards.Array.data[3]
+      value: 
+      objectReference: {fileID: 5536637327101232231, guid: 478352ce5f2ae2741acd23a0fc9c50d1,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: UncommonCards.Array.data[4]
+      value: 
+      objectReference: {fileID: 2774002959919278407, guid: 9854ec8fa1a531c478f2ec40c38a897e,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: RareCards.Array.data[2]
+      value: 
+      objectReference: {fileID: 5167962373398196713, guid: 6612bb6af62a4ec4aa336492b297c9e1,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: RareCards.Array.data[1]
+      value: 
+      objectReference: {fileID: 1141540930675316359, guid: 60d7341628551cd479be228f2f6bbf02,
+        type: 3}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: RareCards.Array.data[0]
+      value: 
+      objectReference: {fileID: 5536637327101232231, guid: 3363bf8f5622bf444a2437dd3b5388e3,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b5a1dfddc0f93747a34bdf14008017c, type: 3}
 --- !u!1 &1037773804
@@ -1687,6 +1848,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 302321338}
+        m_MethodName: RandomizeStartingDeck
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
