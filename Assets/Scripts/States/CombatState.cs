@@ -8,5 +8,6 @@
     Victory, //5
     RewardScreen, //6
     ViewDeck, //7
-    ViewDiscard // 8
+    ViewDiscard, // 8
+    RemoveCard // 9
 }

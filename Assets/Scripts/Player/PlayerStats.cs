@@ -13,6 +13,12 @@ public class PlayerStats : MonoBehaviour, IDamagable
     //the number of rounds the player has won
     [ReadOnly]
     public int roundsWon = 0;
+    //The number of rounds since the player recieved a rare card option
+    [ReadOnly]
+    public int rarePityTimer = 0;
+    //The number of rounds since the player received an uncommon card option
+    [ReadOnly]
+    public int uncommonPityTimer = 0;
     private void Awake()
     {
         if (instance == null)

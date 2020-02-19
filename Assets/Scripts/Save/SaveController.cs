@@ -33,6 +33,8 @@ public class SaveController : MonoBehaviour
             PlayerStats.instance.playerClass.currentHealth = save.playerHealth;
             PlayerStats.instance.playerClass.deckList = save.deck;
             PlayerStats.instance.roundsWon = save.roundsWon;
+            PlayerStats.instance.rarePityTimer = save.rarePity;
+            PlayerStats.instance.uncommonPityTimer = save.uncommonPity;
         }
     }
 }

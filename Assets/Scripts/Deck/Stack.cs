@@ -4,15 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 //used to convert from array to list, apparently this is a slow thing to do so maybe we should refactor some stuff
 using System.Linq;
+
+[System.Serializable]
+public struct Placement
+{
+    public Transform point;
+    public bool hasCard;
+    public GameObject card;
+}
+
 public class Stack : MonoBehaviour
 {
-    [System.Serializable]
-    public struct Placement
-    {
-        public Transform point;
-        public bool hasCard;
-        public GameObject card;
-    }
+    //[System.Serializable]
+    //public struct Placement
+    //{
+    //    public Transform point;
+    //    public bool hasCard;
+    //    public GameObject card;
+    //}
 
     [SerializeField] List<GameObject> PossibleCards = new List<GameObject>();
     //[SerializeField] List<int> Instances = new List<int>();
@@ -104,7 +113,7 @@ public class Stack : MonoBehaviour
     /// <summary>
     /// moves a card to specified location
     /// </summary>
-    /// <param name="position">where to move card, 0 = Deck, 1 = Discard, 2 = hand</param>
+    /// <param name="position">where to move card, 0 = Deck, 1 = Discard, 2 = hand, 3 = Exile</param>
     /// <param name="card"></param>
     public void MoveCard(int position, GameObject card)
     {
@@ -247,5 +256,25 @@ public class Stack : MonoBehaviour
                 placement.card.transform.position = placement.point.position;
             }
         }
+    }
+    /// <summary>
+    /// move every card in the deck to discard, renewing the deck for the next round
+    /// </summary>
+    public void RenewDeck()
+    {
+        DiscardHand();
+        while (ExilePile.transform.childCount > 0)
+        {
+            MoveCard(1, ExilePile.transform.GetChild(0).gameObject);
+        }
+        while (DeckPile.transform.childCount > 0)
+        {
+            MoveCard(1, DeckPile.transform.GetChild(0).gameObject);
+        }
+    }
+
+    public void viewWholeDeck()
+    {
+
     }
 }

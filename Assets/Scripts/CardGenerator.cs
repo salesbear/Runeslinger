@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 public class CardGenerator : MonoBehaviour
 {
     [SerializeField]
@@ -55,10 +54,8 @@ public class CardGenerator : MonoBehaviour
                 }
             }
         }
-        GameObject[] tempArray = temp.ToArray();
-
-        rand = Random.Range(0, tempArray.Length);
-        return tempArray[rand];
+        rand = Random.Range(0, temp.Count);
+        return temp[rand];
     }
 
     /// <summary>
