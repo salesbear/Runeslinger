@@ -7,8 +7,16 @@ public class EncounterController : MonoBehaviour
     public Encounter encounter;
 
     public List<Encounter> encounterList;
-
+    [SerializeField] GameObject enemyPanel;
     [SerializeField] Transform[] spawnPoints = new Transform[3];
+
+    private void Awake()
+    {
+        //should call a higher powerlevel every few combats
+        GetEncounter(0);
+        encounter.SetUp();
+        DeployEncounter();
+    }
 
     public void GetEncounter(int level)
     {
@@ -32,8 +40,9 @@ public class EncounterController : MonoBehaviour
         {
             if (encounter.encounterData[i] != null)
             {
-                Instantiate(encounter.enemyPrefab.gameObject, spawnPoints[i]);
+                GameObject inst = Instantiate(encounter.enemyPrefab.gameObject, spawnPoints[i].position, Quaternion.identity, enemyPanel.transform);
                 encounter.enemyPrefab.enemy = encounter.encounterData[i];
+                inst.transform.localScale = new Vector3(54f,54f,54f);
             }
         }
     }
