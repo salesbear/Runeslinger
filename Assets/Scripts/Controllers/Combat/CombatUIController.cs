@@ -54,6 +54,10 @@ public class CombatUIController : MonoBehaviour
                 DisablePanels();
                 panels[4].SetActive(true);
                 break;
+            case 8:
+                DisablePanels();
+                panels[5].SetActive(true);
+                break;
         }
     }
 
