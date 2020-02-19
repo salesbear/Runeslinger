@@ -7,5 +7,6 @@
     Loss, //4
     Victory, //5
     RewardScreen, //6
-    ViewDeck //7
+    ViewDeck, //7
+    ViewDiscard // 8
 }

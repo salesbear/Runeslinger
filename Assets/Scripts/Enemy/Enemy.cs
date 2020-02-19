@@ -11,6 +11,21 @@ public enum PreparedAction
     Other
 }
 
+//other status effects can be added as needed
+public enum StatusEffects
+{
+    Accuracy,
+    Burn
+}
+
+public struct Statuses
+{
+    StatusEffects status;
+    int effectPower;
+    int numberOfTurns;
+}
+
+
 [CreateAssetMenu(fileName = "NewEnemy", menuName = "Enemy")]
 public class Enemy : ScriptableObject, IDamagable
 {

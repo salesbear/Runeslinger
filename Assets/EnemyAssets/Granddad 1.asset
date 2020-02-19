@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b12d4910493323c499eb822ea33f7368, type: 3}
-  m_Name: Dummy 1
+  m_Name: Granddad 1
   m_EditorClassIdentifier: 
-  enemyName: Dummy
-  maxHP: 12
-  currentHP: 12
+  enemyName: Grand Dad
+  maxHP: 10
+  currentHP: 10
   startingShield: 0
   currentShield: 0
-  hiRollDmg: 10
-  loRollDmg: 6
-  shielding: 8
-  enemySprite: {fileID: 21300000, guid: 424a1f41af271f8418d5da7e3198911b, type: 3}
-  startingStep: 1
-  behaviorStep: 1
-  behavior: 000000000100000002000000010000000000000001000000
+  hiRollDmg: 4
+  loRollDmg: 2
+  shielding: 0
+  enemySprite: {fileID: 21300000, guid: 472b7eda622f6774fb9ac947c8845e6f, type: 3}
+  startingStep: 0
+  behaviorStep: 0
+  behavior: 01000000

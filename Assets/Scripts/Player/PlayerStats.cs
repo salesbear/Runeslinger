@@ -88,6 +88,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
         combatController.playerTurnEvent.RemoveAllListeners();
     }
 
+    // create grit status effect and add to status list
     public void GainGritForXTurns(int grit, int turns)
     {
         playerClass.currentGrit += grit;
@@ -99,6 +100,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
         playerClass.status.Add(effect);
     }
 
+    // create accuracy status effect and add to status list
     public void GainAccuracyForXTurns(int accuracy, int turns)
     {
         playerClass.accuracy += accuracy;
@@ -110,6 +112,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
         playerClass.status.Add(effect);
     }
 
+    // create shield status effect and add to status list
     public void GainShieldForXTurns(int shield, int turns)
     {
         playerClass.shield += shield;
@@ -121,9 +124,30 @@ public class PlayerStats : MonoBehaviour, IDamagable
         playerClass.status.Add(effect);
     }
 
+    // decrement status effect
     public void DecrementStatus()
     {
-        playerClass.status.Clear();
+        for (int i = 0; i < playerClass.status.Count; i++)
+        {
+            playerClass.status[i].numTurnsLeft--;
+
+            // if effect is over, revert effect changes on player
+            if (playerClass.status[i].numTurnsLeft == 0)
+            {
+                if (playerClass.shield - playerClass.status[i].shieldApplied > 0)
+                    playerClass.shield -= playerClass.status[i].shieldApplied;
+                else
+                    playerClass.shield = 0;
+
+                playerClass.accuracy -= playerClass.status[i].accuracyApplied;
+                playerClass.currentGrit -= playerClass.status[i].gritApplied;
+
+                // clear status effect
+                playerClass.status[i].shieldApplied = 0;
+                playerClass.status[i].accuracyApplied = 0;
+                playerClass.status[i].gritApplied = 0;
+            }
+        }
     }
 
     public void ResetStats()
@@ -135,6 +159,9 @@ public class PlayerStats : MonoBehaviour, IDamagable
         playerClass.currentGrit = 4;
         playerClass.accuracy = 0;
         playerClass.shield = 0;
+
+        // clear status effect list for next fight
+        playerClass.status.Clear();
     }
 
     public void TakeDamage(int damageTaken)
@@ -171,14 +198,8 @@ public class PlayerStats : MonoBehaviour, IDamagable
     //what we have right now is super broken so I'm just brute forcing it so it works
     public void CombatStateChanged(CombatState state)
     {
-        if (state == CombatState.PlayerTurn)
-        {
-            playerClass.currentGrit = 4;
-            playerClass.shield = 0;
-            playerClass.accuracy = 0;
-        }
         //okay this one is probably actually necessary
-        else if (state == CombatState.RewardScreen)
+        if (state == CombatState.RewardScreen)
         {
             playerClass.currentGrit = 4;
             playerClass.shield = 0;
