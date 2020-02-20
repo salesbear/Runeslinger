@@ -18,9 +18,12 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health.text = "Health: " + PlayerStats.instance.playerClass.currentHealth;
-        grit.text = "Grit: " + PlayerStats.instance.playerClass.currentGrit;
-        accuracy.text = "Acc: " + PlayerStats.instance.playerClass.accuracy;
-        shield.text = "Shield: " + PlayerStats.instance.playerClass.shield;
+        if (PlayerStats.instance != null)
+        {
+            health.text = "Health: " + PlayerStats.instance.playerClass.currentHealth;
+            grit.text = "Grit: " + PlayerStats.instance.playerClass.currentGrit;
+            accuracy.text = "Acc: " + PlayerStats.instance.playerClass.accuracy;
+            shield.text = "Shield: " + PlayerStats.instance.playerClass.shield;
+        }
     }
 }

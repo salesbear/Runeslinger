@@ -47,12 +47,13 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
     void Awake()
     {
         enemyController = FindObjectOfType<EnemyController>();
+        enemyController.AddEnemy(this);
         enemyTransform = GetComponentInChildren<RectTransform>();
     }
     //use this to initialize variables
     void Start()
     {
-        enemyController.AddEnemy(this);
+        Debug.Log(enemy.enemyName);
         enemy.SetUp();
         UpdateUI();
     }

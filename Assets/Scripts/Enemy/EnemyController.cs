@@ -71,8 +71,11 @@ public class EnemyController : MonoBehaviour
                 enemyDisplay.enemy.StepBehavior();
                 
             }
-            //go to discard state
-            EnemyState.Invoke(3);
+            if (PlayerStats.instance.playerClass.currentHealth > 0)
+            {
+                //go to discard state
+                EnemyState.Invoke(3);
+            }
         }
     }
 

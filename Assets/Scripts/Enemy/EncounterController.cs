@@ -10,7 +10,8 @@ public class EncounterController : MonoBehaviour
     public List<Encounter> encounterList;
     [SerializeField] GameObject enemyPanel;
     [SerializeField] Transform[] spawnPoints = new Transform[3];
-
+    [ReadOnly]
+    [SerializeField]
     bool encounterMade = false;
 
     private void Awake()
@@ -28,13 +29,13 @@ public class EncounterController : MonoBehaviour
             encounterMade = false;
         }
 
-        if (combat.state == CombatState.PlayerTurn && combat.priorState == CombatState.RemoveCard && !encounterMade) {
-            Debug.Log("New Encounter");
-            GetEncounter(0);
-            encounter.SetUp();
-            DeployEncounter();
-            encounterMade = true;
-        }
+        //if (combat.state == CombatState.PlayerTurn && combat.priorState == CombatState.RemoveCard && !encounterMade) {
+        //    Debug.Log("New Encounter");
+        //    GetEncounter(0);
+        //    encounter.SetUp();
+        //    DeployEncounter();
+        //    encounterMade = true;
+        //}
     }
     public void GetEncounter(int level)
     {

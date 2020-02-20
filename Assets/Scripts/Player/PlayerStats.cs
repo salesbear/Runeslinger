@@ -172,6 +172,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
 
     public void TakeDamage(int damageTaken)
     {
+        Debug.Log("Take Damage");
         if (damageTaken > playerClass.shield)
         {
             playerClass.currentHealth -= (damageTaken - playerClass.shield);
@@ -191,8 +192,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
         //if we die, change state to loss state because we lost
         if (playerClass.currentHealth <= 0)
         {
-            //find our combat controller (maybe should be using a singleton pattern for combat controller)
-            CombatController combatController = FindObjectOfType<CombatController>();
+            Debug.Log("Health less than 0");
             //change state to loss
             combatController.ChangeState(CombatState.Loss);
         }

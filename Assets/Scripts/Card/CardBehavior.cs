@@ -7,22 +7,18 @@ public class CardBehavior : MonoBehaviour
 {
     //the card we're playing
     protected Card card;
+    [SerializeField]
+    [ReadOnly]
     protected List<GameObject> targets = new List<GameObject>();
     protected Stack deck;
-
+    protected EnemyController enemyController;
+    //protected CombatController combatController;
     private void Awake()
     {
         //get the card we set in card display
         card = GetComponent<CardDisplay>().card;
         //if we're targeting all enemies, find all enemies and add them to targets
-        if (card.target == TargetingOption.Enemies)
-        {
-            EnemyDisplay[] enemies = FindObjectsOfType<EnemyDisplay>();
-            foreach (EnemyDisplay enemyDisplay in enemies)
-            {
-                targets.Add(enemyDisplay.gameObject);
-            }
-        }
+        enemyController = FindObjectOfType<EnemyController>();
         //else if we're targeting the player, add the player to our targets
         else if (card.target == TargetingOption.Player)
         {
@@ -31,6 +27,16 @@ public class CardBehavior : MonoBehaviour
 
         //get the deck
         deck = FindObjectOfType<Stack>();
+        //get the combat controller
+        //combatController = FindObjectOfType<CombatController>();
+    }
+
+    private void Start()
+    {
+        if (card.target == TargetingOption.Enemies)
+        {
+            GetEnemies();
+        }
     }
 
     protected virtual void DealDamage(int damage, GameObject[] targets)
@@ -59,6 +65,14 @@ public class CardBehavior : MonoBehaviour
         }
     }
 
+    //private void OnEnable()
+    //{
+    //    CombatController.StateChanged += OnStateChanged;
+    //}
+    //private void OnDisable()
+    //{
+    //    CombatController.StateChanged -= OnStateChanged;
+    //}
     protected void Shield(int shieldAmount)
     {
         PlayerStats.instance.CallStatus(3, shieldAmount, 1);
@@ -122,4 +136,25 @@ public class CardBehavior : MonoBehaviour
     {
         return (targets.Count >= 1);
     }
+
+    public void GetEnemies()
+    {
+        //Debug.Log("Called GetEnemies()");
+        targets.Clear();
+        foreach (EnemyDisplay enemy in enemyController.enemies)
+        {
+            targets.Add(enemy.gameObject);
+        }
+    }
+
+    //public void OnStateChanged(CombatState state)
+    //{
+    //    if (state == CombatState.PlayerTurn && combatController.priorState == CombatState.RemoveCard)
+    //    {
+    //        if (card.target == TargetingOption.Enemies)
+    //        {
+    //            GetEnemies();
+    //        }
+    //    }
+    //}
 }
