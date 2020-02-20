@@ -5,6 +5,7 @@ using UnityEngine;
 public class EncounterController : MonoBehaviour
 {
     public Encounter encounter;
+    public CombatController combat;
 
     public List<Encounter> encounterList;
     [SerializeField] GameObject enemyPanel;
@@ -18,6 +19,13 @@ public class EncounterController : MonoBehaviour
         DeployEncounter();
     }
 
+    public void Update() {
+        if (combat.state == CombatState.PlayerTurn && combat.priorState == CombatState.RemoveCard) {
+            GetEncounter(0);
+            encounter.SetUp();
+            DeployEncounter();
+        }
+    }
     public void GetEncounter(int level)
     {
         List<Encounter> possibleEncounters = new List<Encounter> { };
