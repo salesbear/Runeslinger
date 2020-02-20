@@ -57,4 +57,9 @@ public class Card : ScriptableObject
     public int gritGained = 0;
 
     public TargetingOption target;
+
+    public override string ToString()
+    {
+        return cardName;
+    }
 }
