@@ -15,6 +15,8 @@ public class CardMove : MonoBehaviour
     [ReadOnly]
     [SerializeField] List<RectTransform> enemyTransforms = new List<RectTransform>();
 
+    CombatController combatController;
+    RewardController rewardController;
     private void Awake()
     {
         theCard = GetComponent<CardDisplay>();
@@ -23,6 +25,10 @@ public class CardMove : MonoBehaviour
         enemyController = FindObjectOfType<EnemyController>();
         //get the rectTransform from playArea
         playArea = GameObject.FindGameObjectWithTag("PlayArea").GetComponent<RectTransform>();
+        //get the combat controller
+        combatController = FindObjectOfType<CombatController>();
+        //get the reward controller
+        rewardController = FindObjectOfType<RewardController>();
     }
 
     private void Start()
@@ -48,33 +54,59 @@ public class CardMove : MonoBehaviour
     private void OnMouseDown()
     {
         //Debug.Log("MouseDown");
+        if (combatController.state == CombatState.RewardScreen)
+        {
+            //tell the reward controller what card we're adding
+            rewardController.rewardChosen = gameObject;
+            //delete the other cards
+            rewardController.DeleteUnchosenCards();
+            //move to the combat state that allows us to remove a card
+            combatController.ChangeState(CombatState.RemoveCard);
+        }
+        else if (combatController.state == CombatState.RemoveCard)
+        {
+            rewardController.cardToRemove = gameObject;
+            rewardController.ReplaceCard();
+            combatController.ChangeState(CombatState.PlayerTurn);
+        }
     }
 
     private void OnMouseDrag()
     {
         //Debug.Log("Mouse Drag");
-
-        //point to move card to
-        Vector3 point;
-        //find mouse position
-        Vector2 mousePos = new Vector2();
-        mousePos.x = Input.mousePosition.x;
-        mousePos.y = Input.mousePosition.y;
-        //set point based on mouse position
-        point = new Vector3(mousePos.x, mousePos.y, 0);
-        //get the world position based on where the mouse was
-        point = Camera.main.ScreenToWorldPoint(point);
-        //change only the x and y coordinates of the card based on where the mouse was
-        gameObject.transform.position = new Vector3(point.x, point.y, transform.position.z);
+        if (combatController.state == CombatState.PlayerTurn)
+        {
+            //point to move card to
+            Vector3 point;
+            //find mouse position
+            Vector2 mousePos = new Vector2();
+            mousePos.x = Input.mousePosition.x;
+            mousePos.y = Input.mousePosition.y;
+            //set point based on mouse position
+            point = new Vector3(mousePos.x, mousePos.y, 0);
+            //get the world position based on where the mouse was
+            point = Camera.main.ScreenToWorldPoint(point);
+            //change only the x and y coordinates of the card based on where the mouse was
+            gameObject.transform.position = new Vector3(point.x, point.y, transform.position.z);
+        }
+        
     }
 
     private void OnMouseUp()
     {
-        if (playerTransform.Overlaps(playArea))
+        if (combatController.state == CombatState.PlayerTurn)
         {
-            if (m_cardBehavior.HasTarget())
+            if (playerTransform.Overlaps(playArea))
             {
-                m_cardBehavior.PlayCard();
+                if (m_cardBehavior.HasTarget())
+                {
+                    m_cardBehavior.PlayCard();
+                }
+                else
+                {
+                    //if we're not playing it put it back in hand
+                    deck.ResetCard(gameObject);
+                }
             }
             else
             {
@@ -82,11 +114,7 @@ public class CardMove : MonoBehaviour
                 deck.ResetCard(gameObject);
             }
         }
-        else
-        {
-            //if we're not playing it put it back in hand
-            deck.ResetCard(gameObject);
-        }
+        
     }
 
     //private void OnTriggerEnter2D(Collider2D collision)
