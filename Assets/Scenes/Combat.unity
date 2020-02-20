@@ -1488,7 +1488,7 @@ RectTransform:
   - {fileID: 120421490}
   - {fileID: 1666322687}
   m_Father: {fileID: 1982005333}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1922,7 +1922,7 @@ RectTransform:
   m_Children:
   - {fileID: 1574990633}
   m_Father: {fileID: 1982005333}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3433,7 +3433,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1982005333}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5707,7 +5707,7 @@ RectTransform:
   m_Children:
   - {fileID: 2109987833}
   m_Father: {fileID: 1571300920}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7258,7 +7258,7 @@ RectTransform:
   - {fileID: 743963420}
   - {fileID: 2043446681}
   m_Father: {fileID: 1571300920}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7295,7 +7295,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1571300920}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7453,9 +7453,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 940257279}
-  - {fileID: 1469151548}
   - {fileID: 1552116389}
   - {fileID: 1229215591}
+  - {fileID: 1469151548}
   m_Father: {fileID: 1970752536}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8111,8 +8111,8 @@ Canvas:
   m_GameObject: {fileID: 1614732318}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 918647328}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -8289,7 +8289,6 @@ GameObject:
   - component: {fileID: 1655294742}
   - component: {fileID: 1655294744}
   - component: {fileID: 1655294745}
-  - component: {fileID: 1655294747}
   m_Layer: 5
   m_Name: RootPanel
   m_TagString: Untagged
@@ -8406,37 +8405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3790ea52c79b6e34dabd90c3f2f3c90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1655294747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1655294740}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50218e07ed096534a98bb3d359503103, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deckPanel: {fileID: 631308276}
-  cardsInDeckPanel: []
-  viewedCards: []
-  cardPlacements:
-  - {fileID: 451145751}
-  - {fileID: 30758475}
-  - {fileID: 834069369}
-  - {fileID: 259352449}
-  - {fileID: 375329776}
-  - {fileID: 111378831}
-  - {fileID: 201792084}
-  - {fileID: 2048258368}
-  - {fileID: 183497924}
-  - {fileID: 1151832128}
-  - {fileID: 743963420}
-  - {fileID: 2043446681}
-  cardScaleX: 40
-  cardScaleY: 40
-  cardScaleZ: 1
 --- !u!1 &1666322686
 GameObject:
   m_ObjectHideFlags: 0
@@ -10452,8 +10420,8 @@ Canvas:
   m_GameObject: {fileID: 1970752535}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 918647328}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -10628,9 +10596,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 825416050}
-  - {fileID: 318910206}
   - {fileID: 852665410}
   - {fileID: 516361110}
+  - {fileID: 318910206}
   m_Father: {fileID: 1614732322}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

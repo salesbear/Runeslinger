@@ -8,6 +8,7 @@ public class CombatController : MonoBehaviour
 {
     [ReadOnly]
     public CombatState state;
+    public CombatState priorState;
     public static event Action<CombatState> StateChanged = delegate { };
 
     public UnityEvent playerTurnEvent;
@@ -19,6 +20,9 @@ public class CombatController : MonoBehaviour
 
         playerStats = FindObjectOfType<PlayerStats>();
         playerStats.HookUpToCombatController();
+
+        priorState = CombatState.PlayerTurn;
+        state = CombatState.PlayerTurn;
     }
 
     private void OnEnable()
@@ -39,12 +43,14 @@ public class CombatController : MonoBehaviour
     /// <param name="stateIndex">the index</param>
     public void ChangeState(int stateIndex)
     {
+        priorState = state;
+
         //convert index to state type
         state = (CombatState)stateIndex;
         StateChanged.Invoke(state);
 
         // when player turn begins, decrement status counters
-        if (stateIndex == 1)
+        if (stateIndex == 1 && priorState == CombatState.Discard)
         {
             playerTurnEvent.AddListener(delegate { playerStats.DecrementStatus(); });
             playerTurnEvent.Invoke();
@@ -58,6 +64,7 @@ public class CombatController : MonoBehaviour
     /// <param name="newState"></param>
     public void ChangeState(CombatState newState)
     {
+        priorState = state;
         state = newState;
         StateChanged.Invoke(state);
     }
