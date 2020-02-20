@@ -274,6 +274,24 @@ public class Stack : MonoBehaviour
         }
     }
 
+    public void RemoveCardFromDeck(string cardName)
+    {
+        RenewDeck();
+        for (int i = 0; i < DiscardPile.transform.childCount; i++)
+        {
+            if (DiscardPile.transform.GetChild(i).gameObject.GetComponent<CardDisplay>().card.ToString() == cardName)
+            {
+                int index = GetCardSpot(DiscardPile.transform.GetChild(i).gameObject);
+                if (index != -1)
+                {
+                    cardPlacements[index].card = null;
+                    cardPlacements[index].hasCard = false;
+                }
+                Destroy(DiscardPile.transform.GetChild(i).gameObject);
+                break;
+            }
+        }
+    }
     //public void ViewWholeDeck()
     //{
     //    //use index to keep track of how many cards we've placed in the panel

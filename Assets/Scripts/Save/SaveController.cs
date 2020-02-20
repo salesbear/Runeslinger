@@ -31,7 +31,11 @@ public class SaveController : MonoBehaviour
 
             //set player stats based on file
             PlayerStats.instance.playerClass.currentHealth = save.playerHealth;
-            PlayerStats.instance.playerClass.deckList = save.deck;
+            for (int i = 0; i < save.deck.Length; i++)
+            {
+                GameObject card = CardGenerator.instance.GetCardByName(save.deck[i]);
+                PlayerStats.instance.playerClass.deckList[i] = card;
+            }
             PlayerStats.instance.roundsWon = save.roundsWon;
             PlayerStats.instance.rarePityTimer = save.rarePity;
             PlayerStats.instance.uncommonPityTimer = save.uncommonPity;

@@ -37,7 +37,6 @@ public enum CardType
 }
 
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
-[System.Serializable]
 public class Card : ScriptableObject
 {
     public string cardName;

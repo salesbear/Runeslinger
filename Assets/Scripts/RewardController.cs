@@ -171,7 +171,9 @@ public class RewardController : MonoBehaviour
         }
         theStack.MoveCard(1, rewardChosen);
         //going to a new round, so reset everything
-        theStack.RenewDeck();
+        theStack.RemoveCardFromDeck(cardToRemove.GetComponent<CardDisplay>().card.ToString());
+        cardToRemove = null;
+        rewardChosen = null;
         SaveController.SaveGame();
     }
 
