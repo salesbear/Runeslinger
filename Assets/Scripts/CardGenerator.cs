@@ -5,6 +5,7 @@ using UnityEngine;
 public class CardGenerator : MonoBehaviour
 {
     [SerializeField]
+    [ReadOnly]
     GameObject[] cards;
     public static CardGenerator instance;
 
@@ -20,19 +21,19 @@ public class CardGenerator : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    // Start is called before the first frame update
-    //void Start()
-    //{
-    //    cards = Resources.LoadAll<GameObject>("CardPrefabs");
-    //}
+    //Start is called before the first frame update
+    void Start()
+    {
+        cards = Resources.LoadAll<GameObject>("CardPrefabs");
+    }
 
-    //public void LoadCards()
-    //{
-    //    if (cards.Length == 0)
-    //    {
-    //        cards = Resources.LoadAll<GameObject>("CardPrefabs");
-    //    } 
-    //}
+    public void LoadCards()
+    {
+        if (cards.Length == 0)
+        {
+            cards = Resources.LoadAll<GameObject>("CardPrefabs");
+        }
+    }
 
     /// <summary>
     /// Generates a random card from a specific rarity, or any non-starter card if left empty

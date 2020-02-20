@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class RewardController : MonoBehaviour
 {
     [Header("Controls")]
@@ -173,17 +173,20 @@ public class RewardController : MonoBehaviour
             {
                 //replace the card in the deck list and destroy the one we're removing
                 PlayerStats.instance.playerClass.deckList[i] = rewardChosen;
-                theStack.AddCard(rewardChosen);
+                //theStack.AddCard(rewardChosen);
                 DeletePlayerDeck();
                 break;
             }
         }
         //going to a new round, so reset everything
-        theStack.RemoveCardFromDeck(cardToRemove.GetComponent<CardDisplay>().card.ToString());
+        //theStack.RemoveCardFromDeck(cardToRemove.GetComponent<CardDisplay>().card.ToString());
         Destroy(cardToRemove.gameObject);
         cardToRemove = null;
         rewardChosen = null;
         SaveController.SaveGame();
+        //TODO: put in animation/delay for removing card
+        //reload scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void ShowPlayerDeck()

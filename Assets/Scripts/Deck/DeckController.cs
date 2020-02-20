@@ -7,9 +7,16 @@ public class DeckController : MonoBehaviour
 {
     private Stack theDeck;
     public static event Action<int> DiscardDone = delegate { };
+    private CombatController combatController;
     private void Awake()
     {
         theDeck = GetComponent<Stack>();
+        combatController = FindObjectOfType<CombatController>();
+    }
+
+    private void Start()
+    {
+        theDeck.DrawCards(6);
     }
 
     //subscribe to CombatState changes when enabled
@@ -26,8 +33,9 @@ public class DeckController : MonoBehaviour
     void OnStateChange(CombatState state)
     {
         //on player turn, draw a new hand
-        if (state == CombatState.PlayerTurn)
+        if (state == CombatState.PlayerTurn && (combatController.priorState == CombatState.Discard))
         {
+            
             theDeck.DrawCards(6);
         }
         //on discard state, discard our hand

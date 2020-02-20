@@ -96,7 +96,7 @@ public class Stack : MonoBehaviour
     {
         for (int i = DiscardPile.transform.childCount; i > 0; i--)
         {
-            Debug.Log("Shuffled");
+            //Debug.Log("Shuffled");
             int randNumber = Random.Range(0, i);
             if(DiscardPile.transform.childCount > 0)
             {
@@ -116,7 +116,7 @@ public class Stack : MonoBehaviour
             }
             if (DeckPile.transform.childCount != 0)
             {
-                Debug.Log("Popped");
+                //Debug.Log("Popped");
                 MoveCard(2, DeckPile.transform.GetChild(0).gameObject);
             }
         }
@@ -141,7 +141,7 @@ public class Stack : MonoBehaviour
                     cardPlacements[cardSpot].hasCard = false;
                     cardPlacements[cardSpot].card = null;
                 }
-                Debug.Log("put in Deck");
+                //Debug.Log("put in Deck");
                 card.transform.SetParent(DeckPile.transform, false);
             }
             if (position == 1)
@@ -153,12 +153,12 @@ public class Stack : MonoBehaviour
                     cardPlacements[cardSpot].hasCard = false;
                     cardPlacements[cardSpot].card = null;
                 }
-                Debug.Log("put in Discard");
+                //Debug.Log("put in Discard");
                 card.transform.SetParent(DiscardPile.transform, false);
             }
             if (position == 2)
             {
-                Debug.Log("put in Hand");
+                //Debug.Log("put in Hand");
                 card.transform.SetParent(HandPile.transform);
                 int openSpot = GetOpenSpot();
                 if (openSpot != -1)
@@ -176,7 +176,7 @@ public class Stack : MonoBehaviour
                     cardPlacements[cardSpot].hasCard = false;
                     cardPlacements[cardSpot].card = null;
                 }
-                Debug.Log("put in Exile");
+                //Debug.Log("put in Exile");
                 card.transform.SetParent(ExilePile.transform, false);
             }
         }
@@ -199,6 +199,8 @@ public class Stack : MonoBehaviour
             if (cardPlacements[i].hasCard)
             {
                 MoveCard(1, cardPlacements[i].card);
+                cardPlacements[i].hasCard = false;
+                cardPlacements[i].card = null;
             }
         }
     }
