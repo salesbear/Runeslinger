@@ -8280,7 +8280,6 @@ GameObject:
   - component: {fileID: 1655294742}
   - component: {fileID: 1655294744}
   - component: {fileID: 1655294745}
-  - component: {fileID: 1655294747}
   m_Layer: 5
   m_Name: RootPanel
   m_TagString: Untagged
@@ -8397,37 +8396,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3790ea52c79b6e34dabd90c3f2f3c90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1655294747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1655294740}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50218e07ed096534a98bb3d359503103, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deckPanel: {fileID: 631308276}
-  cardsInDeckPanel: []
-  viewedCards: []
-  cardPlacements:
-  - {fileID: 451145751}
-  - {fileID: 30758475}
-  - {fileID: 834069369}
-  - {fileID: 259352449}
-  - {fileID: 375329776}
-  - {fileID: 111378831}
-  - {fileID: 201792084}
-  - {fileID: 2048258368}
-  - {fileID: 183497924}
-  - {fileID: 1151832128}
-  - {fileID: 743963420}
-  - {fileID: 2043446681}
-  cardScaleX: 40
-  cardScaleY: 40
-  cardScaleZ: 1
 --- !u!1 &1666322686
 GameObject:
   m_ObjectHideFlags: 0
