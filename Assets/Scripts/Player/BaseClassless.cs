@@ -8,7 +8,7 @@ public class BaseClassless
     [Header("Essentials")]
     public int maxHealth;
     public int currentHealth;
-    [HideInInspector]
+    [ReadOnly]
     public GameObject[] deckList;
 
     [Header("Combat")]

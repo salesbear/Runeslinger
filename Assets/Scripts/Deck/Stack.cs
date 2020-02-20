@@ -31,6 +31,7 @@ public class Stack : MonoBehaviour
     [SerializeField] GameObject HandPile;
     [SerializeField] GameObject ExilePile;
     [SerializeField] Transform placement;
+    //[SerializeField] Transform[] removePoints;
 
     private Placement[] cardPlacements = new Placement[6];
     //idk why this isn't working, ugh
@@ -273,8 +274,42 @@ public class Stack : MonoBehaviour
         }
     }
 
-    public void viewWholeDeck()
-    {
+    //public void ViewWholeDeck()
+    //{
+    //    //use index to keep track of how many cards we've placed in the panel
+    //    int index = 0;
+    //    for (; index < ExilePile.transform.childCount; index++)
+    //    {
+    //        ExilePile.transform.GetChild(index).position = removePoints[index].position;
+    //    }
 
-    }
+    //    for (int i = 0; i < DiscardPile.transform.childCount; i++)
+    //    {
+    //        DiscardPile.transform.GetChild(i).position = removePoints[index].position;
+    //        index++;
+    //    }
+
+    //    for (int i = 0; i < DeckPile.transform.childCount; i++)
+    //    {
+    //        DeckPile.transform.GetChild(i).position = removePoints[index].position;
+    //        index++;
+    //    }
+    //    //if hand has less than 6 cards and more than 0
+    //    if (GetOpenSpot() > 0)
+    //    {
+    //        for (int i = 0; i < GetOpenSpot(); i++)
+    //        {
+    //            cardPlacements[i].card.transform.position = removePoints[index].position;
+    //            index++;
+    //        }
+    //    }
+    //    else if (GetOpenSpot() == -1)
+    //    {
+    //        for (int i = 0; i < cardPlacements.Length; i++)
+    //        {
+    //            cardPlacements[i].card.transform.position = removePoints[index].position;
+    //            index++;
+    //        }
+    //    }
+    //}
 }

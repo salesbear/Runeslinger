@@ -41,10 +41,13 @@ public class CardGenerator : MonoBehaviour
         {
             if (filterRarity)
             {
-                if (cards[i].GetComponent<CardDisplay>().card.cardRarity == targetRarity)
+                //you can't reference a member variable without an instance, so we're instantiating a copy
+                GameObject card = Instantiate(cards[i],new Vector3(200,200,200),Quaternion.identity);
+                if (card.GetComponent<CardDisplay>().card.cardRarity == targetRarity)
                 {
                     temp.Add(cards[i]);
                 }
+                Destroy(card);
             }
             else
             {
@@ -73,5 +76,19 @@ public class CardGenerator : MonoBehaviour
             }
         }
         return starterList;
+    }
+
+    public GameObject GetCardByName(string cardName)
+    {
+        GameObject temp = null;
+        foreach (GameObject card in cards)
+        {
+            if (card.GetComponent<CardDisplay>().card.ToString() == cardName)
+            {
+                temp = card;
+                break;
+            }
+        }
+        return temp;
     }
 }

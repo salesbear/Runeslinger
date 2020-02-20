@@ -37,6 +37,7 @@ public enum CardType
 }
 
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
+[System.Serializable]
 public class Card : ScriptableObject
 {
     public string cardName;
@@ -57,4 +58,9 @@ public class Card : ScriptableObject
     public int gritGained = 0;
 
     public TargetingOption target;
+
+    public override string ToString()
+    {
+        return cardName;
+    }
 }

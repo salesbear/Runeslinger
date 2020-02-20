@@ -11,12 +11,14 @@ public class CardMove : MonoBehaviour
     bool m_playable = false;
     EnemyController enemyController;
     RectTransform playArea;
+    [Tooltip("The rect transform of the card")]
     [SerializeField] RectTransform playerTransform;
     [ReadOnly]
     [SerializeField] List<RectTransform> enemyTransforms = new List<RectTransform>();
 
     CombatController combatController;
     RewardController rewardController;
+    GameStateController gameController;
     private void Awake()
     {
         theCard = GetComponent<CardDisplay>();
@@ -29,6 +31,8 @@ public class CardMove : MonoBehaviour
         combatController = FindObjectOfType<CombatController>();
         //get the reward controller
         rewardController = FindObjectOfType<RewardController>();
+        //get the GameStateController
+        gameController = FindObjectOfType<GameStateController>();
     }
 
     private void Start()
@@ -62,6 +66,7 @@ public class CardMove : MonoBehaviour
             rewardController.DeleteUnchosenCards();
             //move to the combat state that allows us to remove a card
             combatController.ChangeState(CombatState.RemoveCard);
+            rewardController.ShowPlayerDeck();
         }
         else if (combatController.state == CombatState.RemoveCard)
         {
@@ -74,7 +79,7 @@ public class CardMove : MonoBehaviour
     private void OnMouseDrag()
     {
         //Debug.Log("Mouse Drag");
-        if (combatController.state == CombatState.PlayerTurn)
+        if (combatController.state == CombatState.PlayerTurn && gameController.state != GameState.Pause)
         {
             //point to move card to
             Vector3 point;

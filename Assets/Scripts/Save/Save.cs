@@ -10,6 +10,7 @@ public class Save
     public int roundsWon { get; private set; }
     public int rarePity { get; private set; }
     public int uncommonPity { get; private set; }
+    
     public static Save CreateSave()
     {
         Save save = new Save();
