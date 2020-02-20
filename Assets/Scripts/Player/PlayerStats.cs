@@ -210,7 +210,20 @@ public class PlayerStats : MonoBehaviour, IDamagable
             playerClass.currentGrit = 4;
             playerClass.shield = 0;
             playerClass.accuracy = 0;
-            instance.roundsWon++;
+            roundsWon++;
         }
+        if (state == CombatState.PlayerTurn && combatController.priorState == CombatState.RemoveCard)
+        {
+            ClearStatus();
+        }
+    }
+
+    void ClearStatus()
+    {
+        playerClass.status.Clear();
+        playerClass.currentGrit = 4;
+        playerClass.shield = 0;
+        playerClass.accuracy = 0;
+        roundsWon++;
     }
 }

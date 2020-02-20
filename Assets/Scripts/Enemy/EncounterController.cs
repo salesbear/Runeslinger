@@ -29,6 +29,7 @@ public class EncounterController : MonoBehaviour
         }
 
         if (combat.state == CombatState.PlayerTurn && combat.priorState == CombatState.RemoveCard && !encounterMade) {
+            Debug.Log("New Encounter");
             GetEncounter(0);
             encounter.SetUp();
             DeployEncounter();

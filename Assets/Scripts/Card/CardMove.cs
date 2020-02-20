@@ -41,8 +41,8 @@ public class CardMove : MonoBehaviour
         {
             enemyTransforms.Add(enemy.enemyTransform);
         }
+        enemyController.AddCard(this);
     }
-
 
     private void Update()
     {
@@ -53,6 +53,11 @@ public class CardMove : MonoBehaviour
                 m_cardBehavior.SetTarget(transform.gameObject);
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        enemyController.RemoveCard(this);
     }
 
     private void OnMouseDown()
@@ -122,6 +127,15 @@ public class CardMove : MonoBehaviour
         
     }
 
+    public void GetEnemies()
+    {
+        Debug.Log("Called GetEnemies()");
+        enemyTransforms.Clear();
+        foreach (EnemyDisplay enemy in enemyController.enemies)
+        {
+            enemyTransforms.Add(enemy.enemyTransform);
+        }
+    }
     //private void OnTriggerEnter2D(Collider2D collision)
     //{
     //    Debug.Log("TriggerEnter2D");

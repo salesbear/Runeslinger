@@ -165,11 +165,11 @@ public class RewardController : MonoBehaviour
                 GameObject cardPrefab = CardGenerator.instance.GetCardByName(rewardChosen.GetComponent<CardDisplay>().card.ToString());
                 //replace the card in the deck list and destroy the one we're removing
                 PlayerStats.instance.playerClass.deckList[i] = cardPrefab;
+                theStack.AddCard(cardPrefab);
                 DeletePlayerDeck();
                 break;
             }
         }
-        theStack.MoveCard(1, rewardChosen);
         //going to a new round, so reset everything
         theStack.RemoveCardFromDeck(cardToRemove.GetComponent<CardDisplay>().card.ToString());
         cardToRemove = null;

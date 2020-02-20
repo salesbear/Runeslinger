@@ -8,7 +8,10 @@ public class EnemyController : MonoBehaviour
     //all the enemies in the scene
     [ReadOnly]
     public List<EnemyDisplay> enemies = new List<EnemyDisplay>();
-    
+
+    [SerializeField]
+    [ReadOnly]
+    List<CardMove> cards;
     //event to tell combat controller when enemies are done with their turn or dead
     public static event Action<int> EnemyState = delegate { };
 
@@ -25,11 +28,13 @@ public class EnemyController : MonoBehaviour
     public void AddEnemy(EnemyDisplay enemy)
     {
         enemies.Add(enemy);
+        SetCardTargets();
     }
 
     public void RemoveEnemy(EnemyDisplay enemy)
     {
         enemies.Remove(enemy);
+        SetCardTargets();
         if (enemies.Count <= 0)
         {
             //tell the combat controller that the player killed all the enemies
@@ -68,6 +73,25 @@ public class EnemyController : MonoBehaviour
             }
             //go to discard state
             EnemyState.Invoke(3);
+        }
+    }
+
+    public void AddCard(CardMove card)
+    {
+        cards.Add(card);
+    }
+    public void RemoveCard(CardMove card)
+    {
+        cards.Remove(card);
+    }
+
+    void SetCardTargets()
+    {
+        Debug.Log("SetCardTargets");
+        foreach (CardMove card in cards)
+        {
+            Debug.Log(card);
+            card.GetEnemies();
         }
     }
 }

@@ -32,10 +32,16 @@ public class Stack : MonoBehaviour
     [SerializeField] GameObject ExilePile;
     [SerializeField] Transform placement;
     //[SerializeField] Transform[] removePoints;
-
+    [SerializeField]
     private Placement[] cardPlacements = new Placement[6];
     //idk why this isn't working, ugh
     private HorizontalLayoutGroup HandLayout;
+    [SerializeField]
+    [ReadOnly]
+    GameObject cardToAdd;
+    [SerializeField]
+    [ReadOnly]
+    bool cardAdded = false;
 
     private void Awake()
     {
@@ -72,7 +78,6 @@ public class Stack : MonoBehaviour
             cardPlacements[i].hasCard = false;
         }
     }
-
     //public void FixedUpdate()
     //{
     //    if(HandLayout.enabled == true)
@@ -80,6 +85,12 @@ public class Stack : MonoBehaviour
     //        ToggleHandLayout(false);
     //    }
     //}
+    private void OnEnable()
+    {
+        CombatController.StateChanged += OnStateChange;
+    }
+
+
 
     public void Shuffle()
     {
@@ -118,54 +129,58 @@ public class Stack : MonoBehaviour
     /// <param name="card"></param>
     public void MoveCard(int position, GameObject card)
     {
-        //ToggleHandLayout(true);
-        if (position == 0)
+        if (card != null)
         {
-            //if the card's in hand remove it
-            int cardSpot = GetCardSpot(card);
-            if (cardSpot > -1)
+            //ToggleHandLayout(true);
+            if (position == 0)
             {
-                cardPlacements[cardSpot].hasCard = false;
-                cardPlacements[cardSpot].card = null;
+                //if the card's in hand remove it
+                int cardSpot = GetCardSpot(card);
+                if (cardSpot > -1)
+                {
+                    cardPlacements[cardSpot].hasCard = false;
+                    cardPlacements[cardSpot].card = null;
+                }
+                Debug.Log("put in Deck");
+                card.transform.SetParent(DeckPile.transform, false);
             }
-            Debug.Log("put in Deck");
-            card.transform.SetParent(DeckPile.transform, false);
-        }
-        if (position == 1)
-        {
-            //if the card's in hand remove it
-            int cardSpot = GetCardSpot(card);
-            if (cardSpot > -1)
+            if (position == 1)
             {
-                cardPlacements[cardSpot].hasCard = false;
-                cardPlacements[cardSpot].card = null;
+                //if the card's in hand remove it
+                int cardSpot = GetCardSpot(card);
+                if (cardSpot > -1)
+                {
+                    cardPlacements[cardSpot].hasCard = false;
+                    cardPlacements[cardSpot].card = null;
+                }
+                Debug.Log("put in Discard");
+                card.transform.SetParent(DiscardPile.transform, false);
             }
-            Debug.Log("put in Discard");
-            card.transform.SetParent(DiscardPile.transform, false);
-        }
-        if (position == 2)
-        {
-            Debug.Log("put in Hand");
-            card.transform.SetParent(HandPile.transform);
-            int openSpot = GetOpenSpot();
-            if (openSpot != -1)
+            if (position == 2)
             {
-                card.transform.position = cardPlacements[openSpot].point.position;
-                cardPlacements[openSpot].hasCard = true;
-                cardPlacements[openSpot].card = card;
+                Debug.Log("put in Hand");
+                card.transform.SetParent(HandPile.transform);
+                int openSpot = GetOpenSpot();
+                if (openSpot != -1)
+                {
+                    card.transform.position = cardPlacements[openSpot].point.position;
+                    cardPlacements[openSpot].hasCard = true;
+                    cardPlacements[openSpot].card = card;
+                }
             }
-        }
-        if (position == 3)
-        {
-            int cardSpot = GetCardSpot(card);
-            if (cardSpot > -1)
+            if (position == 3)
             {
-                cardPlacements[cardSpot].hasCard = false;
-                cardPlacements[cardSpot].card = null;
+                int cardSpot = GetCardSpot(card);
+                if (cardSpot > -1)
+                {
+                    cardPlacements[cardSpot].hasCard = false;
+                    cardPlacements[cardSpot].card = null;
+                }
+                Debug.Log("put in Exile");
+                card.transform.SetParent(ExilePile.transform, false);
             }
-            Debug.Log("put in Exile");
-            card.transform.SetParent(ExilePile.transform, false);
         }
+        
     }
 
     public void ToggleHandLayout(bool setting)
@@ -272,6 +287,11 @@ public class Stack : MonoBehaviour
         {
             MoveCard(1, DeckPile.transform.GetChild(0).gameObject);
         }
+        for (int i = 0; i < cardPlacements.Length; i++)
+        {
+            cardPlacements[i].card = null;
+            cardPlacements[i].hasCard = false;
+        }
     }
 
     public void RemoveCardFromDeck(string cardName)
@@ -281,15 +301,24 @@ public class Stack : MonoBehaviour
         {
             if (DiscardPile.transform.GetChild(i).gameObject.GetComponent<CardDisplay>().card.ToString() == cardName)
             {
-                int index = GetCardSpot(DiscardPile.transform.GetChild(i).gameObject);
-                if (index != -1)
-                {
-                    cardPlacements[index].card = null;
-                    cardPlacements[index].hasCard = false;
-                }
                 Destroy(DiscardPile.transform.GetChild(i).gameObject);
                 break;
             }
+        }
+    }
+
+    public void AddCard(GameObject card)
+    {
+        cardToAdd = card;
+        cardAdded = true;
+    }
+
+    void OnStateChange(CombatState state)
+    {
+        if (cardAdded && state == CombatState.PlayerTurn)
+        {
+            Instantiate(cardToAdd, DiscardPile.transform);
+            cardAdded = false;
         }
     }
     //public void ViewWholeDeck()

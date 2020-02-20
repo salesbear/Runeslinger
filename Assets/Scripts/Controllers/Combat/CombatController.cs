@@ -16,10 +16,9 @@ public class CombatController : MonoBehaviour
 
     private void Start()
     {
-        ChangeState(CombatState.PlayerTurn);
-
         playerStats = FindObjectOfType<PlayerStats>();
         playerStats.HookUpToCombatController();
+        ChangeState(CombatState.PlayerTurn);
 
         priorState = CombatState.PlayerTurn;
         state = CombatState.PlayerTurn;
