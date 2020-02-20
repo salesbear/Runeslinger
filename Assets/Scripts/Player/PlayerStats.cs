@@ -173,7 +173,10 @@ public class PlayerStats : MonoBehaviour, IDamagable
     public void TakeDamage(int damageTaken)
     {
         playerClass.currentHealth -= (damageTaken - playerClass.shield);
-        playerClass.shield -= damageTaken;
+        if (damageTaken > 0)
+        {
+            playerClass.shield -= damageTaken;
+        }
         if (playerClass.shield < 0)
         {
             playerClass.shield = 0;
