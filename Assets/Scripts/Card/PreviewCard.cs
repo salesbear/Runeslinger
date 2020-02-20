@@ -9,13 +9,20 @@ public class PreviewCard : MonoBehaviour
     public float origXScale;
     public float origYScale;
 
+    CombatController combatController;
+
     private void Start()
     {
+        combatController = FindObjectOfType<CombatController>();
+        CardMove cardMove = GetComponent<CardMove>();
+
         origXScale = transform.localScale.x;
         origYScale = transform.localScale.y;
 
-        CardMove cardMove = GetComponent<CardMove>();
-        cardMove.enabled = false;
+        if (combatController.state == CombatState.ViewDeck || combatController.state == CombatState.ViewDiscard)
+            cardMove.enabled = false;
+        else
+            cardMove.enabled = true;
     }
 
     public void OnMouseEnter()
