@@ -22,6 +22,7 @@ public class SaveController : MonoBehaviour
     {
         if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
         {
+            //CardGenerator.instance.LoadCards();
             //create binary formatter and file stream to read file
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);

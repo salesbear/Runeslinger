@@ -180,6 +180,10 @@ public class PlayerStats : MonoBehaviour, IDamagable
         {
             playerClass.shield -= damageTaken;
         }
+        else
+        {
+            playerClass.currentHealth -= damageTaken;
+        }
         if (playerClass.shield < 0)
         {
             playerClass.shield = 0;
