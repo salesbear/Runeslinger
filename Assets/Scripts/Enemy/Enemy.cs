@@ -69,7 +69,7 @@ public class Enemy : ScriptableObject, IDamagable
     public void StepBehavior()
     {
         //check to make sure shit hasn't just gone completely south
-        if (behaviorStep > behavior.Length || behaviorStep < 0)
+        if (behaviorStep + 1 >= behavior.Length || behaviorStep < 0)
         {
             //if it has, reset
             behaviorStep = 0;
