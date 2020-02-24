@@ -17,10 +17,10 @@ public class CardBehavior : MonoBehaviour
     {
         //get the card we set in card display
         card = GetComponent<CardDisplay>().card;
-        //if we're targeting all enemies, find all enemies and add them to targets
+        //get the enemy controller to find all the enemies
         enemyController = FindObjectOfType<EnemyController>();
-        //else if we're targeting the player, add the player to our targets
-        else if (card.target == TargetingOption.Player)
+        // if we're targeting the player, add the player to our targets
+        if (card.target == TargetingOption.Player)
         {
             targets.Add(PlayerStats.instance.gameObject);
         }
