@@ -29,9 +29,12 @@ public struct Statuses
 [CreateAssetMenu(fileName = "NewEnemy", menuName = "Enemy")]
 public class Enemy : ScriptableObject, IDamagable
 {
+    
+
     //TODO: Actions to alert EnemyDisplay that the Enemy's Stats have changed
     public event Action EnemyUIUpdate = delegate { };
     public event Action Die = delegate { };
+    public event Action<int, Color> DamageNumber = delegate { };
 
     public string enemyName;
     public int maxHP;
@@ -52,6 +55,8 @@ public class Enemy : ScriptableObject, IDamagable
     public int startingStep; //usually should be 0
     [HideInInspector] public int behaviorStep;    
     public PreparedAction[] behavior = new PreparedAction[5];
+
+    
 
     public void SetUp()
     {
@@ -113,16 +118,25 @@ public class Enemy : ScriptableObject, IDamagable
     {
         if (currentShield > 0)
         {
+            int shld = currentShield;
             currentShield -= damageTaken;
             if (currentShield < 0)
             {
-                currentHP += currentShield; //any negative shield is carried over as HP damage
+                int carryoverDamage = currentShield;
+                currentHP += carryoverDamage; //any negative shield is carried over as HP damage
+                DamageNumber?.Invoke(shld, DmgNumbers.shieldDamageColor);
+                DamageNumber?.Invoke(carryoverDamage, DmgNumbers.damageColor);
                 currentShield = 0;
+            }
+            else
+            {
+                DamageNumber?.Invoke(damageTaken, DmgNumbers.shieldDamageColor);
             }
         }
         else
         {
             currentHP -= damageTaken;
+            DamageNumber?.Invoke(damageTaken, DmgNumbers.damageColor);
         }
 
         if (currentHP <= 0)
