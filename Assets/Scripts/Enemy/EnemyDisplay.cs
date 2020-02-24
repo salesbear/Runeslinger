@@ -69,9 +69,14 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
         ReadEnemyFromAsset();
         //take self off enemy controller list on death
         enemyController.RemoveEnemy(this);
-        this.gameObject.SetActive(false);
+        if (this != null)
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 
+    //I suspect the bugs we were getting here were coming from stuff loading in at different times, which is annoying
+    //but checking for if the thing is null seems to have fixed the bug, for some reason
     void ReadEnemyFromAsset()
     {
         if (enemy != null)
@@ -81,15 +86,27 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
             enemyHPBar.maxValue = enemy.maxHP;
             enemyHPBar.minValue = 0;
             enemyHPBar.value = enemy.currentHP;
-            if(enemy.currentShield != 0)
+            if (enemyShield != null)
             {
-                enemyShield.gameObject.SetActive(true);
-                shieldValue.text = enemy.currentShield.ToString();
+                if(enemy.currentShield != 0)
+                {
+                    enemyShield.gameObject.SetActive(true);
+                    shieldValue.text = enemy.currentShield.ToString();
+                }
+                else
+                {
+                    enemyShield.gameObject.SetActive(false);
+                    shieldValue.text = enemy.currentShield.ToString();
+                }
             }
             else
             {
-                enemyShield.gameObject.SetActive(false);
-                shieldValue.text = enemy.currentShield.ToString();
+                Debug.Log("The shield is null");
+            }
+
+            if (enemy == null)
+            {
+                Debug.Log("enemy is null");
             }
 
             enemyImage.sprite = enemy.enemySprite;
@@ -98,33 +115,75 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
             if(enemy.preparedAction == PreparedAction.DoNothing)
             {
                 enemyBehavior.sprite = doNothing;
-                rolledDMG.gameObject.SetActive(false);
+                if (rolledDMG != null)
+                {
+                    rolledDMG.gameObject.SetActive(false);
+                }
+                else
+                {
+                    Debug.Log("rolledDMG is null");
+                }
             }
             else if (enemy.preparedAction == PreparedAction.Attack)
             {
                 enemyBehavior.sprite = attack;
-                rolledDMG.gameObject.SetActive(true);
-                rolledDMG.text = enemy.rolledDamage.ToString();
+                if (rolledDMG != null)
+                {
+                    rolledDMG.gameObject.SetActive(true);
+                    rolledDMG.text = enemy.rolledDamage.ToString();
+                }
+                else
+                {
+                    Debug.Log("rolledDMG is null");
+                }
             }
             else if (enemy.preparedAction == PreparedAction.Defend)
             {
                 enemyBehavior.sprite = defend;
-                rolledDMG.gameObject.SetActive(false);
+                if (rolledDMG != null)
+                {
+                    rolledDMG.gameObject.SetActive(false);
+                }
+                else
+                {
+                    Debug.Log("RolledDMG is null");
+                }
             }
             else if (enemy.preparedAction == PreparedAction.Buff)
             {
                 enemyBehavior.sprite = buff;
-                rolledDMG.gameObject.SetActive(false);
+                if (rolledDMG != null)
+                {
+                    rolledDMG.gameObject.SetActive(false);
+                }
+                else
+                {
+                    Debug.Log("RolledDMG is null");
+                }
             }
             else if (enemy.preparedAction == PreparedAction.Debuff)
             {
                 enemyBehavior.sprite = debuff;
-                rolledDMG.gameObject.SetActive(false);
+                if (rolledDMG != null)
+                {
+                    rolledDMG.gameObject.SetActive(false);
+                }
+                else
+                {
+                    Debug.Log("RolledDMG is null");
+                }
             }
             else if (enemy.preparedAction == PreparedAction.Other)
             {
                 enemyBehavior.sprite = other;
-                rolledDMG.gameObject.SetActive(false);
+                if (rolledDMG != null)
+                {
+                    rolledDMG.gameObject.SetActive(false);
+                }
+                else
+                {
+                    Debug.Log("RolledDMG is null");
+                }
             }
         }
     }

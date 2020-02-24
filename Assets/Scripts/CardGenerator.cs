@@ -67,7 +67,7 @@ public class CardGenerator : MonoBehaviour
             }
         }
         rand = Random.Range(0, temp.Count);
-        Debug.Log(temp.Count);
+        //Debug.Log(temp.Count);
         return temp[rand];
     }
 

@@ -90,10 +90,10 @@ public class EnemyController : MonoBehaviour
 
     void SetCardTargets()
     {
-        Debug.Log("SetCardTargets");
+        //Debug.Log("SetCardTargets");
         foreach (CardMove card in cards)
         {
-            Debug.Log(card);
+            //Debug.Log(card);
             card.GetEnemies();
         }
     }
