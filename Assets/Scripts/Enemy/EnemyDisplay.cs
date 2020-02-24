@@ -18,6 +18,7 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
     public Slider enemyHPBar;
     public Slider enemyShield;
     public TextMeshProUGUI rolledDMG;
+    GameObject damageNumber = Resources.Load<GameObject>("DamageNumbers");
 
 
     [Header("Image Stuff")]
@@ -36,12 +37,14 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
     {
         enemy.EnemyUIUpdate += UpdateUI;
         enemy.Die += OnDie;
+        enemy.DamageNumber += OnDamage;
     }
 
     private void OnDisable()
     {
         enemy.EnemyUIUpdate -= UpdateUI;
         enemy.Die -= OnDie;
+        enemy.DamageNumber -= OnDamage;
     }
     //register with enemy controller on awake
     void Awake()
@@ -70,6 +73,14 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
         //take self off enemy controller list on death
         enemyController.RemoveEnemy(this);
         this.gameObject.SetActive(false);
+    }
+
+    void OnDamage(int damage, Color color)
+    {
+        GameObject dmg = Instantiate(damageNumber, gameObject.transform.position, Quaternion.identity);
+        DmgNumbers dmgNum = dmg.GetComponent<DmgNumbers>();
+        dmgNum.WriteDamage(damage, color);
+        dmgNum.Launch();
     }
 
     void ReadEnemyFromAsset()
