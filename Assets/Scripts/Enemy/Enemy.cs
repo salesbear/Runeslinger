@@ -125,7 +125,10 @@ public class Enemy : ScriptableObject, IDamagable
                 int carryoverDamage = currentShield;
                 currentHP += carryoverDamage; //any negative shield is carried over as HP damage
                 DamageNumber?.Invoke(shld, DmgNumbers.shieldDamageColor);
-                DamageNumber?.Invoke(carryoverDamage, DmgNumbers.damageColor);
+                if (carryoverDamage != 0)
+                {
+                    DamageNumber?.Invoke(carryoverDamage, DmgNumbers.damageColor);
+                }
                 currentShield = 0;
             }
             else
