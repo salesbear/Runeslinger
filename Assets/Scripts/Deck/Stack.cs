@@ -31,6 +31,7 @@ public class Stack : MonoBehaviour
     [SerializeField] GameObject HandPile;
     [SerializeField] GameObject ExilePile;
     [SerializeField] Transform placement;
+    [SerializeField] GameObject CardSound;
     //[SerializeField] Transform[] removePoints;
     [SerializeField]
     private Placement[] cardPlacements = new Placement[6];
@@ -131,7 +132,7 @@ public class Stack : MonoBehaviour
     {
         if (card != null)
         {
-            //ToggleHandLayout(true);
+            // put in Deck
             if (position == 0)
             {
                 //if the card's in hand remove it
@@ -141,11 +142,12 @@ public class Stack : MonoBehaviour
                     cardPlacements[cardSpot].hasCard = false;
                     cardPlacements[cardSpot].card = null;
                 }
-                //Debug.Log("put in Deck");
                 card.transform.SetParent(DeckPile.transform, false);
             }
+            // put in Discard
             if (position == 1)
             {
+                Instantiate(CardSound);
                 //if the card's in hand remove it
                 int cardSpot = GetCardSpot(card);
                 if (cardSpot > -1)
@@ -153,12 +155,12 @@ public class Stack : MonoBehaviour
                     cardPlacements[cardSpot].hasCard = false;
                     cardPlacements[cardSpot].card = null;
                 }
-                //Debug.Log("put in Discard");
                 card.transform.SetParent(DiscardPile.transform, false);
             }
+            // put in Hand
             if (position == 2)
             {
-                //Debug.Log("put in Hand");
+                Instantiate(CardSound);
                 card.transform.SetParent(HandPile.transform);
                 int openSpot = GetOpenSpot();
                 if (openSpot != -1)
@@ -168,15 +170,16 @@ public class Stack : MonoBehaviour
                     cardPlacements[openSpot].card = card;
                 }
             }
+            // put in Exile
             if (position == 3)
             {
+                Instantiate(CardSound);
                 int cardSpot = GetCardSpot(card);
                 if (cardSpot > -1)
                 {
                     cardPlacements[cardSpot].hasCard = false;
                     cardPlacements[cardSpot].card = null;
                 }
-                //Debug.Log("put in Exile");
                 card.transform.SetParent(ExilePile.transform, false);
             }
         }

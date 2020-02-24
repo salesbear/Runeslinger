@@ -1572,6 +1572,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
         type: 3}
+      propertyPath: RareCards.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908395887216359780, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
       propertyPath: PossibleCards.Array.data[0]
       value: 
       objectReference: {fileID: 5536637327101232231, guid: e2612e9fe547e4040bd9d674d7325775,
