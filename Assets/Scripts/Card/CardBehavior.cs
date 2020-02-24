@@ -20,7 +20,7 @@ public class CardBehavior : MonoBehaviour
         //if we're targeting all enemies, find all enemies and add them to targets
         enemyController = FindObjectOfType<EnemyController>();
         //else if we're targeting the player, add the player to our targets
-        else if (card.target == TargetingOption.Player)
+        if (card.target == TargetingOption.Player)
         {
             targets.Add(PlayerStats.instance.gameObject);
         }
