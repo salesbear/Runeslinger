@@ -66,48 +66,29 @@ public class RewardController : MonoBehaviour
     {
         if (state == CombatState.RewardScreen)
         {
+            int spawnCount = 0;
             //CardGenerator.instance.LoadCards();
             for (int i = 0; i < rewardSpawns.Length; i++)
             {
-                //if it's been 4 or more rounds since we saw a rare
-                if (PlayerStats.instance.rarePityTimer >= rareLimit)
+                Debug.Log("Loop: " + i);
+                //for some reason this ran 3 times during testing, so we're just going to check to make sure we aren't spawning duplicates
+                if (!rewardSpawns[i].hasCard)
                 {
-                    //generate a rare card and put it in our list of rewards
-                    GameObject card = CardGenerator.instance.GenerateCard(CardRarity.Rare,true);
-                    GameObject temp = Instantiate(card);
-                    rewardSpawns[i].card = temp;
-                    rewardSpawns[i].hasCard = true;
-                    //instantiate card
-                    Instantiate(card, rewardSpawns[i].point);
-                    //reset pity timer
-                    PlayerStats.instance.rarePityTimer = 0;
-                    spawnedRare = true;
-                }
-                //if it's been two or more rounds since we saw an uncommon
-                else if (PlayerStats.instance.uncommonPityTimer >= uncommonLimit)
-                {
-                    //Generate an uncommon card and put it in our list of rewards
-                    GameObject card = CardGenerator.instance.GenerateCard(CardRarity.Uncommon, true);
-                    GameObject temp = Instantiate(card,rewardSpawns[i].point);
-                    rewardSpawns[i].card = temp;
-                    rewardSpawns[i].hasCard = true;
-                    //reset pity timer
-                    PlayerStats.instance.uncommonPityTimer = 0;
-                    spawnedUncommon = true;
-                }
-                else
-                {
-                    //get a number between 1 and 100
-                    int rand = Random.Range(1, 101);
-                    if (rand < commonPercentage)
+                    //if it's been 4 or more rounds since we saw a rare
+                    if (PlayerStats.instance.rarePityTimer >= rareLimit)
                     {
-                        //Generate an uncommon card and put it in our list of rewards
-                        GameObject card = CardGenerator.instance.GenerateCard(CardRarity.Common, true);
-                        GameObject temp = Instantiate(card,rewardSpawns[i].point);
+                        //generate a rare card and put it in our list of rewards
+                        GameObject card = CardGenerator.instance.GenerateCard(CardRarity.Rare,true);
+                        GameObject temp = Instantiate(card, rewardSpawns[i].point);
                         rewardSpawns[i].card = temp;
                         rewardSpawns[i].hasCard = true;
+                        //reset pity timer
+                        PlayerStats.instance.rarePityTimer = 0;
+                        spawnedRare = true;
+                        spawnCount++;
                     }
-                    else if (rand > commonPercentage && rand < commonPercentage + uncommonPercentage)
+                    //if it's been two or more rounds since we saw an uncommon
+                    else if (PlayerStats.instance.uncommonPityTimer >= uncommonLimit)
                     {
                         //Generate an uncommon card and put it in our list of rewards
                         GameObject card = CardGenerator.instance.GenerateCard(CardRarity.Uncommon, true);
@@ -120,16 +101,41 @@ public class RewardController : MonoBehaviour
                     }
                     else
                     {
-                        //generate a rare card and put it in our list of rewards
-                        GameObject card = CardGenerator.instance.GenerateCard(CardRarity.Rare, true);
-                        GameObject temp = Instantiate(card,rewardSpawns[i].point);
-                        rewardSpawns[i].card = temp;
-                        rewardSpawns[i].hasCard = true;
-                        //reset pity timer
-                        PlayerStats.instance.rarePityTimer = 0;
-                        spawnedRare = true;
+                        //get a number between 1 and 100
+                        int rand = Random.Range(1, 101);
+                        if (rand < commonPercentage)
+                        {
+                            //Generate an uncommon card and put it in our list of rewards
+                            GameObject card = CardGenerator.instance.GenerateCard(CardRarity.Common, true);
+                            GameObject temp = Instantiate(card,rewardSpawns[i].point);
+                            rewardSpawns[i].card = temp;
+                            rewardSpawns[i].hasCard = true;
+                        }
+                        else if (rand > commonPercentage && rand < commonPercentage + uncommonPercentage)
+                        {
+                            //Generate an uncommon card and put it in our list of rewards
+                            GameObject card = CardGenerator.instance.GenerateCard(CardRarity.Uncommon, true);
+                            GameObject temp = Instantiate(card,rewardSpawns[i].point);
+                            rewardSpawns[i].card = temp;
+                            rewardSpawns[i].hasCard = true;
+                            //reset pity timer
+                            PlayerStats.instance.uncommonPityTimer = 0;
+                            spawnedUncommon = true;
+                        }
+                        else
+                        {
+                            //generate a rare card and put it in our list of rewards
+                            GameObject card = CardGenerator.instance.GenerateCard(CardRarity.Rare, true);
+                            GameObject temp = Instantiate(card,rewardSpawns[i].point);
+                            rewardSpawns[i].card = temp;
+                            rewardSpawns[i].hasCard = true;
+                            //reset pity timer
+                            PlayerStats.instance.rarePityTimer = 0;
+                            spawnedRare = true;
+                        }
                     }
                 }
+                
             }
             //update pity timers
             if (!spawnedRare)

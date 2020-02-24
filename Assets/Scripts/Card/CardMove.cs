@@ -129,7 +129,7 @@ public class CardMove : MonoBehaviour
 
     public void GetEnemies()
     {
-        Debug.Log("Called GetEnemies()");
+        //Debug.Log("Called GetEnemies()");
         enemyTransforms.Clear();
         foreach (EnemyDisplay enemy in enemyController.enemies)
         {

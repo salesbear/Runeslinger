@@ -10,25 +10,30 @@ public class DoubleShot : CardBehavior
         {
             foreach (GameObject target in targets)
             {
-                //if there's a damageable component in the object, find it
-                IDamagable targetDamagable = target.GetComponent<IDamagable>();
-                if (targetDamagable == null)
+                //need to check so the game doesn't crash when your first shot kills the enemy
+                if (target != null)
                 {
-                    targetDamagable = target.GetComponentInParent<IDamagable>();
+                    //if there's a damageable component in the object, find it
+                    IDamagable targetDamagable = target.GetComponent<IDamagable>();
+                    if (targetDamagable == null)
+                    {
+                        targetDamagable = target.GetComponentInParent<IDamagable>();
+                    }
+                    if (targetDamagable == null)
+                    {
+                        targetDamagable = target.GetComponentInChildren<IDamagable>();
+                    }
+                    //only apply accuracy if target is an enemy
+                    if (card.target != TargetingOption.Player)
+                    {
+                        targetDamagable.TakeDamage(damage + PlayerStats.instance.playerClass.accuracy);
+                    }
+                    else
+                    {
+                        targetDamagable.TakeDamage(damage);
+                    }
                 }
-                if (targetDamagable == null)
-                {
-                    targetDamagable = target.GetComponentInChildren<IDamagable>();
-                }
-                //only apply accuracy if target is an enemy
-                if (card.target != TargetingOption.Player)
-                {
-                    targetDamagable.TakeDamage(damage + PlayerStats.instance.playerClass.accuracy);
-                }
-                else
-                {
-                    targetDamagable.TakeDamage(damage);
-                }
+                
             }
         }
         

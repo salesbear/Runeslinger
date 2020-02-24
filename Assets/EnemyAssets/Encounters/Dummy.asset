@@ -18,4 +18,7 @@ MonoBehaviour:
   enemy3: {fileID: 0}
   enemyPrefab: {fileID: 7894800204291360023, guid: 55832112f211d984d82fbb2fcb9fe881,
     type: 3}
-  encounterData: []
+  encounterData:
+  - {fileID: 11400000, guid: 54e81707f3f0bad4a8e952f0b711b13e, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
