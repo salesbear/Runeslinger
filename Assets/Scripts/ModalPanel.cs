@@ -8,22 +8,33 @@ public class ModalPanel : MonoBehaviour
 {
     public List<GameObject> thingsToDisable = new List<GameObject>();
     public static event Action<bool> OptionSelected = delegate { };
+    public static event Action AnimateOutEnded = delegate { };
     [Tooltip("The tmp text that describes what the panel is for")]
     [SerializeField] TextMeshProUGUI heading;
 
     [Tooltip("The text that the heading starts with")]
     [TextArea(2,3)]
-    [SerializeField] string headingText;
+    [SerializeField]
+    string headingText;
 
+    [Tooltip("the point in space where the panel stops moving")]
+    [SerializeField]
+    Transform endPoint;
+
+    [Tooltip("ease controls how much you want to ease the animations")]
+    [SerializeField]
+    float ease = 0.5f;
+
+    [Tooltip("How long it takes for the panel animation to happen")]
+    [SerializeField]
+    float lerpTime = 1f;
+    float currentLerpTime = 0f;
+    Vector3 startPoint;
     // Start is called before the first frame update
     void Start()
     {
+        startPoint = transform.position;
         SetText(headingText);
-        if (thingsToDisable != null)
-        {
-            DisableThings();
-        }
-        AnimateIn();
     }
 
     void DisableThings()
@@ -42,17 +53,50 @@ public class ModalPanel : MonoBehaviour
         }
     }
 
-    public void AnimateIn()
+    private void OnDisable()
     {
-        //Play Animation
-        //I'm thinking it probably slides up from off screen or fades in or something
+        StopCoroutine("AnimateIn");
+        StopCoroutine("AnimateOut");
     }
 
-    public void AnimateOut()
+    public IEnumerator AnimateIn()
+    {
+        Debug.Log("Animate In called");
+        DisableThings();
+        //Play Animation
+        //I'm thinking it probably slides up from off screen or fades in or something
+        while (currentLerpTime < lerpTime)
+        {
+            //increase lerp time
+            currentLerpTime += Time.deltaTime;
+            //get the value for how far we are in the lerp
+            float percentDone = currentLerpTime / lerpTime;
+            //use a sin function to ease out
+            percentDone = Mathf.Sin(percentDone * Mathf.PI * ease);
+            //set our position to be the Lerp value
+            transform.position = Vector3.Lerp(startPoint, endPoint.position, percentDone);
+            yield return null;
+        }
+        currentLerpTime = 0f;
+    }
+
+    public IEnumerator AnimateOut()
     {
         //play animation to remove self from scene, maybe slide off screen?
-        //disable self since we out
-        this.enabled = false;
+        while (currentLerpTime < lerpTime)
+        {
+            //increase lerp time
+            currentLerpTime += Time.deltaTime;
+            //get the value for how far we are in the lerp
+            float percentDone = currentLerpTime / lerpTime;
+            //use a cos function to ease in as we go out
+            percentDone = 1 - Mathf.Cos(percentDone * Mathf.PI * ease);
+            //set our position to be the Lerp value
+            transform.position = Vector3.Lerp(endPoint.position, startPoint, percentDone);
+            yield return null;
+        }
+        currentLerpTime = 0f;
+        AnimateOutEnded.Invoke();
     }
     /// <summary>
     /// tell whoever's listening what the user decided,
@@ -64,7 +108,12 @@ public class ModalPanel : MonoBehaviour
     {
         EnableThings();
         OptionSelected.Invoke(choice);
-        AnimateOut();
+        IEnumerator coroutine = AnimateOut();
+        //check if the game object is active before calling it
+        if (gameObject.activeSelf)
+        {
+            StartCoroutine(coroutine);
+        }
     }
 
     public void SetText(string text)

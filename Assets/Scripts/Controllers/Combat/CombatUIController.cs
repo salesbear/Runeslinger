@@ -32,6 +32,7 @@ public class CombatUIController : MonoBehaviour
             case 1:
                 DisablePanels();
                 panels[0].SetActive(true);
+                pauseController.AddPanel(panels[0]);
                 break;
             //if we died
             case 4:

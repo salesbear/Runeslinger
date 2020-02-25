@@ -25,6 +25,15 @@ public class RewardController : MonoBehaviour
     [SerializeField]
     int rareLimit = 4;
 
+    [Tooltip("The heading for the modal panel when confirming what card you want to add")]
+    [TextArea(3, 5)]
+    [SerializeField]
+    string rewardMessage = "Are you sure you want to add that card to your deck?";
+
+    [Tooltip("The heading for the modal panel when confirming what card you want to remove")]
+    [TextArea(3, 5)]
+    [SerializeField]
+    string removeMessage = "Are you sure you want to remove this card?";
     //used to track if pity timers should increase after card generation
     bool spawnedRare = false;
     bool spawnedUncommon = false;
@@ -60,12 +69,14 @@ public class RewardController : MonoBehaviour
     {
         CombatController.StateChanged += GenerateReward;
         ModalPanel.OptionSelected += PlayerConfirmed;
+        ModalPanel.AnimateOutEnded += ReloadScene;
     }
 
     private void OnDisable()
     {
         CombatController.StateChanged -= GenerateReward;
         ModalPanel.OptionSelected -= PlayerConfirmed;
+        ModalPanel.AnimateOutEnded -= ReloadScene;
     }
 
     void GenerateReward(CombatState state)
@@ -184,6 +195,7 @@ public class RewardController : MonoBehaviour
             //move to the combat state that allows us to remove a card
             combatController.ChangeState(CombatState.RemoveCard);
             ShowPlayerDeck();
+            playerChoice = false;
         }
     }
     /// <summary>
@@ -192,29 +204,32 @@ public class RewardController : MonoBehaviour
     public void ReplaceCard()
     {
         //CardGenerator.instance.LoadCards();
-        for (int i = 0; i < PlayerStats.instance.playerClass.deckList.Length; i++)
+        //if the player confirmed
+        if (playerChoice)
         {
-            //find the card information from player stats
-            Card temp = cardToRemove.GetComponent<CardDisplay>().card;
-            //haha, this sucks man (i'm checking to see where the card we're replacing is)
-            if (removeCardSpawns[i].card.GetComponent<CardDisplay>().card.ToString() == temp.ToString())
+            for (int i = 0; i < PlayerStats.instance.playerClass.deckList.Length; i++)
             {
-                //replace the card in the deck list and destroy the one we're removing
-                PlayerStats.instance.playerClass.deckList[i] = rewardChosen;
-                //theStack.AddCard(rewardChosen);
-                DeletePlayerDeck();
-                break;
+                //find the card information from player stats
+                Card temp = cardToRemove.GetComponent<CardDisplay>().card;
+                //haha, this sucks man (i'm checking to see where the card we're replacing is)
+                if (removeCardSpawns[i].card.GetComponent<CardDisplay>().card.ToString() == temp.ToString())
+                {
+                    //replace the card in the deck list and destroy the one we're removing
+                    PlayerStats.instance.playerClass.deckList[i] = rewardChosen;
+                    //theStack.AddCard(rewardChosen);
+                    DeletePlayerDeck();
+                    break;
+                }
             }
+            //going to a new round, so reset everything
+            //theStack.RemoveCardFromDeck(cardToRemove.GetComponent<CardDisplay>().card.ToString());
+            Destroy(cardToRemove.gameObject);
+            cardToRemove = null;
+            rewardChosen = null;
+            SaveController.SaveGame();
+            //TODO: put in animation/delay for removing card
         }
-        //going to a new round, so reset everything
-        //theStack.RemoveCardFromDeck(cardToRemove.GetComponent<CardDisplay>().card.ToString());
-        Destroy(cardToRemove.gameObject);
-        cardToRemove = null;
-        rewardChosen = null;
-        SaveController.SaveGame();
-        //TODO: put in animation/delay for removing card
-        //reload scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
     }
 
     public void ShowPlayerDeck()
@@ -246,8 +261,17 @@ public class RewardController : MonoBehaviour
 
     public void GetPlayerConfirmation()
     {
-        //enable modal panel
-        modalPanel.enabled = true;
+        //bring modal panel in
+        if (combatController.state == CombatState.RewardScreen)
+        {
+            modalPanel.SetText(rewardMessage);
+        }
+        else if (combatController.state == CombatState.RemoveCard)
+        {
+            modalPanel.SetText(removeMessage);
+        }
+        IEnumerator coroutine = modalPanel.AnimateIn();
+        modalPanel.StartCoroutine(coroutine);
         //wait for player confirmation
         waiting = true;
         StartCoroutine("WaitForPlayer");
@@ -267,11 +291,19 @@ public class RewardController : MonoBehaviour
         }
     }
 
-    private IEnumerable WaitForPlayer()
+    private IEnumerator WaitForPlayer()
     {
         while (waiting)
         {
             yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    void ReloadScene()
+    {
+        if (playerChoice && combatController.state == CombatState.RemoveCard)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
