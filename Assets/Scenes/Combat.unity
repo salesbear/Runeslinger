@@ -2648,6 +2648,8 @@ MonoBehaviour:
   HandPile: {fileID: 1099961675}
   ExilePile: {fileID: 2142769303}
   placement: {fileID: 1935884109}
+  CardSound: {fileID: 892689805654349973, guid: 88e5dbfe46560c44c90d4d2b49b3dfd3,
+    type: 3}
   cardPlacements:
   - point: {fileID: 0}
     hasCard: 0
