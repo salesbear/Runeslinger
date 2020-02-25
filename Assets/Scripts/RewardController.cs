@@ -2,18 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 public class RewardController : MonoBehaviour
 {
     [Header("References to Fill")]
     [SerializeField] ModalPanel modalPanel;
+    [SerializeField] TextMeshProUGUI rewardText;
+    [SerializeField] TextMeshProUGUI removeText;
     [Header("Controls")]
+
     [Tooltip("The points where cards can spawn, should only add transforms to this")]
     [SerializeField]
     Placement[] rewardSpawns;
+
     [SerializeField]
     Placement[] removeCardSpawns;
+
     [Tooltip("The percent chance of getting a common")]
     [SerializeField] int commonPercentage;
+
     [Tooltip("The percent chance of getting an uncommon")]
     [SerializeField] int uncommonPercentage;
     //rare percentage = 100 - commonPercentage - uncommonPercentage
@@ -21,6 +29,7 @@ public class RewardController : MonoBehaviour
     [Tooltip("The max number of rounds the player can go without getting an uncommon")]
     [SerializeField]
     int uncommonLimit = 2;
+
     [Tooltip("The max number of rounds the player can go without getting a rare")]
     [SerializeField]
     int rareLimit = 4;
@@ -196,6 +205,8 @@ public class RewardController : MonoBehaviour
             combatController.ChangeState(CombatState.RemoveCard);
             ShowPlayerDeck();
             playerChoice = false;
+            rewardText.gameObject.SetActive(false);
+            removeText.gameObject.SetActive(true);
         }
     }
     /// <summary>
