@@ -19,6 +19,9 @@ public class PlayerStats : MonoBehaviour, IDamagable
     //The number of rounds since the player received an uncommon card option
     [ReadOnly]
     public int uncommonPityTimer = 0;
+
+    private PlayerUI playerUI;
+
     private void Awake()
     {
         if (instance == null)
@@ -32,8 +35,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
         else if (instance != this)
         {
             Destroy(gameObject);
-        }
-            
+        }        
     }
 
     void OnEnable()
@@ -58,6 +60,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
     public void HookUpToCombatController()
     {
         combatController = FindObjectOfType<CombatController>();
+        playerUI = FindObjectOfType<PlayerUI>();
     }
 
     // status is played during player turn
@@ -104,6 +107,8 @@ public class PlayerStats : MonoBehaviour, IDamagable
         effect.numTurnsLeft = turns;
 
         playerClass.status.Add(effect);
+
+        playerUI.PopGritText();
     }
 
     // create accuracy status effect and add to status list
@@ -116,6 +121,8 @@ public class PlayerStats : MonoBehaviour, IDamagable
         effect.numTurnsLeft = turns;
 
         playerClass.status.Add(effect);
+
+        playerUI.PopAccuracyText();
     }
 
     // create shield status effect and add to status list
@@ -128,6 +135,8 @@ public class PlayerStats : MonoBehaviour, IDamagable
         effect.numTurnsLeft = turns;
 
         playerClass.status.Add(effect);
+
+        playerUI.PopShieldText();
     }
 
     // decrement status effect
@@ -201,6 +210,8 @@ public class PlayerStats : MonoBehaviour, IDamagable
         {
             playerClass.currentHealth = playerClass.maxHealth;
         }
+
+        playerUI.PopHealthText();
     }
 
     public void GameStateChanged(GameState newState)
