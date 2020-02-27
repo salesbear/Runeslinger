@@ -15,8 +15,8 @@ public class DmgNumbers : MonoBehaviour
     public float rolledMagnitude { get; private set; }
     public TextMeshProUGUI dmgText { get; private set; }
     public static Color damageColor { get; private set; } = new Color32(255, 0, 0, 255);
-    public static Color noDamageColor { get; private set; } = new Color32(150, 150, 150, 255);
-    public static Color shieldDamageColor { get; private set; } = new Color32(108, 192, 221, 255);
+    public static Color noDamageColor { get; private set; } = new Color32(100, 100, 100, 255);
+    public static Color shieldDamageColor { get; private set; } = new Color32(98, 182, 211, 255);
 
     void OnEnable()
     {
@@ -26,8 +26,8 @@ public class DmgNumbers : MonoBehaviour
 
     void Awake()
     {
-        dmgText = GetComponent<TextMeshProUGUI>();
-        rb = GetComponent<Rigidbody2D>();
+        dmgText = GetComponentInChildren<TextMeshProUGUI>();
+        rb = GetComponentInChildren<Rigidbody2D>();
     }
 
     //replaces the text in the prefab with a number or whatever you want, really
@@ -48,7 +48,7 @@ public class DmgNumbers : MonoBehaviour
 
     private Vector2 AngleToVector2(float angle, float magnitude)
     {
-        return (new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * magnitude);
+        return (new Vector2(Mathf.Cos(Mathf.Deg2Rad*angle), Mathf.Sin(Mathf.Deg2Rad*angle)) * magnitude);
     }
 
 }

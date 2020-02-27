@@ -8,6 +8,7 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
 {
     private EnemyController enemyController;
     public Enemy enemy;
+    
     //the rect transform for the enemy, used for some card stuff
     [ReadOnly]
     public RectTransform enemyTransform;
@@ -18,7 +19,7 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
     public Slider enemyHPBar;
     public Slider enemyShield;
     public TextMeshProUGUI rolledDMG;
-    GameObject damageNumber = Resources.Load<GameObject>("DamageNumbers");
+    GameObject damageNumber; 
 
 
     [Header("Image Stuff")]
@@ -38,6 +39,7 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
         enemy.EnemyUIUpdate += UpdateUI;
         enemy.Die += OnDie;
         enemy.DamageNumber += OnDamage;
+        damageNumber = Resources.Load<GameObject>("DamageNumbers");
     }
 
     private void OnDisable()
@@ -82,10 +84,19 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
     //but checking for if the thing is null seems to have fixed the bug, for some reason
     void OnDamage(int damage, Color color)
     {
+        //Debug.Log("Called OnDamage();");
+        //Debug.Log("Damage = " + damage);
+        //Debug.Log("Color = " + color.ToString());
+        if(damage == 0)
+        {
+            color = DmgNumbers.noDamageColor;
+        }
         GameObject dmg = Instantiate(damageNumber, gameObject.transform.position, Quaternion.identity);
+        dmg.transform.SetParent(gameObject.transform.parent.transform);
         DmgNumbers dmgNum = dmg.GetComponent<DmgNumbers>();
         dmgNum.WriteDamage(damage, color);
         dmgNum.Launch();
+        
     }
 
     void ReadEnemyFromAsset()

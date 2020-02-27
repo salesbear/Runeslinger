@@ -199,7 +199,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_textAlignment: 257
+  m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 17.95725, w: 11.775248}
+  m_margin: {x: 0, y: 0, z: 0.039556503, w: -12.499121}
   m_textInfo:
     textComponent: {fileID: 1425367155130104920}
     characterCount: 1
@@ -266,8 +266,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1425367156296131530}
   - component: {fileID: 1425367156296131531}
+  - component: {fileID: 8872948319365312657}
   m_Layer: 0
-  m_Name: Damage Numbers
+  m_Name: DamageNumbers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -282,7 +283,7 @@ RectTransform:
   m_GameObject: {fileID: 1425367156296131524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1.068487}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 1425367154756394956}
   m_Father: {fileID: 0}
@@ -314,3 +315,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8872948319365312657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425367156296131524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6617ff7ad8443bc4eabdcdbbb96461be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hiRollAngle: 135
+  loRollAngle: 45
+  hiRollMagn: 15
+  loRollMagn: 10
