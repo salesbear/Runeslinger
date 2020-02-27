@@ -83,22 +83,22 @@ public class CardDisplay : MonoBehaviour
             // silver
             else if (cardType.text == "Action")
             {
-                cardFrontBackgroundImage.color = new Color32(198, 185, 165, 232);
-                cardBackBackgroundImage.color = new Color32(198, 185, 165, 232);
-                gritImage.color = new Color32(198, 185, 165, 232);
+                cardFrontBackgroundImage.color = actionBGColor;
+                cardBackBackgroundImage.color = actionBGColor;
+                gritImage.color = actionBGColor;
 
-                cardTopRibbonImage.color = new Color32(255, 255, 255, 255);
-                cardBottomRibbonImage.color = new Color32(255, 255, 255, 255);
+                cardTopRibbonImage.color = actionRibbonColor;
+                cardBottomRibbonImage.color = actionRibbonColor;
             }
             // red
             else if (cardType.text == "Ability")
             {
-                cardFrontBackgroundImage.color = new Color32(255, 0, 0, 232);
-                cardBackBackgroundImage.color = new Color32(255, 0, 0, 232);
-                gritImage.color = new Color32(255, 0, 0, 232);
+                cardFrontBackgroundImage.color = abilityBGColor;
+                cardBackBackgroundImage.color = abilityBGColor;
+                gritImage.color = abilityBGColor;
 
-                cardTopRibbonImage.color = new Color32(255, 78, 78, 255);
-                cardBottomRibbonImage.color = new Color32(255, 78, 78, 255);
+                cardTopRibbonImage.color = abilityRibbonColor;
+                cardBottomRibbonImage.color = abilityRibbonColor;
             }
 
             /*

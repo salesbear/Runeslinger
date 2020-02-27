@@ -26,7 +26,10 @@ public class DoubleShot : CardBehavior
                     //only apply accuracy if target is an enemy
                     if (card.target != TargetingOption.Player)
                     {
-                        targetDamagable.TakeDamage(damage + PlayerStats.instance.playerClass.accuracy);
+                        if (targetDamagable != null)
+                        {
+                            targetDamagable.TakeDamage(damage + PlayerStats.instance.playerClass.accuracy);
+                        }
                     }
                     else
                     {

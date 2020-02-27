@@ -11,7 +11,7 @@ public class RapidShot : CardBehavior
             foreach (GameObject target in targets)
             {
                 //need to check so the game doesn't crash when your first shot kills the enemy
-                if (target != null)
+                if (target!= null)
                 {
                     //if there's a damageable component in the object, find it
                     IDamagable targetDamagable = target.GetComponent<IDamagable>();
@@ -26,7 +26,11 @@ public class RapidShot : CardBehavior
                     //only apply accuracy if target is an enemy
                     if (card.target != TargetingOption.Player)
                     {
-                        targetDamagable.TakeDamage(damage + PlayerStats.instance.playerClass.accuracy);
+                        if (targetDamagable != null)
+                        {
+                            targetDamagable.TakeDamage(damage + PlayerStats.instance.playerClass.accuracy);
+                        }
+                        
                     }
                     else
                     {
