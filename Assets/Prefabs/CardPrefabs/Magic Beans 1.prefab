@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: -8160941179483518074}
   - component: {fileID: 4131042466508307386}
   m_Layer: 0
-  m_Name: Magic Beans
+  m_Name: Magic Beans 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,14 +171,13 @@ MonoBehaviour:
   card: {fileID: 11400000, guid: 1a85885f9f7f1e446a442c7a5ae365bb, type: 2}
   cardName: {fileID: 5536637328747877261}
   cardType: {fileID: 5536637328640424194}
+  cardRarity: 
   description: {fileID: 5536637328425571279}
   gritCost: {fileID: 5536637327737556231}
   target: 0
   cardImage: {fileID: 5536637327670426733}
   cardFrontBackgroundImage: {fileID: 5536637327934221800}
   cardBackBackgroundImage: {fileID: 5536637328065768851}
-  cardFrontFrameImage: {fileID: 5536637327695565475}
-  cardBackFrameImage: {fileID: 5536637327799738228}
   gritImage: {fileID: 5536637329029806913}
   cardTopRibbonImage: {fileID: 5536637328101842368}
   cardBottomRibbonImage: {fileID: 5536637327509723184}
@@ -194,6 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cd02c17f52662a4598668cdd0a49dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targets: []
 --- !u!114 &4131042466508307386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,6 +208,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enlargeX: 25
   enlargeY: 25
+  origXScale: 0
+  origYScale: 0
+  auraUI: {fileID: 4888413191927009107, guid: 48649550cec8d2c4ebf638cc038238b2, type: 3}
 --- !u!1 &5536637327162804174
 GameObject:
   m_ObjectHideFlags: 0

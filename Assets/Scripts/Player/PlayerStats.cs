@@ -19,6 +19,13 @@ public class PlayerStats : MonoBehaviour, IDamagable
     //The number of rounds since the player received an uncommon card option
     [ReadOnly]
     public int uncommonPityTimer = 0;
+
+    private PlayerUI playerUI;
+    public GameObject takeDamageOverlay;
+
+    AudioSource audioSource;
+    public AudioClip takeDmgClip;
+
     private void Awake()
     {
         if (instance == null)
@@ -33,7 +40,8 @@ public class PlayerStats : MonoBehaviour, IDamagable
         {
             Destroy(gameObject);
         }
-            
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnEnable()
@@ -62,6 +70,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
     public void HookUpToCombatController()
     {
         combatController = FindObjectOfType<CombatController>();
+        playerUI = FindObjectOfType<PlayerUI>();
     }
 
     // status is played during player turn
@@ -110,11 +119,15 @@ public class PlayerStats : MonoBehaviour, IDamagable
         effect.numTurnsLeft = turns;
 
         playerClass.status.Add(effect);
+
+        // playerUI.PopGritText();
     }
 
     // create accuracy status effect and add to status list
     public void GainAccuracyForXTurns(int accuracy, int turns)
     {
+        int tmpAccuracy = playerClass.accuracy;
+
         playerClass.accuracy += accuracy;
 
         Status effect = new Status();
@@ -122,11 +135,16 @@ public class PlayerStats : MonoBehaviour, IDamagable
         effect.numTurnsLeft = turns;
 
         playerClass.status.Add(effect);
+
+        if (tmpAccuracy < playerClass.accuracy)
+            playerUI.PopAccuracyText();
     }
 
     // create shield status effect and add to status list
     public void GainShieldForXTurns(int shield, int turns)
     {
+        int tmpShield = playerClass.shield;
+
         playerClass.shield += shield;
 
         Status effect = new Status();
@@ -134,6 +152,9 @@ public class PlayerStats : MonoBehaviour, IDamagable
         effect.numTurnsLeft = turns;
 
         playerClass.status.Add(effect);
+
+        if (tmpShield < playerClass.shield)
+            playerUI.PopShieldText();
     }
 
     // decrement status effect
@@ -185,6 +206,8 @@ public class PlayerStats : MonoBehaviour, IDamagable
 
     public void TakeDamage(int damageTaken)
     {
+        int tmpHealth = playerClass.currentHealth;
+
         Debug.Log("Take Damage");
         if (damageTaken > playerClass.shield)
         {
@@ -213,6 +236,19 @@ public class PlayerStats : MonoBehaviour, IDamagable
         else if (playerClass.currentHealth >= playerClass.maxHealth)
         {
             playerClass.currentHealth = playerClass.maxHealth;
+        }
+
+        // animate when healed
+        if (tmpHealth < playerClass.currentHealth)
+            playerUI.PopHealthText();
+        else
+        {
+            if (playerClass.currentHealth > 0 && damageTaken > 0)
+            {
+                Instantiate(takeDamageOverlay);
+                audioSource.pitch = Random.Range(0.95f, 1.05f);
+                audioSource.PlayOneShot(takeDmgClip);
+            }
         }
     }
 
