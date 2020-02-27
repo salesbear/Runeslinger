@@ -2,16 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 public class RewardController : MonoBehaviour
 {
+    [Header("References to Fill")]
+    [SerializeField] ModalPanel modalPanel;
+    [SerializeField] TextMeshProUGUI rewardText;
+    [SerializeField] TextMeshProUGUI removeText;
     [Header("Controls")]
+
     [Tooltip("The points where cards can spawn, should only add transforms to this")]
     [SerializeField]
     Placement[] rewardSpawns;
+
     [SerializeField]
     Placement[] removeCardSpawns;
+
     [Tooltip("The percent chance of getting a common")]
     [SerializeField] int commonPercentage;
+
     [Tooltip("The percent chance of getting an uncommon")]
     [SerializeField] int uncommonPercentage;
     //rare percentage = 100 - commonPercentage - uncommonPercentage
@@ -19,10 +29,20 @@ public class RewardController : MonoBehaviour
     [Tooltip("The max number of rounds the player can go without getting an uncommon")]
     [SerializeField]
     int uncommonLimit = 2;
+
     [Tooltip("The max number of rounds the player can go without getting a rare")]
     [SerializeField]
     int rareLimit = 4;
 
+    [Tooltip("The heading for the modal panel when confirming what card you want to add")]
+    [TextArea(3, 5)]
+    [SerializeField]
+    string rewardMessage = "Are you sure you want to add that card to your deck?";
+
+    [Tooltip("The heading for the modal panel when confirming what card you want to remove")]
+    [TextArea(3, 5)]
+    [SerializeField]
+    string removeMessage = "Are you sure you want to remove this card?";
     //used to track if pity timers should increase after card generation
     bool spawnedRare = false;
     bool spawnedUncommon = false;
@@ -35,12 +55,15 @@ public class RewardController : MonoBehaviour
     public GameObject rewardChosen;
     [ReadOnly]
     public GameObject cardToRemove;
-
+    [ReadOnly]
+    public bool waiting = false;
+    bool playerChoice;
     GameObject[] deck;
-
+    CombatController combatController;
     private void Awake()
     {
         theStack = FindObjectOfType<Stack>();
+        combatController = FindObjectOfType<CombatController>();
     }
 
     private void Start()
@@ -54,16 +77,20 @@ public class RewardController : MonoBehaviour
     private void OnEnable()
     {
         CombatController.StateChanged += GenerateReward;
+        ModalPanel.OptionSelected += PlayerConfirmed;
+        ModalPanel.AnimateOutEnded += ReloadScene;
     }
 
     private void OnDisable()
     {
         CombatController.StateChanged -= GenerateReward;
+        ModalPanel.OptionSelected -= PlayerConfirmed;
+        ModalPanel.AnimateOutEnded -= ReloadScene;
     }
-
 
     void GenerateReward(CombatState state)
     {
+        modalPanel.thingsToDisable.Clear();
         if (state == CombatState.RewardScreen)
         {
             int spawnCount = 0;
@@ -86,6 +113,8 @@ public class RewardController : MonoBehaviour
                         PlayerStats.instance.rarePityTimer = 0;
                         spawnedRare = true;
                         spawnCount++;
+                        //add cards to list of things to disable
+                        modalPanel.thingsToDisable.Add(temp);
                     }
                     //if it's been two or more rounds since we saw an uncommon
                     else if (PlayerStats.instance.uncommonPityTimer >= uncommonLimit)
@@ -98,6 +127,8 @@ public class RewardController : MonoBehaviour
                         //reset pity timer
                         PlayerStats.instance.uncommonPityTimer = 0;
                         spawnedUncommon = true;
+                        //add card to list of things to disable
+                        modalPanel.thingsToDisable.Add(temp);
                     }
                     else
                     {
@@ -110,6 +141,8 @@ public class RewardController : MonoBehaviour
                             GameObject temp = Instantiate(card,rewardSpawns[i].point);
                             rewardSpawns[i].card = temp;
                             rewardSpawns[i].hasCard = true;
+                            //add card to list of things to disable
+                            modalPanel.thingsToDisable.Add(temp);
                         }
                         else if (rand > commonPercentage && rand < commonPercentage + uncommonPercentage)
                         {
@@ -121,6 +154,8 @@ public class RewardController : MonoBehaviour
                             //reset pity timer
                             PlayerStats.instance.uncommonPityTimer = 0;
                             spawnedUncommon = true;
+                            //add card to list of things to disable
+                            modalPanel.thingsToDisable.Add(temp);
                         }
                         else
                         {
@@ -132,10 +167,11 @@ public class RewardController : MonoBehaviour
                             //reset pity timer
                             PlayerStats.instance.rarePityTimer = 0;
                             spawnedRare = true;
+                            //add card to list of things to disable
+                            modalPanel.thingsToDisable.Add(temp);
                         }
                     }
                 }
-                
             }
             //update pity timers
             if (!spawnedRare)
@@ -153,16 +189,25 @@ public class RewardController : MonoBehaviour
     /// </summary>
     public void DeleteCards()
     {
-        GameObject temp = CardGenerator.instance.GetCardByName(rewardChosen.GetComponent<CardDisplay>().card.ToString());
-        for(int i = 0; i < rewardSpawns.Length; i++)
+        if (playerChoice)
         {
-            GameObject temp2 = rewardSpawns[i].card;
-            rewardSpawns[i].card = null;
-            Destroy(temp2);
-            rewardSpawns[i].hasCard = false;
+            GameObject temp = CardGenerator.instance.GetCardByName(rewardChosen.GetComponent<CardDisplay>().card.ToString());
+            for(int i = 0; i < rewardSpawns.Length; i++)
+            {
+                GameObject temp2 = rewardSpawns[i].card;
+                rewardSpawns[i].card = null;
+                Destroy(temp2);
+                rewardSpawns[i].hasCard = false;
+            }
+            //get the prefab of the card we want to put in player's deck
+            rewardChosen = temp;
+            //move to the combat state that allows us to remove a card
+            combatController.ChangeState(CombatState.RemoveCard);
+            ShowPlayerDeck();
+            playerChoice = false;
+            rewardText.gameObject.SetActive(false);
+            removeText.gameObject.SetActive(true);
         }
-        //get the prefab of the card we want to put in player's deck
-        rewardChosen = temp;
     }
     /// <summary>
     /// add the new card to the deck and remove the old one
@@ -170,39 +215,44 @@ public class RewardController : MonoBehaviour
     public void ReplaceCard()
     {
         //CardGenerator.instance.LoadCards();
-        for (int i = 0; i < PlayerStats.instance.playerClass.deckList.Length; i++)
+        //if the player confirmed
+        if (playerChoice)
         {
-            //find the card information from player stats
-            Card temp = cardToRemove.GetComponent<CardDisplay>().card;
-            //haha, this sucks man (i'm checking to see where the card we're replacing is)
-            if (removeCardSpawns[i].card.GetComponent<CardDisplay>().card.ToString() == temp.ToString())
+            for (int i = 0; i < PlayerStats.instance.playerClass.deckList.Length; i++)
             {
-                //replace the card in the deck list and destroy the one we're removing
-                PlayerStats.instance.playerClass.deckList[i] = rewardChosen;
-                //theStack.AddCard(rewardChosen);
-                DeletePlayerDeck();
-                break;
+                //find the card information from player stats
+                Card temp = cardToRemove.GetComponent<CardDisplay>().card;
+                //haha, this sucks man (i'm checking to see where the card we're replacing is)
+                if (removeCardSpawns[i].card.GetComponent<CardDisplay>().card.ToString() == temp.ToString())
+                {
+                    //replace the card in the deck list and destroy the one we're removing
+                    PlayerStats.instance.playerClass.deckList[i] = rewardChosen;
+                    //theStack.AddCard(rewardChosen);
+                    DeletePlayerDeck();
+                    break;
+                }
             }
+            //going to a new round, so reset everything
+            //theStack.RemoveCardFromDeck(cardToRemove.GetComponent<CardDisplay>().card.ToString());
+            Destroy(cardToRemove.gameObject);
+            cardToRemove = null;
+            rewardChosen = null;
+            SaveController.SaveGame();
+            //TODO: put in animation/delay for removing card
         }
-        //going to a new round, so reset everything
-        //theStack.RemoveCardFromDeck(cardToRemove.GetComponent<CardDisplay>().card.ToString());
-        Destroy(cardToRemove.gameObject);
-        cardToRemove = null;
-        rewardChosen = null;
-        SaveController.SaveGame();
-        //TODO: put in animation/delay for removing card
-        //reload scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
     }
 
     public void ShowPlayerDeck()
     {
         DeletePlayerDeck();
+        modalPanel.thingsToDisable.Clear();
         for (int i = 0; i < deck.Length; i++)
         {
             GameObject card = Instantiate(deck[i], removeCardSpawns[i].point);
             removeCardSpawns[i].card = card;
             removeCardSpawns[i].hasCard = true;
+            modalPanel.thingsToDisable.Add(card);
         }
     }
 
@@ -217,6 +267,54 @@ public class RewardController : MonoBehaviour
                 removeCardSpawns[i].hasCard = false;
                 Destroy(temp);
             }
+        }
+    }
+
+    public void GetPlayerConfirmation()
+    {
+        //bring modal panel in
+        if (combatController.state == CombatState.RewardScreen)
+        {
+            modalPanel.SetText(rewardMessage);
+        }
+        else if (combatController.state == CombatState.RemoveCard)
+        {
+            modalPanel.SetText(removeMessage);
+        }
+        IEnumerator coroutine = modalPanel.AnimateIn();
+        modalPanel.StartCoroutine(coroutine);
+        //wait for player confirmation
+        waiting = true;
+        StartCoroutine("WaitForPlayer");
+    }
+
+    public void PlayerConfirmed (bool choice)
+    {
+        waiting = false;
+        playerChoice = choice;
+        if (combatController.state == CombatState.RewardScreen)
+        {
+            DeleteCards();
+        }
+        else if (combatController.state == CombatState.RemoveCard)
+        {
+            ReplaceCard();
+        }
+    }
+
+    private IEnumerator WaitForPlayer()
+    {
+        while (waiting)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    void ReloadScene()
+    {
+        if (playerChoice && combatController.state == CombatState.RemoveCard)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

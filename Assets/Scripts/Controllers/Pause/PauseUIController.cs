@@ -9,24 +9,37 @@ public class PauseUIController : MonoBehaviour
     [SerializeField] GameObject[] panels;
     List<GameObject> thePanels = new List<GameObject>();
 
+    [SerializeField]
+    ModalPanel modalPanel;
+
+    GameStateController game;
+
+    bool playerConfirmed = false;
     private void Awake()
     {
+        game = FindObjectOfType<GameStateController>();
         foreach (GameObject panel in panels)
         {
             thePanels.Add(panel);
-            Debug.Log(panel);
-            Debug.Log(thePanels.ToArray().Length);
+            //Debug.Log(panel);
+            //Debug.Log(thePanels.ToArray().Length);
         }
     }
 
     private void OnEnable()
     {
+        Debug.Log("Pause Enabled");
         GameStateController.StateChanged += OnPauseToggle;
+        ModalPanel.OptionSelected += GetPlayerConfirmation;
+        ModalPanel.AnimateOutEnded += ReturnToMainMenu;
     }
 
     private void OnDisable()
     {
+        Debug.Log("Pause Disabled");
         GameStateController.StateChanged -= OnPauseToggle;
+        ModalPanel.OptionSelected -= GetPlayerConfirmation;
+        ModalPanel.AnimateOutEnded -= ReturnToMainMenu;
     }
 
     
@@ -39,7 +52,6 @@ public class PauseUIController : MonoBehaviour
     {
         //Debug.Log(thePanels.ToArray().Length);
         //set the pause panel to be active if paused, inactive if not
-        panels = thePanels.ToArray();
         panels[0].SetActive(paused);
         //go through the non-pause panels and make them active if unpaused, inactive if paused
         for (int i = 1; i < panels.Length; i++)
@@ -64,5 +76,27 @@ public class PauseUIController : MonoBehaviour
     public void Dummy()
     {
         Debug.Log("Dummy");
+    }
+
+    public void GetPlayerConfirmation(bool choice)
+    {
+        if (choice && game.state == GameState.Pause)
+        {
+            playerConfirmed = true;
+        } 
+    }
+
+    public void GetPlayerConfirmation()
+    {
+        IEnumerator coroutine = modalPanel.AnimateIn();
+        modalPanel.StartCoroutine(coroutine);
+    }
+
+    void ReturnToMainMenu()
+    {
+        if (playerConfirmed)
+        {
+            game.ChangeState(GameState.MainMenu);
+        }
     }
 }

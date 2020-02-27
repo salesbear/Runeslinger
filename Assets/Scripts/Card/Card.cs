@@ -43,6 +43,7 @@ public class Card : ScriptableObject
     public CardClass cardClass;
     public CardType cardType;
     public CardRarity cardRarity;
+    public TargetingOption target;
     [TextArea(2, 3)]
     public string description;
     public Sprite cardImage;
@@ -56,7 +57,7 @@ public class Card : ScriptableObject
     [Tooltip("The amount of grit you gain")]
     public int gritGained = 0;
 
-    public TargetingOption target;
+    
 
     public override string ToString()
     {
