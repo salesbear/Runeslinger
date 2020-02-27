@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour, IDamagable
 {
+    [SerializeField] GameObject injuredSound;
     public static PlayerStats instance;
     //our deck container which holds our starting deck, should be in a child object
     private DeckContainer theDeck;
@@ -215,6 +216,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
         }
         if (damageTaken > 0)
         {
+            Instantiate(injuredSound);
             playerClass.shield -= damageTaken;
         }
         else

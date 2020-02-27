@@ -97,6 +97,14 @@ public class CardBehavior : MonoBehaviour
     {
         if (card.gritCost <= PlayerStats.instance.playerClass.currentGrit)
         {
+            if(card.cardType == CardType.Ability || card.cardType == CardType.Action)
+            {
+                deck.InstantiateSoundStatus();
+            }
+            if (card.cardType == CardType.Attack)
+            {
+                deck.InstantiateSoundAttack();
+            }
             DealDamage(card.damage,targets.ToArray());
             Shield(card.shield);
             SpendGrit(card.gritCost);
