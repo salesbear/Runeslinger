@@ -108,12 +108,14 @@ public class PlayerStats : MonoBehaviour, IDamagable
 
         playerClass.status.Add(effect);
 
-        playerUI.PopGritText();
+        // playerUI.PopGritText();
     }
 
     // create accuracy status effect and add to status list
     public void GainAccuracyForXTurns(int accuracy, int turns)
     {
+        int tmpAccuracy = playerClass.accuracy;
+
         playerClass.accuracy += accuracy;
 
         Status effect = new Status();
@@ -122,12 +124,15 @@ public class PlayerStats : MonoBehaviour, IDamagable
 
         playerClass.status.Add(effect);
 
-        playerUI.PopAccuracyText();
+        if (tmpAccuracy < playerClass.accuracy)
+            playerUI.PopAccuracyText();
     }
 
     // create shield status effect and add to status list
     public void GainShieldForXTurns(int shield, int turns)
     {
+        int tmpShield = playerClass.shield;
+
         playerClass.shield += shield;
 
         Status effect = new Status();
@@ -136,7 +141,8 @@ public class PlayerStats : MonoBehaviour, IDamagable
 
         playerClass.status.Add(effect);
 
-        playerUI.PopShieldText();
+        if (tmpShield < playerClass.shield)
+            playerUI.PopShieldText();
     }
 
     // decrement status effect
@@ -181,6 +187,8 @@ public class PlayerStats : MonoBehaviour, IDamagable
 
     public void TakeDamage(int damageTaken)
     {
+        int tmpHealth = playerClass.currentHealth;
+
         Debug.Log("Take Damage");
         if (damageTaken > playerClass.shield)
         {
@@ -211,7 +219,8 @@ public class PlayerStats : MonoBehaviour, IDamagable
             playerClass.currentHealth = playerClass.maxHealth;
         }
 
-        playerUI.PopHealthText();
+        if (tmpHealth < playerClass.currentHealth)
+            playerUI.PopHealthText();
     }
 
     public void GameStateChanged(GameState newState)

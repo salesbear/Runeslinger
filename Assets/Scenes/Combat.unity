@@ -2632,6 +2632,7 @@ MonoBehaviour:
   grit: {fileID: 1418761673}
   accuracy: {fileID: 2111081658}
   shield: {fileID: 1584096341}
+  enlargeAmt: 0.25
   duration: 0.5
 --- !u!114 &719351831
 MonoBehaviour:

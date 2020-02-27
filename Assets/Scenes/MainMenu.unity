@@ -1779,6 +1779,12 @@ PrefabInstance:
       propertyPath: playerClass.status.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3103647133354372050, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: playerClass.deckList.Array.data[0]
+      value: 
+      objectReference: {fileID: 7203262318841285311, guid: 52c3f17ae052a3b438b2ffb29fbc40d7,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b5a1dfddc0f93747a34bdf14008017c, type: 3}
 --- !u!1 &1037773804
