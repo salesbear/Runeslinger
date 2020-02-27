@@ -58,6 +58,7 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
     //use this to initialize variables
     void Start()
     {
+        Debug.Log("EnemyDisplay Start");
         Debug.Log(enemy.enemyName);
         enemy.SetUp();
         UpdateUI();

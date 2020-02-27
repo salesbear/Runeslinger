@@ -53,8 +53,10 @@ MonoBehaviour:
   encounterList:
   - {fileID: 11400000, guid: 815bae4c116ce35418f321d4de84fe19, type: 2}
   - {fileID: 11400000, guid: 50ac1cdd8dd6bc54384ca14b3e3dbd3e, type: 2}
+  - {fileID: 11400000, guid: f8820f1fa8f784e48a1ea679599317d4, type: 2}
   enemyPanel: {fileID: 0}
   spawnPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  encounterMade: 0
