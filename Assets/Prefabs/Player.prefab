@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0392a11f30b0d314d83c84cc444c75c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  injuredSound: {fileID: 892689805654349973, guid: b1eba4e0c575dcf4a9e109389bfcab1c,
+    type: 3}
   playerClass:
     maxHealth: 30
     currentHealth: 30
