@@ -34,6 +34,6 @@ public class PreviewCard : MonoBehaviour
     public void OnMouseExit()
     {
         // assuming you want it to return to its original size when your mouse leaves it.
-        transform.localScale = new Vector3(origXScale, origYScale, 1); 
+        transform.localScale = new Vector3(origXScale, origYScale, 1);
     }
 }

@@ -21,6 +21,10 @@ public class PlayerStats : MonoBehaviour, IDamagable
     public int uncommonPityTimer = 0;
 
     private PlayerUI playerUI;
+    public GameObject takeDamageOverlay;
+
+    AudioSource audioSource;
+    public AudioClip takeDmgClip;
 
     private void Awake()
     {
@@ -35,7 +39,9 @@ public class PlayerStats : MonoBehaviour, IDamagable
         else if (instance != this)
         {
             Destroy(gameObject);
-        }        
+        }
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnEnable()
@@ -219,8 +225,18 @@ public class PlayerStats : MonoBehaviour, IDamagable
             playerClass.currentHealth = playerClass.maxHealth;
         }
 
+        // animate when healed
         if (tmpHealth < playerClass.currentHealth)
             playerUI.PopHealthText();
+        else
+        {
+            if (playerClass.currentHealth > 0 && damageTaken > 0)
+            {
+                Instantiate(takeDamageOverlay);
+                audioSource.pitch = Random.Range(0.95f, 1.05f);
+                audioSource.PlayOneShot(takeDmgClip);
+            }
+        }
     }
 
     public void GameStateChanged(GameState newState)

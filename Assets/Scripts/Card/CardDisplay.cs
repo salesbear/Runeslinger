@@ -104,23 +104,23 @@ public class CardDisplay : MonoBehaviour
             /*
             if (cardRarity.ToString() == "Starter")
             {
-
+                cardName.color = Color.black;
             }
             else if (cardRarity.ToString() == "Common")
             {
-
+                cardName.color = Color.black;
             }
             else if (cardRarity.ToString() == "Uncommon")
             {
-
+                cardName.color = Color.green;
             }
             else if (cardRarity.ToString() == "Rare")
             {
-
+                cardName.color = Color.blue;
             }
             else if (cardRarity.ToString() == "Debuff")
             {
-
+                cardName.color = Color.black;
             }
             */
         }
