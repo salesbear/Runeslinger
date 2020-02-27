@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2930297392421204575}
   - component: {fileID: 7941257374688610722}
   - component: {fileID: 332609140865476230}
-  - component: {fileID: -7704776429256406342}
+  - component: {fileID: 5061020752583388760}
   m_Layer: 0
-  m_Name: Injured
+  m_Name: CardFlip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 061b08426cf66aa41b4c02868d122344, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5b14ab7b360d6db439604a676f824d4d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -141,8 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fea3d6cf58022ba4fb49b58e5095b302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroy: 10
---- !u!114 &-7704776429256406342
+  destroy: 3
+--- !u!114 &5061020752583388760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

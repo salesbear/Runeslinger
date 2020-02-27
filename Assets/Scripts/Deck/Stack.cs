@@ -31,7 +31,9 @@ public class Stack : MonoBehaviour
     [SerializeField] GameObject HandPile;
     [SerializeField] GameObject ExilePile;
     [SerializeField] Transform placement;
-    [SerializeField] GameObject CardSound;
+    [SerializeField] GameObject drawSound;
+    [SerializeField] GameObject attackCardSound;
+    [SerializeField] GameObject statusCardSound;
     //[SerializeField] Transform[] removePoints;
     [SerializeField]
     private Placement[] cardPlacements = new Placement[6];
@@ -147,7 +149,6 @@ public class Stack : MonoBehaviour
             // put in Discard
             if (position == 1)
             {
-                Instantiate(CardSound);
                 //if the card's in hand remove it
                 int cardSpot = GetCardSpot(card);
                 if (cardSpot > -1)
@@ -160,7 +161,7 @@ public class Stack : MonoBehaviour
             // put in Hand
             if (position == 2)
             {
-                Instantiate(CardSound);
+                Instantiate(drawSound);
                 card.transform.SetParent(HandPile.transform);
                 int openSpot = GetOpenSpot();
                 if (openSpot != -1)
@@ -173,7 +174,6 @@ public class Stack : MonoBehaviour
             // put in Exile
             if (position == 3)
             {
-                Instantiate(CardSound);
                 int cardSpot = GetCardSpot(card);
                 if (cardSpot > -1)
                 {
@@ -325,6 +325,16 @@ public class Stack : MonoBehaviour
             Instantiate(cardToAdd, DiscardPile.transform);
             cardAdded = false;
         }
+    }
+
+    public void InstantiateSoundAttack()
+    {
+        Instantiate(attackCardSound);
+    }
+
+    public void InstantiateSoundStatus()
+    {
+        Instantiate(statusCardSound);
     }
     //public void ViewWholeDeck()
     //{

@@ -3172,7 +3172,11 @@ MonoBehaviour:
   HandPile: {fileID: 1099961675}
   ExilePile: {fileID: 2142769303}
   placement: {fileID: 1935884109}
-  CardSound: {fileID: 892689805654349973, guid: 88e5dbfe46560c44c90d4d2b49b3dfd3,
+  drawSound: {fileID: 892689805654349973, guid: 88e5dbfe46560c44c90d4d2b49b3dfd3,
+    type: 3}
+  attackCardSound: {fileID: 892689805654349973, guid: b8dc2b0ec5a560d489e5b71b6265f954,
+    type: 3}
+  statusCardSound: {fileID: 6030390977405055719, guid: 6c64e2e098c9e2d48a3d121b3b22c1cc,
     type: 3}
   cardPlacements:
   - point: {fileID: 0}
