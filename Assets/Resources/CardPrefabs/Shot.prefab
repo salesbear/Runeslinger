@@ -171,17 +171,17 @@ MonoBehaviour:
   card: {fileID: 11400000, guid: cdc68f9754d45ec439e48f1714651335, type: 2}
   cardName: {fileID: 5536637328747877261}
   cardType: {fileID: 5536637328640424194}
+  cardRarity: 
   description: {fileID: 5536637328425571279}
   gritCost: {fileID: 5536637327737556231}
   target: 0
   cardImage: {fileID: 5536637327670426733}
   cardFrontBackgroundImage: {fileID: 5536637327934221800}
   cardBackBackgroundImage: {fileID: 5536637328065768851}
-  cardFrontFrameImage: {fileID: 5536637327695565475}
-  cardBackFrameImage: {fileID: 5536637327799738228}
   gritImage: {fileID: 5536637329029806913}
   cardTopRibbonImage: {fileID: 5536637328101842368}
   cardBottomRibbonImage: {fileID: 5536637327509723184}
+  attackBGColor: {r: 1, g: 0.042412695, b: 0, a: 0.9098039}
 --- !u!114 &-8160941179483518074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cd02c17f52662a4598668cdd0a49dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targets: []
 --- !u!114 &5023427050578801027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,6 +209,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enlargeX: 25
   enlargeY: 25
+  origXScale: 0
+  origYScale: 0
 --- !u!1 &5536637327162804174
 GameObject:
   m_ObjectHideFlags: 0

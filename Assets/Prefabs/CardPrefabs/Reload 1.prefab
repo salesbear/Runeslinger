@@ -808,7 +808,7 @@ GameObject:
   - component: {fileID: 7212419774797604518}
   - component: {fileID: -7056394094692379931}
   m_Layer: 0
-  m_Name: Reload
+  m_Name: Reload 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -888,14 +888,13 @@ MonoBehaviour:
   card: {fileID: 11400000, guid: 5b00852f5a0ce1d4d8b6a8ef8431c83f, type: 2}
   cardName: {fileID: 2774002960424255149}
   cardType: {fileID: 2774002960526529570}
+  cardRarity: 
   description: {fileID: 2774002961149214447}
   gritCost: {fileID: 2774002959688687655}
   target: 0
   cardImage: {fileID: 2774002959353237837}
   cardFrontBackgroundImage: {fileID: 2774002959627354312}
   cardBackBackgroundImage: {fileID: 2774002961101111475}
-  cardFrontFrameImage: {fileID: 2774002959328034691}
-  cardBackFrameImage: {fileID: 2774002959761846868}
   gritImage: {fileID: 2774002960679196257}
   cardTopRibbonImage: {fileID: 2774002961070354656}
   cardBottomRibbonImage: {fileID: 2774002959513941264}
@@ -911,6 +910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cd02c17f52662a4598668cdd0a49dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targets: []
 --- !u!114 &-7056394094692379931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -927,6 +927,7 @@ MonoBehaviour:
   enlargeY: 25
   origXScale: 0
   origYScale: 0
+  auraUI: {fileID: 4888413191927009107, guid: 48649550cec8d2c4ebf638cc038238b2, type: 3}
 --- !u!1 &2774002960071027684
 GameObject:
   m_ObjectHideFlags: 0

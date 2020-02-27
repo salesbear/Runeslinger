@@ -11,6 +11,7 @@ public class CardDisplay : MonoBehaviour
     [Header("Gameplay References")]
     public TextMeshProUGUI cardName;
     public TextMeshProUGUI cardType;
+    public string cardRarity;
     public TextMeshProUGUI description;
     public TextMeshProUGUI gritCost;
     public TargetingOption target;
@@ -20,12 +21,23 @@ public class CardDisplay : MonoBehaviour
     public Image cardImage;
     public Image cardFrontBackgroundImage;
     public Image cardBackBackgroundImage;
-    public Image cardFrontFrameImage;
-    public Image cardBackFrameImage;
     public Image gritImage;
 
     public Image cardTopRibbonImage;
     public Image cardBottomRibbonImage;
+
+    // color variables not working for some reason
+    Color ailmentBGColor = new Color32(116, 14, 93, 232);
+    Color ailmentRibbonColor = new Color32(162, 21, 134, 255);
+
+    Color attackBGColor = new Color32(220, 141, 30, 232);
+    Color attackRibbonColor = new Color32(243, 177, 86, 255);
+
+    Color actionBGColor = new Color32(198, 185, 165, 232);
+    Color actionRibbonColor = new Color32(255, 255, 255, 255);
+
+    Color abilityBGColor = new Color32(135, 23, 29, 232);
+    Color abilityRibbonColor = new Color32(200, 37, 53, 255);
 
     // Start is called before the first frame update
     void Start()
@@ -40,56 +52,75 @@ public class CardDisplay : MonoBehaviour
             cardName.text = card.cardName;
             cardClass = card.cardClass;
             cardType.text = card.cardType.ToString();
+            cardRarity = card.cardRarity.ToString();
             description.text = card.description;
             gritCost.text = card.gritCost.ToString();
             target = card.target;
 
             cardImage.sprite = card.cardImage;
 
+            // background color based on card type
+            // purple
+            if (cardType.text == "Ailment")
+            {
+                cardFrontBackgroundImage.color = new Color32(200, 33, 162, 232);
+                cardBackBackgroundImage.color = new Color32(200, 33, 162, 232);
+                gritImage.color = new Color32(200, 33, 162, 232);
+
+                cardTopRibbonImage.color = new Color32(255, 43, 209, 255);
+                cardBottomRibbonImage.color = new Color32(255, 43, 209, 255);
+            }
+            // yellow brown
+            else if (cardType.text == "Attack")
+            {
+                cardFrontBackgroundImage.color = attackBGColor;
+                cardBackBackgroundImage.color = attackBGColor;
+                gritImage.color = attackBGColor;
+
+                cardTopRibbonImage.color = attackRibbonColor;
+                cardBottomRibbonImage.color = attackRibbonColor;
+            }
+            // silver
+            else if (cardType.text == "Action")
+            {
+                cardFrontBackgroundImage.color = new Color32(198, 185, 165, 232);
+                cardBackBackgroundImage.color = new Color32(198, 185, 165, 232);
+                gritImage.color = new Color32(198, 185, 165, 232);
+
+                cardTopRibbonImage.color = new Color32(255, 255, 255, 255);
+                cardBottomRibbonImage.color = new Color32(255, 255, 255, 255);
+            }
+            // red
+            else if (cardType.text == "Ability")
+            {
+                cardFrontBackgroundImage.color = new Color32(255, 0, 0, 232);
+                cardBackBackgroundImage.color = new Color32(255, 0, 0, 232);
+                gritImage.color = new Color32(255, 0, 0, 232);
+
+                cardTopRibbonImage.color = new Color32(255, 78, 78, 255);
+                cardBottomRibbonImage.color = new Color32(255, 78, 78, 255);
+            }
+
             /*
-            if (cardClass.ToString() == "Fire")
+            if (cardRarity.ToString() == "Starter")
             {
-                cardFrontBackgroundImage.color = new Color32(217, 30, 32, 232);
-                cardBackBackgroundImage.color = new Color32(217, 30, 32, 232);
-                gritImage.color = new Color32(217, 30, 32, 255);
-
-                cardTopRibbonImage.color = new Color32(255, 84, 69, 255); 
-                cardBottomRibbonImage.color = new Color32(255, 84, 69, 255);
-
-                // cardFrontFrameImage = 
-                // cardBackFrameImage =
+                cardName.color = Color.black;
             }
-            else if (cardClass.ToString() == "Water")
+            else if (cardRarity.ToString() == "Common")
             {
-                cardFrontBackgroundImage.color = new Color32(31, 82, 217, 232);
-                cardBackBackgroundImage.color = new Color32(31, 82, 217, 232);
-                gritImage.color = new Color32(31, 82, 217, 255);
-
-                cardTopRibbonImage.color = new Color32(73, 145, 238, 255);
-                cardBottomRibbonImage.color = new Color32(73, 145, 238, 255);
-
-                // cardFrontFrameImage = 
-                // cardBackFrameImage =
+                cardName.color = Color.black;
             }
-            else if (cardClass.ToString() == "Air")
+            else if (cardRarity.ToString() == "Uncommon")
             {
-                cardFrontBackgroundImage.color = new Color32(140, 140, 140, 232);
-                cardBackBackgroundImage.color = new Color32(140, 140, 140, 232);
-                gritImage.color = new Color32(140, 140, 140, 255);
-
-                cardTopRibbonImage.color = new Color32(231, 227, 228, 255);
-                cardBottomRibbonImage.color = new Color32(231, 227, 228, 255);
-
-                // cardFrontFrameImage = 
-                // cardBackFrameImage =
+                cardName.color = Color.green;
             }
-            */
-
-            /*
-            if (previewManager != null)
+            else if (cardRarity.ToString() == "Rare")
             {
-                previewManager.cardAsset = ReadCardFromAsset;
-                previewManager.ReadCardFromAsset();
+                cardName.color = Color.blue;
+            }
+            else if (cardRarity.ToString() == "Debuff")
+            {
+                cardName.color = Color.black;
             }
             */
         }
