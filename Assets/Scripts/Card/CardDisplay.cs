@@ -30,8 +30,8 @@ public class CardDisplay : MonoBehaviour
     Color ailmentBGColor = new Color32(116, 14, 93, 232);
     Color ailmentRibbonColor = new Color32(162, 21, 134, 255);
 
-    Color attackBGColor = new Color32(220, 141, 30, 232);
-    Color attackRibbonColor = new Color32(243, 177, 86, 255);
+    Color attackBGColor = new Color32(255, 65, 51, 255);
+    Color attackRibbonColor = new Color32(255, 127, 77, 255);
 
     Color actionBGColor = new Color32(198, 185, 165, 232);
     Color actionRibbonColor = new Color32(255, 255, 255, 255);
