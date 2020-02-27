@@ -9,4 +9,12 @@ public class Status
     public int accuracyApplied;
     public int shieldApplied;
     public int numTurnsLeft;
+
+    public override string ToString()
+    {
+        return "grit applied: " + gritApplied
+            + "\naccuracy applied: " + accuracyApplied
+            + "\nshield applied: " + shieldApplied
+            + "\nnum turns left: " + numTurnsLeft;
+    }
 }

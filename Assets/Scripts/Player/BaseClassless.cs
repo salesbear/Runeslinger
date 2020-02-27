@@ -28,4 +28,5 @@ public class BaseClassless
         accuracy = 0;
         shield = 0;
     }
+
 }

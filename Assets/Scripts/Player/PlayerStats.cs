@@ -52,7 +52,11 @@ public class PlayerStats : MonoBehaviour, IDamagable
 
     private void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerClass.status.Clear();
+            playerClass.status.TrimExcess();
+        }
     }
 
     public void HookUpToCombatController()
@@ -70,27 +74,29 @@ public class PlayerStats : MonoBehaviour, IDamagable
     /// <param name="turns">the number of turns to apply it for</param>
     public void CallStatus(int whichStatus, int status, int turns)
     {
-        // 1- grit, 2- accuracy, 3- shield
-        //this doesn't work super great because the combat controller isn't always in the same scene as the player, maybe try to use static events instead
-        switch (whichStatus)
+        if (status != 0)
         {
-            case 1:
-                combatController.playerTurnEvent.AddListener(delegate { GainGritForXTurns(status, turns); });
-                combatController.playerTurnEvent.Invoke();
-                break;
-            case 2:
-                combatController.playerTurnEvent.AddListener(delegate { GainAccuracyForXTurns(status, turns); });
-                combatController.playerTurnEvent.Invoke();
-                break;
-            case 3:
-                combatController.playerTurnEvent.AddListener(delegate { GainShieldForXTurns(status, turns); });
-                combatController.playerTurnEvent.Invoke();
-                break;
-            default:
-                Debug.Log("PlayerStats- CallStatus() error");
-                break;
+            // 1- grit, 2- accuracy, 3- shield
+            //this doesn't work super great because the combat controller isn't always in the same scene as the player, maybe try to use static events instead
+            switch (whichStatus)
+            {
+                case 1:
+                    combatController.playerTurnEvent.AddListener(delegate { GainGritForXTurns(status, turns); });
+                    combatController.playerTurnEvent.Invoke();
+                    break;
+                case 2:
+                    combatController.playerTurnEvent.AddListener(delegate { GainAccuracyForXTurns(status, turns); });
+                    combatController.playerTurnEvent.Invoke();
+                    break;
+                case 3:
+                    combatController.playerTurnEvent.AddListener(delegate { GainShieldForXTurns(status, turns); });
+                    combatController.playerTurnEvent.Invoke();
+                    break;
+                default:
+                    Debug.Log("PlayerStats- CallStatus() error");
+                    break;
+            }
         }
-
         combatController.playerTurnEvent.RemoveAllListeners();
     }
 
@@ -133,13 +139,16 @@ public class PlayerStats : MonoBehaviour, IDamagable
     // decrement status effect
     public void DecrementStatus()
     {
+        List<Status> removeList = new List<Status>();
         for (int i = 0; i < playerClass.status.Count; i++)
         {
+            //whoopsy I fucked up and made a bug
             playerClass.status[i].numTurnsLeft--;
-
+            //Debug.Log("Status: " + i + "\n" + playerClass.status[i]);
             // if effect is over, revert effect changes on player
             if (playerClass.status[i].numTurnsLeft == 0)
             {
+                //Debug.Log("Status " + i + " has 0 turns left");
                 if (playerClass.shield - playerClass.status[i].shieldApplied > 0)
                     playerClass.shield -= playerClass.status[i].shieldApplied;
                 else
@@ -148,11 +157,15 @@ public class PlayerStats : MonoBehaviour, IDamagable
                 playerClass.accuracy -= playerClass.status[i].accuracyApplied;
                 playerClass.currentGrit -= playerClass.status[i].gritApplied;
 
-                // clear status effect
-                playerClass.status[i].shieldApplied = 0;
-                playerClass.status[i].accuracyApplied = 0;
-                playerClass.status[i].gritApplied = 0;
+                //add statuses to list to remove them later, DO NOT REMOVE THEM HERE
+                removeList.Add(playerClass.status[i]);
+
             }
+        }
+        //remove all the status effects we need to
+        for (int i = 0; i < removeList.Count; i++)
+        {
+            playerClass.status.Remove(removeList[i]);
         }
     }
 
@@ -215,22 +228,17 @@ public class PlayerStats : MonoBehaviour, IDamagable
     public void CombatStateChanged(CombatState state)
     {
         //okay this one is probably actually necessary
-        if (state == CombatState.RewardScreen)
+        if (state == CombatState.RemoveCard)
         {
-            playerClass.currentGrit = 4;
-            playerClass.shield = 0;
-            playerClass.accuracy = 0;
-            roundsWon++;
-        }
-        if (state == CombatState.PlayerTurn && combatController.priorState == CombatState.RemoveCard)
-        {
+            Debug.Log("Won the fight - PlayerStats");
             ClearStatus();
         }
     }
 
-    void ClearStatus()
+    public void ClearStatus()
     {
         playerClass.status.Clear();
+        playerClass.status.TrimExcess();
         playerClass.currentGrit = 4;
         playerClass.shield = 0;
         playerClass.accuracy = 0;

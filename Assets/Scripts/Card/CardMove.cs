@@ -67,17 +67,12 @@ public class CardMove : MonoBehaviour
         {
             //tell the reward controller what card we're adding
             rewardController.rewardChosen = gameObject;
-            //delete the other cards
-            rewardController.DeleteCards();
-            //move to the combat state that allows us to remove a card
-            combatController.ChangeState(CombatState.RemoveCard);
-            rewardController.ShowPlayerDeck();
+            rewardController.GetPlayerConfirmation();
         }
         else if (combatController.state == CombatState.RemoveCard)
         {
             rewardController.cardToRemove = gameObject;
-            rewardController.ReplaceCard();
-            combatController.ChangeState(CombatState.PlayerTurn);
+            rewardController.GetPlayerConfirmation();
         }
     }
 
