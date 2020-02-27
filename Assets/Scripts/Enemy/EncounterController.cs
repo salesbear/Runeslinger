@@ -14,13 +14,15 @@ public class EncounterController : MonoBehaviour
     [SerializeField]
     bool encounterMade = false;
 
-    private void Awake()
+    private void Start()
     {
+        
         //should call a higher powerlevel every few combats
         GetEncounter(0);
         encounter.SetUp();
         DeployEncounter();
         encounterMade = true;
+        Debug.Log("encounterController Start");
     }
 
     public void Update() {
@@ -47,8 +49,10 @@ public class EncounterController : MonoBehaviour
                 possibleEncounters.Add(ncountr);
             }
         }
-        if (possibleEncounters.Count > 0) { 
+        if (possibleEncounters.Count > 0) {
+            
             int encounterNumber = Random.Range(0, possibleEncounters.Count);
+            Debug.Log("encounter = "+encounterNumber);
             encounter = possibleEncounters[encounterNumber];
         }
     }
