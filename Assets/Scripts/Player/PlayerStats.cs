@@ -240,17 +240,16 @@ public class PlayerStats : MonoBehaviour, IDamagable
             playerClass.currentHealth = playerClass.maxHealth;
         }
 
-        // animate when healed
-        if (tmpHealth < playerClass.currentHealth)
+        // animate health text when player health is changed
+        if (tmpHealth != playerClass.currentHealth)
             playerUI.PopHealthText();
-        else
+
+        // show red screen flash when player loses health
+        if (tmpHealth > playerClass.currentHealth)
         {
-            if (playerClass.currentHealth > 0 && damageTaken > 0)
-            {
-                Instantiate(takeDamageOverlay);
-                audioSource.pitch = Random.Range(0.95f, 1.05f);
-                audioSource.PlayOneShot(takeDmgClip);
-            }
+            Instantiate(takeDamageOverlay);
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.PlayOneShot(takeDmgClip);
         }
     }
 

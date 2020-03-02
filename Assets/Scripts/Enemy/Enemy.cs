@@ -144,6 +144,8 @@ public class Enemy : ScriptableObject, IDamagable
 
         if (currentHP <= 0)
         {
+            HighScore highScore = FindObjectOfType<HighScore>();
+            highScore.IncreaseHighScore();
             Die?.Invoke();
         }
         EnemyUIUpdate?.Invoke();

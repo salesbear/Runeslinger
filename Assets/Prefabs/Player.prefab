@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3103647133354372051}
   - component: {fileID: 3103647133354372050}
+  - component: {fileID: 9132568816103234638}
   - component: {fileID: 663445821}
   m_Layer: 0
   m_Name: Player
@@ -63,6 +64,19 @@ MonoBehaviour:
   takeDamageOverlay: {fileID: 6328811278738397920, guid: 8f08079dbfbb87241b40f53136f06e67,
     type: 3}
   takeDmgClip: {fileID: 8300000, guid: 061b08426cf66aa41b4c02868d122344, type: 3}
+--- !u!114 &9132568816103234638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3103647133354372049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f975b9c51c491643be07d82a8b39d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highScoreText: {fileID: 0}
 --- !u!82 &663445821
 AudioSource:
   m_ObjectHideFlags: 0
