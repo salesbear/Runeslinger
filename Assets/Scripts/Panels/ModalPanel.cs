@@ -4,9 +4,9 @@ using UnityEngine;
 using System;
 using TMPro;
 
-public class ModalPanel : MonoBehaviour
+public class ModalPanel : MonoBehaviour, IPanel
 {
-    public List<GameObject> thingsToDisable = new List<GameObject>();
+    public List<IPanel> panelsToAnimate = new List<IPanel>();
     public static event Action<bool> OptionSelected = delegate { };
     public static event Action AnimateOutEnded = delegate { };
     [Tooltip("The tmp text that describes what the panel is for")]
@@ -30,6 +30,9 @@ public class ModalPanel : MonoBehaviour
     float lerpTime = 1f;
     float currentLerpTime = 0f;
     Vector3 startPoint;
+
+    static int timesAnimateInCalled = 0;
+    static int timesAnimateOutCalled = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,19 +40,21 @@ public class ModalPanel : MonoBehaviour
         SetText(headingText);
     }
 
-    void DisableThings()
+    void AnimatePanelsOut()
     {
-        foreach (GameObject obj in thingsToDisable)
+        foreach (IPanel panel in panelsToAnimate)
         {
-            obj.SetActive(false);
+            IEnumerator coroutine = panel.AnimateOut();
+            StartCoroutine(coroutine);
         }
     }
 
-    void EnableThings()
+    void AnimatePanelsIn()
     {
-        foreach (GameObject obj in thingsToDisable)
+        foreach (IPanel panel in panelsToAnimate)
         {
-            obj.SetActive(true);
+            IEnumerator coroutine = panel.AnimateIn();
+            StartCoroutine(coroutine);
         }
     }
 
@@ -61,8 +66,9 @@ public class ModalPanel : MonoBehaviour
 
     public IEnumerator AnimateIn()
     {
-        Debug.Log("Animate In called");
-        DisableThings();
+        timesAnimateInCalled++;
+        Debug.Log("Times animate in called: " + timesAnimateInCalled);
+        AnimatePanelsOut();
         //Play Animation
         //I'm thinking it probably slides up from off screen or fades in or something
         while (currentLerpTime < lerpTime)
@@ -82,6 +88,9 @@ public class ModalPanel : MonoBehaviour
 
     public IEnumerator AnimateOut()
     {
+        timesAnimateOutCalled++;
+        Debug.Log("Times animate out called: " + timesAnimateOutCalled);
+        AnimatePanelsIn();
         //play animation to remove self from scene, maybe slide off screen?
         while (currentLerpTime < lerpTime)
         {
@@ -106,7 +115,7 @@ public class ModalPanel : MonoBehaviour
     /// <param name="choice"></param>
     public void SelectOption(bool choice)
     {
-        EnableThings();
+        AnimatePanelsIn();
         OptionSelected.Invoke(choice);
         IEnumerator coroutine = AnimateOut();
         //check if the game object is active before calling it

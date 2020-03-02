@@ -8,6 +8,8 @@ public class RewardController : MonoBehaviour
 {
     [Header("References to Fill")]
     [SerializeField] ModalPanel modalPanel;
+    [SerializeField] SlidePanel rewardPanel;
+    [SerializeField] SlidePanel removePanel;
     [SerializeField] TextMeshProUGUI rewardText;
     [SerializeField] TextMeshProUGUI removeText;
     [Header("Controls")]
@@ -90,7 +92,7 @@ public class RewardController : MonoBehaviour
 
     void GenerateReward(CombatState state)
     {
-        modalPanel.thingsToDisable.Clear();
+        modalPanel.panelsToAnimate.Clear();
         if (state == CombatState.RewardScreen)
         {
             int spawnCount = 0;
@@ -114,7 +116,7 @@ public class RewardController : MonoBehaviour
                         spawnedRare = true;
                         spawnCount++;
                         //add cards to list of things to disable
-                        modalPanel.thingsToDisable.Add(temp);
+                        //modalPanel.thingsToDisable.Add(temp);
                     }
                     //if it's been two or more rounds since we saw an uncommon
                     else if (PlayerStats.instance.uncommonPityTimer >= uncommonLimit)
@@ -128,7 +130,7 @@ public class RewardController : MonoBehaviour
                         PlayerStats.instance.uncommonPityTimer = 0;
                         spawnedUncommon = true;
                         //add card to list of things to disable
-                        modalPanel.thingsToDisable.Add(temp);
+                        //modalPanel.thingsToDisable.Add(temp);
                     }
                     else
                     {
@@ -142,7 +144,7 @@ public class RewardController : MonoBehaviour
                             rewardSpawns[i].card = temp;
                             rewardSpawns[i].hasCard = true;
                             //add card to list of things to disable
-                            modalPanel.thingsToDisable.Add(temp);
+                            //modalPanel.thingsToDisable.Add(temp);
                         }
                         else if (rand > commonPercentage && rand < commonPercentage + uncommonPercentage)
                         {
@@ -155,7 +157,7 @@ public class RewardController : MonoBehaviour
                             PlayerStats.instance.uncommonPityTimer = 0;
                             spawnedUncommon = true;
                             //add card to list of things to disable
-                            modalPanel.thingsToDisable.Add(temp);
+                            //modalPanel.thingsToDisable.Add(temp);
                         }
                         else
                         {
@@ -168,11 +170,15 @@ public class RewardController : MonoBehaviour
                             PlayerStats.instance.rarePityTimer = 0;
                             spawnedRare = true;
                             //add card to list of things to disable
-                            modalPanel.thingsToDisable.Add(temp);
+                            //modalPanel.thingsToDisable.Add(temp);
                         }
                     }
                 }
             }
+            //show the cards
+            Debug.Log("Animate rewards in");
+            IEnumerator rewardCoroutine = rewardPanel.AnimateIn();
+            rewardPanel.StartCoroutine(rewardCoroutine);
             //update pity timers
             if (!spawnedRare)
             {
@@ -246,14 +252,16 @@ public class RewardController : MonoBehaviour
     public void ShowPlayerDeck()
     {
         DeletePlayerDeck();
-        modalPanel.thingsToDisable.Clear();
+        IEnumerator removeCoroutine = removePanel.AnimateIn();
+        //modalPanel.panelsToAnimate.Clear();
         for (int i = 0; i < deck.Length; i++)
         {
             GameObject card = Instantiate(deck[i], removeCardSpawns[i].point);
             removeCardSpawns[i].card = card;
             removeCardSpawns[i].hasCard = true;
-            modalPanel.thingsToDisable.Add(card);
+            //modalPanel.panelsToAnimate.Add(card);
         }
+        removePanel.StartCoroutine(removeCoroutine);
     }
 
     public void DeletePlayerDeck()
@@ -275,12 +283,19 @@ public class RewardController : MonoBehaviour
         //bring modal panel in
         if (combatController.state == CombatState.RewardScreen)
         {
+            //add reward panel so it's animated out when modal panel is animated in
+            modalPanel.panelsToAnimate.Clear();
+            modalPanel.panelsToAnimate.Add(rewardPanel);
             modalPanel.SetText(rewardMessage);
         }
         else if (combatController.state == CombatState.RemoveCard)
         {
+            //remove reward panel and add remove panel so it animates when modal panel animates
+            modalPanel.panelsToAnimate.Clear();
+            modalPanel.panelsToAnimate.Add(removePanel);
             modalPanel.SetText(removeMessage);
         }
+        //animate the confirmation panel in
         IEnumerator coroutine = modalPanel.AnimateIn();
         modalPanel.StartCoroutine(coroutine);
         //wait for player confirmation
