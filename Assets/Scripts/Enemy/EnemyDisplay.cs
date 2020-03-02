@@ -91,11 +91,18 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
         {
             color = DmgNumbers.noDamageColor;
         }
-        GameObject dmg = Instantiate(damageNumber, gameObject.transform.position, Quaternion.identity);
-        dmg.transform.SetParent(gameObject.transform.parent.transform);
-        DmgNumbers dmgNum = dmg.GetComponent<DmgNumbers>();
-        dmgNum.WriteDamage(damage, color);
-        dmgNum.Launch();
+        if (this != null)
+        {
+            GameObject dmg = Instantiate(damageNumber, gameObject.transform.position, Quaternion.identity);
+            dmg.transform.SetParent(gameObject.transform.parent.transform);
+            DmgNumbers dmgNum = dmg.GetComponent<DmgNumbers>();
+            dmgNum.WriteDamage(damage, color);
+            dmgNum.Launch();
+        }
+        else
+        {
+            Debug.Log("Enemy Display is null");
+        }
         
     }
 

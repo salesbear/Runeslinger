@@ -323,6 +323,7 @@ MonoBehaviour:
   endPoint: {fileID: 135613794}
   ease: 0.5
   lerpTime: 0.5
+  startPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &72901580
 GameObject:
   m_ObjectHideFlags: 0
@@ -10216,6 +10217,7 @@ MonoBehaviour:
   endPoint: {fileID: 1180527498}
   ease: 0.5
   lerpTime: 0.5
+  startPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &1688485093
 GameObject:
   m_ObjectHideFlags: 0
