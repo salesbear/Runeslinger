@@ -51,10 +51,14 @@ MonoBehaviour:
   encounter: {fileID: 0}
   combat: {fileID: 0}
   encounterList:
-  - {fileID: 11400000, guid: 815bae4c116ce35418f321d4de84fe19, type: 2}
+  - {fileID: 11400000, guid: 798f6aac2f4a4f94eb47798cc4a1f22d, type: 2}
   - {fileID: 11400000, guid: 50ac1cdd8dd6bc54384ca14b3e3dbd3e, type: 2}
+  - {fileID: 11400000, guid: 5fff5897413fe8b4cbd2fb59b59ac698, type: 2}
+  - {fileID: 11400000, guid: 84f0bc2ce6cd72f42bc8f25fe3c598c8, type: 2}
+  - {fileID: 11400000, guid: 95938e91402e2e14b9eb28416ed087e0, type: 2}
   enemyPanel: {fileID: 0}
   spawnPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  encounterMade: 0
