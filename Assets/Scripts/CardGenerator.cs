@@ -101,4 +101,10 @@ public class CardGenerator : MonoBehaviour
         }
         return temp;
     }
+
+    public void RandomizeDeck()
+    {
+        DeckContainer deck = DeckContainer.FindObjectOfType<DeckContainer>();
+        deck.RandomizeStartingDeck();
+    }
 }
