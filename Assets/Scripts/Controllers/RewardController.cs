@@ -92,6 +92,7 @@ public class RewardController : MonoBehaviour
 
     void GenerateReward()
     {
+        Debug.Log("Generate Reward");
         modalPanel.panelsToAnimate.Clear();
         int spawnCount = 0;
         //CardGenerator.instance.LoadCards();

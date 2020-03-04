@@ -16,20 +16,26 @@ public class MainMenuUIController : MonoBehaviour
         MainMenuController.StateChanged -= OnStateChanged;
     }
 
-    //None = 0, Root = 1, Settings = 2, Credits = 3
+    //None = 0, Root = 1, How to Play = 2, Credits = 3
     void OnStateChanged(MenuState newState)
     {
         int index = (int)newState - 1;
         //Debug.Log(index);
         DisablePanels();
-        panels[index].gameObject.SetActive(true);
+        IEnumerator coroutine = panels[index].GetComponent<IPanel>().AnimateIn();
+        StartCoroutine(coroutine);
     }
 
     void DisablePanels()
     {
-        foreach (GameObject panel in panels)
+        foreach (GameObject obj in panels)
         {
-            panel.gameObject.SetActive(false);
+            IPanel panel = obj.GetComponent<IPanel>();
+            if (panel.InScene())
+            {
+                IEnumerator coroutine = panel.AnimateOut();
+                StartCoroutine(coroutine);
+            }
         }
     }
 }
