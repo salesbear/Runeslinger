@@ -30,14 +30,14 @@ public class CardDisplay : MonoBehaviour
     Color ailmentBGColor = new Color32(116, 14, 93, 232);
     Color ailmentRibbonColor = new Color32(162, 21, 134, 255);
 
-    Color attackBGColor = new Color32(220, 141, 30, 232);
-    Color attackRibbonColor = new Color32(243, 177, 86, 255);
+    Color attackBGColor = new Color32(226, 90, 80, 255);
+    Color attackRibbonColor = new Color32(255, 157, 124, 255);
 
-    Color actionBGColor = new Color32(198, 185, 165, 232);
-    Color actionRibbonColor = new Color32(255, 255, 255, 255);
+    Color actionBGColor = new Color32(90, 158, 185, 232);
+    Color actionRibbonColor = new Color32(153, 216, 241, 255);
 
-    Color abilityBGColor = new Color32(135, 23, 29, 232);
-    Color abilityRibbonColor = new Color32(200, 37, 53, 255);
+    Color abilityBGColor = new Color32(233, 206, 89, 232);
+    Color abilityRibbonColor = new Color32(255, 239, 167, 255);
 
     // Start is called before the first frame update
     void Start()
