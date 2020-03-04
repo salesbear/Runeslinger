@@ -104,7 +104,7 @@ public class CardGenerator : MonoBehaviour
 
     public void RandomizeDeck()
     {
-        DeckContainer deck = DeckContainer.FindObjectOfType<DeckContainer>();
+        DeckContainer deck = FindObjectOfType<DeckContainer>();
         deck.RandomizeStartingDeck();
     }
 }

@@ -41,5 +41,23 @@ public class SaveController : MonoBehaviour
             PlayerStats.instance.rarePityTimer = save.rarePity;
             PlayerStats.instance.uncommonPityTimer = save.uncommonPity;
         }
+        else
+        {
+            //randomize the player's deck if this is a new game
+            PlayerStats.instance.gameObject.GetComponentInChildren<DeckContainer>().RandomizeStartingDeck();
+        }
+    }
+
+    public static void DeleteSaveStatic()
+    {
+        if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
+        {
+            File.Delete(Application.persistentDataPath + "/gamesave.save");
+        }
+    }
+    //method to allow this to be called non-staticly, for UI events for example
+    public void DeleteSave()
+    {
+        DeleteSaveStatic();
     }
 }
