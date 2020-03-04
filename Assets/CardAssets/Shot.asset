@@ -18,7 +18,7 @@ MonoBehaviour:
   cardRarity: 0
   target: 1
   description: Deal 2 damage to target
-  cardImage: {fileID: 21300000, guid: eaa0cffd9df94ad4fa1412cb513369c2, type: 3}
+  cardImage: {fileID: 21300000, guid: 237bb3a8e6fd1bb4482ece073e6b4430, type: 3}
   gritCost: 1
   cardsDrawn: 0
   damage: 2
