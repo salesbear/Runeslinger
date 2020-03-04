@@ -123,7 +123,7 @@ public class Enemy : ScriptableObject, IDamagable
                 DamageNumber?.Invoke(shld, DmgNumbers.shieldDamageColor);
                 if (carryoverDamage != 0)
                 {
-                    DamageNumber?.Invoke(carryoverDamage, DmgNumbers.damageColor);
+                    DamageNumber?.Invoke(-1*carryoverDamage, DmgNumbers.damageColor);
                 }
                 currentShield = 0;
             }
