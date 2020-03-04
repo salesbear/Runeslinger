@@ -19,6 +19,9 @@ public class SlidePanel : MonoBehaviour, IPanel
     [ReadOnly]
     Vector3 startPoint;
 
+    public bool inScene { get; private set; }
+    public bool isAnimating { get { return currentLerpTime > 0; } }
+
     void Awake()
     {
         startPoint = transform.position;
@@ -26,7 +29,10 @@ public class SlidePanel : MonoBehaviour, IPanel
 
     public IEnumerator AnimateIn()
     {
-        Debug.Log("Animate In called on SlidePanel");
+        StopAllCoroutines();
+        //set inScene at the beginning to avoid bugs with having multiple panels on screen
+        inScene = true;
+        //Debug.Log("Animate In called on SlidePanel");
         //Play Animation
         //I'm thinking it probably slides up from off screen or fades in or something
         while (currentLerpTime < lerpTime)
@@ -46,6 +52,9 @@ public class SlidePanel : MonoBehaviour, IPanel
 
     public IEnumerator AnimateOut()
     {
+        StopAllCoroutines();
+        //set inScene at the beginning to avoid bugs with having multiple panels on screen
+        inScene = false;
         Debug.Log("Animate Out called in Slide Panel");
         //play animation to remove self from scene, maybe slide off screen?
         while (currentLerpTime < lerpTime)

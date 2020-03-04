@@ -16,11 +16,11 @@ MonoBehaviour:
   cardClass: 0
   cardType: 1
   cardRarity: 3
-  description: Remove all your shield, deal double the amount removed to all enemies
+  target: 2
+  description: Remove all your shield, deal that amount to all enemies
   cardImage: {fileID: 0}
   gritCost: 0
   cardsDrawn: 0
   damage: 0
   shield: 0
   gritGained: 0
-  target: 2
