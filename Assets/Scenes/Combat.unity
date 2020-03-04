@@ -3269,6 +3269,8 @@ MonoBehaviour:
   - {fileID: 73906785}
   - {fileID: 1970752535}
   - {fileID: 1614732318}
+  defeatText: {fileID: 0}
+  winText: {fileID: 0}
 --- !u!114 &719351830
 MonoBehaviour:
   m_ObjectHideFlags: 0

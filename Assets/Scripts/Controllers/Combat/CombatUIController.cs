@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using System;
+
 public class CombatUIController : MonoBehaviour
 {
     //first panel is root, second is loss, 3rd is victory, 4th is reward screen, 5th is view deck
@@ -10,6 +12,9 @@ public class CombatUIController : MonoBehaviour
     PauseUIController pauseController;
     CombatController combatController;
     public static event Action CelebrationDone = delegate { };
+
+    public GameObject defeatText;
+    public GameObject winText;
 
     private void Awake()
     {
@@ -86,6 +91,9 @@ public class CombatUIController : MonoBehaviour
             b.interactable = false;
         }
 
+        // feedback here
+        winText.SetActive(true);
+
         yield return new WaitForSeconds(3);
 
         // disable combat panel
@@ -116,8 +124,9 @@ public class CombatUIController : MonoBehaviour
         }
 
         // add lose feedback 
-            // death sfx
-            // screen fade dark
+        // death sfx
+        // screen fade dark
+        defeatText.SetActive(true);
 
         yield return new WaitForSeconds(3);
 
