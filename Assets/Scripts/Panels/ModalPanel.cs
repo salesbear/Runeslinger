@@ -31,6 +31,8 @@ public class ModalPanel : MonoBehaviour, IPanel
     float currentLerpTime = 0f;
     Vector3 startPoint;
 
+    bool inScene;
+
     static int timesAnimateInCalled = 0;
     static int timesAnimateOutCalled = 0;
     // Start is called before the first frame update
@@ -66,8 +68,9 @@ public class ModalPanel : MonoBehaviour, IPanel
 
     public IEnumerator AnimateIn()
     {
-        timesAnimateInCalled++;
-        Debug.Log("Times animate in called: " + timesAnimateInCalled);
+        inScene = true;
+        //timesAnimateInCalled++;
+        //Debug.Log("Times animate in called: " + timesAnimateInCalled);
         AnimatePanelsOut();
         //Play Animation
         //I'm thinking it probably slides up from off screen or fades in or something
@@ -88,8 +91,9 @@ public class ModalPanel : MonoBehaviour, IPanel
 
     public IEnumerator AnimateOut()
     {
-        timesAnimateOutCalled++;
-        Debug.Log("Times animate out called: " + timesAnimateOutCalled);
+        inScene = false;
+        //timesAnimateOutCalled++;
+        //Debug.Log("Times animate out called: " + timesAnimateOutCalled);
         AnimatePanelsIn();
         //play animation to remove self from scene, maybe slide off screen?
         while (currentLerpTime < lerpTime)
@@ -129,5 +133,15 @@ public class ModalPanel : MonoBehaviour, IPanel
     {
         heading.text = text;
         headingText = text;
+    }
+
+    public bool InScene()
+    {
+        return inScene;
+    }
+
+    public bool IsAnimating()
+    {
+        return currentLerpTime > 0;
     }
 }
