@@ -28,7 +28,7 @@ public class PauseUIController : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("Pause Enabled");
+        //Debug.Log("Pause Enabled");
         GameStateController.StateChanged += OnPauseToggle;
         ModalPanel.OptionSelected += GetPlayerConfirmation;
         ModalPanel.AnimateOutEnded += ReturnToMainMenu;
@@ -36,7 +36,7 @@ public class PauseUIController : MonoBehaviour
 
     private void OnDisable()
     {
-        Debug.Log("Pause Disabled");
+        //Debug.Log("Pause Disabled");
         GameStateController.StateChanged -= OnPauseToggle;
         ModalPanel.OptionSelected -= GetPlayerConfirmation;
         ModalPanel.AnimateOutEnded -= ReturnToMainMenu;

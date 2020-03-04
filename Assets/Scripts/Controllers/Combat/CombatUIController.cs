@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System;
 public class CombatUIController : MonoBehaviour
 {
     //first panel is root, second is loss, 3rd is victory, 4th is reward screen, 5th is view deck
     [SerializeField] GameObject[] panels;
     PauseUIController pauseController;
     CombatController combatController;
+    public static event Action CelebrationDone = delegate { };
 
     private void Awake()
     {
@@ -98,6 +99,7 @@ public class CombatUIController : MonoBehaviour
         {
             b.interactable = true;
         }
+        CelebrationDone.Invoke();
     }
 
     IEnumerator GetFked()
