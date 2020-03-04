@@ -11,7 +11,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI accuracy;
     [SerializeField] TextMeshProUGUI shield;
 
-    public float enlargeAmt;
+    public float enlargedScale;
     public float duration;
 
     // Start is called before the first frame update
@@ -35,39 +35,39 @@ public class PlayerUI : MonoBehaviour
     public void PopHealthText()
     {
         RectTransform t = health.GetComponent<RectTransform>();
-        t.DOScaleX(t.localScale.x + enlargeAmt, duration);
-        t.DOScaleY(t.localScale.y + enlargeAmt, duration);
+        t.DOScaleX(enlargedScale, duration);
+        t.DOScaleY(enlargedScale, duration);
         StartCoroutine(ShrinkText(t, duration));
     }
 
     public void PopGritText()
     {
         RectTransform t = grit.GetComponent<RectTransform>();
-        t.DOScaleX(t.localScale.x + enlargeAmt, duration);
-        t.DOScaleY(t.localScale.y + enlargeAmt, duration);
+        t.DOScaleX(enlargedScale, duration);
+        t.DOScaleY(enlargedScale, duration);
         StartCoroutine(ShrinkText(t, duration));
     }
 
     public void PopAccuracyText()
     {
         RectTransform t = accuracy.GetComponent<RectTransform>();
-        t.DOScaleX(t.localScale.x + enlargeAmt, duration);
-        t.DOScaleY(t.localScale.y + enlargeAmt, duration);
+        t.DOScaleX(enlargedScale, duration);
+        t.DOScaleY(enlargedScale, duration);
         StartCoroutine(ShrinkText(t, duration));
     }
 
     public void PopShieldText()
     {
         RectTransform t = shield.GetComponent<RectTransform>();
-        t.DOScaleX(t.localScale.x + enlargeAmt, duration);
-        t.DOScaleY(t.localScale.y + enlargeAmt, duration);
+        t.DOScaleX(enlargedScale, duration);
+        t.DOScaleY(enlargedScale, duration);
         StartCoroutine(ShrinkText(t, duration));
     }
 
     IEnumerator ShrinkText(RectTransform t, float duration)
     {
         yield return new WaitForSeconds(duration);
-        t.DOScaleX(t.localScale.x - enlargeAmt, duration);
-        t.DOScaleY(t.localScale.y - enlargeAmt, duration);
+        t.DOScaleX(1, duration);
+        t.DOScaleY(1, duration);
     }
 }
