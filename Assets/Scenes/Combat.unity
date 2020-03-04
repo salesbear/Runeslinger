@@ -3232,8 +3232,8 @@ MonoBehaviour:
   grit: {fileID: 1418761673}
   accuracy: {fileID: 2111081658}
   shield: {fileID: 1584096341}
-  enlargeAmt: 0.25
-  duration: 0.5
+  enlargedScale: 2
+  duration: 0.4
 --- !u!114 &719351831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3629,7 +3629,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &812261932
 GameObject:

@@ -23,6 +23,8 @@ public class PlayerStats : MonoBehaviour, IDamagable
 
     private PlayerUI playerUI;
     public GameObject takeDamageOverlay;
+    public GameObject shieldOverlay;
+    public GameObject healOverlay;
 
     AudioSource audioSource;
     public AudioClip takeDmgClip;
@@ -156,6 +158,8 @@ public class PlayerStats : MonoBehaviour, IDamagable
 
         if (tmpShield < playerClass.shield)
             playerUI.PopShieldText();
+
+        Instantiate(shieldOverlay);
     }
 
     // decrement status effect
@@ -250,6 +254,10 @@ public class PlayerStats : MonoBehaviour, IDamagable
             Instantiate(takeDamageOverlay);
             audioSource.pitch = Random.Range(0.95f, 1.05f);
             audioSource.PlayOneShot(takeDmgClip);
+        }
+        else if (tmpHealth < playerClass.currentHealth)
+        {
+            Instantiate(healOverlay);
         }
     }
 

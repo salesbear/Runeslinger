@@ -1716,6 +1716,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 892689805654349973, guid: b1eba4e0c575dcf4a9e109389bfcab1c,
         type: 3}
+    - target: {fileID: 3103647133354372050, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: shieldOverlay
+      value: 
+      objectReference: {fileID: 8627740779890342321, guid: 65428d3d829754448a332c79fa258de8,
+        type: 3}
+    - target: {fileID: 3103647133354372050, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: healOverlay
+      value: 
+      objectReference: {fileID: 3039570352083544478, guid: a691e2969162a3b42842ca0498803f38,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 9132568816103234638, guid: 2b5a1dfddc0f93747a34bdf14008017c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2b5a1dfddc0f93747a34bdf14008017c, type: 3}
