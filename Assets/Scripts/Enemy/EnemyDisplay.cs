@@ -111,6 +111,12 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
             DmgNumbers dmgNum = dmg.GetComponent<DmgNumbers>();
             dmgNum.WriteDamage(damage, color);
             dmgNum.Launch();
+
+            if (color == DmgNumbers.damageColor)
+            {
+                StartCoroutine(PokemonShake());
+                StartCoroutine(FlashRed());
+            }
         }
         else
         {
