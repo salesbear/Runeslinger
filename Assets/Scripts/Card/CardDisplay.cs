@@ -27,16 +27,16 @@ public class CardDisplay : MonoBehaviour
     public Image cardBottomRibbonImage;
 
     // color variables not working for some reason
-    Color ailmentBGColor = new Color32(116, 14, 93, 232);
+    Color ailmentBGColor = new Color32(116, 14, 93, 255);
     Color ailmentRibbonColor = new Color32(162, 21, 134, 255);
 
     Color attackBGColor = new Color32(226, 90, 80, 255);
     Color attackRibbonColor = new Color32(255, 157, 124, 255);
 
-    Color actionBGColor = new Color32(90, 158, 185, 232);
+    Color actionBGColor = new Color32(90, 158, 185, 255);
     Color actionRibbonColor = new Color32(153, 216, 241, 255);
 
-    Color abilityBGColor = new Color32(233, 206, 89, 232);
+    Color abilityBGColor = new Color32(233, 206, 89, 255);
     Color abilityRibbonColor = new Color32(255, 239, 167, 255);
 
     // Start is called before the first frame update

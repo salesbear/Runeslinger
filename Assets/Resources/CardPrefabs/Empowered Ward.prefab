@@ -97,8 +97,9 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0a3c1ad3c63f83847aed2645b2dddfb8, type: 2}
+  m_sharedMaterial: {fileID: 3913211213912892635, guid: 0a3c1ad3c63f83847aed2645b2dddfb8,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -123,8 +124,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -254,8 +255,9 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0a3c1ad3c63f83847aed2645b2dddfb8, type: 2}
+  m_sharedMaterial: {fileID: 3913211213912892635, guid: 0a3c1ad3c63f83847aed2645b2dddfb8,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -785,8 +787,9 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0a3c1ad3c63f83847aed2645b2dddfb8, type: 2}
+  m_sharedMaterial: {fileID: 3913211213912892635, guid: 0a3c1ad3c63f83847aed2645b2dddfb8,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -811,8 +814,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1245,8 +1248,9 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0a3c1ad3c63f83847aed2645b2dddfb8, type: 2}
+  m_sharedMaterial: {fileID: 3913211213912892635, guid: 0a3c1ad3c63f83847aed2645b2dddfb8,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1733,14 +1737,13 @@ MonoBehaviour:
   card: {fileID: 11400000, guid: b1d0b93cd7d181b49b1243161a85bbc5, type: 2}
   cardName: {fileID: 8094273371721949365}
   cardType: {fileID: 8094273371607075386}
+  cardRarity: 
   description: {fileID: 8094273372465520887}
   gritCost: {fileID: 8094273372918890047}
   target: 0
   cardImage: {fileID: 8094273372851670869}
   cardFrontBackgroundImage: {fileID: 8094273373122813648}
   cardBackBackgroundImage: {fileID: 8094273372181733035}
-  cardFrontFrameImage: {fileID: 8094273372809781659}
-  cardBackFrameImage: {fileID: 8094273372988861516}
   gritImage: {fileID: 8094273371995474041}
   cardTopRibbonImage: {fileID: 8094273372149591800}
   cardBottomRibbonImage: {fileID: 8094273372691507976}
@@ -1756,6 +1759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cd02c17f52662a4598668cdd0a49dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targets: []
 --- !u!114 &8621105788416728871
 MonoBehaviour:
   m_ObjectHideFlags: 0
