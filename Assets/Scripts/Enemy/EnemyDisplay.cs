@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class EnemyDisplay : MonoBehaviour, IDamagable
 {
@@ -34,6 +35,14 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
     public Sprite debuff;
     public Sprite other;
 
+    Vector3 startPos;
+    public float shakeDuration;
+    public float moveAmt;
+
+    public float flashDuration;
+    Color startColor;
+    public Color endColor;
+
     private void OnEnable()
     {
         enemy.EnemyUIUpdate += UpdateUI;
@@ -61,6 +70,9 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
         Debug.Log(enemy.enemyName);
         enemy.SetUp();
         UpdateUI();
+
+        startPos = transform.position;
+        startColor = enemyImage.color;
     }
 
     private void UpdateUI()
@@ -87,16 +99,23 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
         //Debug.Log("Called OnDamage();");
         //Debug.Log("Damage = " + damage);
         //Debug.Log("Color = " + color.ToString());
-        if(damage == 0)
+
+        if (damage == 0)
         {
             color = DmgNumbers.noDamageColor;
         }
+
         GameObject dmg = Instantiate(damageNumber, gameObject.transform.position, Quaternion.identity);
         dmg.transform.SetParent(gameObject.transform.parent.transform);
         DmgNumbers dmgNum = dmg.GetComponent<DmgNumbers>();
         dmgNum.WriteDamage(damage, color);
         dmgNum.Launch();
-        
+
+        if (color == DmgNumbers.damageColor)
+        {
+            StartCoroutine(PokemonShake());
+            StartCoroutine(FlashRed());
+        }
     }
 
     void ReadEnemyFromAsset()
@@ -213,6 +232,39 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
     public void TakeDamage(int damageTaken)
     {
         enemy.TakeDamage(damageTaken);
+    }
+
+    IEnumerator PokemonShake()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            // shake up and down like in pokeman
+            transform.DOMoveY(startPos.y + moveAmt, shakeDuration);
+
+            yield return new WaitForSeconds(shakeDuration);
+
+            transform.DOMoveY(startPos.y - moveAmt, shakeDuration);
+
+            yield return new WaitForSeconds(shakeDuration);
+
+            transform.DOMoveY(startPos.y, shakeDuration);
+
+            yield return new WaitForSeconds(shakeDuration);
+        }
+    }
+
+    IEnumerator FlashRed()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            enemyImage.DOColor(endColor, shakeDuration);
+
+            yield return new WaitForSeconds(shakeDuration);
+
+            enemyImage.DOColor(startColor, shakeDuration);
+
+            yield return new WaitForSeconds(shakeDuration);
+        }
     }
 }
 

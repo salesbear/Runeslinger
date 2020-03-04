@@ -29,8 +29,6 @@ public struct Statuses
 [CreateAssetMenu(fileName = "NewEnemy", menuName = "Enemy")]
 public class Enemy : ScriptableObject, IDamagable
 {
-    
-
     //TODO: Actions to alert EnemyDisplay that the Enemy's Stats have changed
     public event Action EnemyUIUpdate = delegate { };
     public event Action Die = delegate { };
@@ -55,8 +53,6 @@ public class Enemy : ScriptableObject, IDamagable
     public int startingStep; //usually should be 0
     [HideInInspector] public int behaviorStep;    
     public PreparedAction[] behavior = new PreparedAction[5];
-
-    
 
     public void SetUp()
     {
@@ -166,4 +162,5 @@ public class Enemy : ScriptableObject, IDamagable
     {
         currentShield = 0;
     }
+
 }
