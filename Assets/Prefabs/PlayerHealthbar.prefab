@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2773588588476193080}
   - component: {fileID: 1077864463224811650}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: accuracytext
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,14 +27,14 @@ RectTransform:
   m_GameObject: {fileID: 696297961166127215}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.021186441, y: 0.021186445, z: 1}
+  m_LocalScale: {x: 0.021186441, y: 0.021186449, z: 1}
   m_Children: []
   m_Father: {fileID: 613702698949352705}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.09, y: -0.47455978}
+  m_AnchoredPosition: {x: 0.09003115, y: -0.47454834}
   m_SizeDelta: {x: 69.6, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2773588588476193080
@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 2589620289585999459}
   - component: {fileID: 3219100220756348159}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: grittext
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -861,8 +861,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.5790262, y: -0.17399216}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0.04600525, y: -0.17298889}
+  m_SizeDelta: {x: 57.808, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2589620289585999459
 CanvasRenderer:
@@ -959,7 +959,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 142.07504, w: 0}
+  m_margin: {x: 0, y: 0, z: -0.1185609, w: 0}
   m_textInfo:
     textComponent: {fileID: 3219100220756348159}
     characterCount: 3

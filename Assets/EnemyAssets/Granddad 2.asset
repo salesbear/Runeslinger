@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12d4910493323c499eb822ea33f7368, type: 3}
   m_Name: Granddad 2
   m_EditorClassIdentifier: 
-  enemyName: Grand Dad
+  enemyName: Bam Bam
   maxHP: 12
   currentHP: 12
   startingShield: 0
@@ -20,7 +20,7 @@ MonoBehaviour:
   hiRollDmg: 4
   loRollDmg: 2
   shielding: 0
-  enemySprite: {fileID: 21300000, guid: 472b7eda622f6774fb9ac947c8845e6f, type: 3}
+  enemySprite: {fileID: 21300000, guid: 33e60e227dce5ab42b3296c7e7476f08, type: 3}
   startingStep: 0
   behaviorStep: 0
   behavior: 01000000
