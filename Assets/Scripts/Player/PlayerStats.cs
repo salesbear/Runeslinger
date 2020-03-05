@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PlayerStats : MonoBehaviour, IDamagable
 {
     [SerializeField] GameObject injuredSound;
+    [SerializeField] GameObject loseSound;
     public static PlayerStats instance;
     //our deck container which holds our starting deck, should be in a child object
     private DeckContainer theDeck;
@@ -236,6 +237,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
         {
             Debug.Log("Health less than 0");
             //change state to loss
+            Instantiate(loseSound);
             combatController.ChangeState(CombatState.Loss);
         }
         //if we healed over our max health, change health so it's back to max health

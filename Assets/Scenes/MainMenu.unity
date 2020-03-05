@@ -1823,6 +1823,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3039570352083544478, guid: a691e2969162a3b42842ca0498803f38,
         type: 3}
+    - target: {fileID: 3103647133354372050, guid: 2b5a1dfddc0f93747a34bdf14008017c,
+        type: 3}
+      propertyPath: loseSound
+      value: 
+      objectReference: {fileID: 6030390977405055719, guid: faa9d6fe7cd90ea4da2186bf712b926e,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 9132568816103234638, guid: 2b5a1dfddc0f93747a34bdf14008017c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2b5a1dfddc0f93747a34bdf14008017c, type: 3}
@@ -3649,7 +3655,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: scottstoked_yeehaw by shawshank73 is licensed under CC by 3.0
+  m_text: "scottstoked_yeehaw by shawshank73 is licensed under CC by 3.0\nEdited Despicable
+    Me Like Minion Sounds by yummie\nis licensed under CC by 3.0\nEdited card placed
+    on table by filmfan87 \nis licensed under CC by 3.0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ea37bd02d8fc9f44daf167aa55fb3225, type: 2}
   m_sharedMaterial: {fileID: 8780480712315463529, guid: ea37bd02d8fc9f44daf167aa55fb3225,
@@ -3695,7 +3703,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 62
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -3719,12 +3727,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1824618336}
-    characterCount: 61
+    characterCount: 209
     spriteCount: 0
-    spaceCount: 8
-    wordCount: 11
+    spaceCount: 36
+    wordCount: 40
     linkCount: 0
-    lineCount: 1
+    lineCount: 5
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
