@@ -130,7 +130,7 @@ public class CombatUIController : MonoBehaviour
         // screen fade dark
         defeatText.SetActive(true);
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
 
         //set death panel active
         panels[1].SetActive(true);
