@@ -3267,6 +3267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b927fc5066e8e4fa96a1312e782ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winSound: {fileID: 6030390977405055719, guid: e6a5502e69b553e4e91bf4272375f0bb,
+    type: 3}
   panels:
   - {fileID: 1823797754}
   - {fileID: 2131119240}

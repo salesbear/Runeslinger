@@ -8,6 +8,7 @@ using System;
 public class CombatUIController : MonoBehaviour
 {
     //first panel is root, second is loss, 3rd is victory, 4th is reward screen, 5th is view deck
+    [SerializeField] GameObject winSound;
     [SerializeField] GameObject[] panels;
     PauseUIController pauseController;
     CombatController combatController;
@@ -93,6 +94,7 @@ public class CombatUIController : MonoBehaviour
 
         // feedback here
         winText.SetActive(true);
+        Instantiate(winSound);
 
         yield return new WaitForSeconds(3);
 
