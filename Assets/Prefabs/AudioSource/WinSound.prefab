@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7914767044445196077}
   - component: {fileID: 394927443305672680}
-  - component: {fileID: 644076861105432810}
+  - component: {fileID: 3820261250515724087}
   m_Layer: 0
   m_Name: WinSound
   m_TagString: Untagged
@@ -128,7 +128,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &644076861105432810
+--- !u!114 &3820261250515724087
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6030390977405055719}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fea3d6cf58022ba4fb49b58e5095b302, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d1b1b9cdfb4e05419b85ed5586fa8c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroy: 200
+  destroyTimer: 5

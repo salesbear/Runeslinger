@@ -96,7 +96,7 @@ public class CombatUIController : MonoBehaviour
         winText.SetActive(true);
         Instantiate(winSound);
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
 
         // disable combat panel
         DisablePanels();
