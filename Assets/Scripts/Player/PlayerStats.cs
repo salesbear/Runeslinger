@@ -106,7 +106,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
                     combatController.playerTurnEvent.Invoke();
                     break;
                 default:
-                    Debug.Log("PlayerStats- CallStatus() error");
+                    //Debug.Log("PlayerStats- CallStatus() error");
                     break;
             }
         }
@@ -214,7 +214,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
     {
         int tmpHealth = playerClass.currentHealth;
 
-        Debug.Log("Take Damage");
+        //Debug.Log("Take Damage");
         if (damageTaken > playerClass.shield)
         {
             playerClass.currentHealth -= (damageTaken - playerClass.shield);
@@ -235,10 +235,11 @@ public class PlayerStats : MonoBehaviour, IDamagable
         //if we die, change state to loss state because we lost
         if (playerClass.currentHealth <= 0)
         {
-            Debug.Log("Health less than 0");
+            //Debug.Log("Health less than 0");
             //change state to loss
             Instantiate(loseSound);
             combatController.ChangeState(CombatState.Loss);
+            SaveController.DeleteSaveStatic();
         }
         //if we healed over our max health, change health so it's back to max health
         else if (playerClass.currentHealth >= playerClass.maxHealth)
@@ -277,7 +278,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
         //okay this one is probably actually necessary
         if (state == CombatState.RemoveCard)
         {
-            Debug.Log("Won the fight - PlayerStats");
+            //Debug.Log("Won the fight - PlayerStats");
             ClearStatus();
         }
     }

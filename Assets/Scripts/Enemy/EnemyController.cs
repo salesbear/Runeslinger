@@ -65,7 +65,7 @@ public class EnemyController : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Not Implemented or doing nothing");
+                    //Debug.Log("Not Implemented or doing nothing");
                 }
                 //go to next action in the pool
                 enemyDisplay.enemy.StepBehavior();

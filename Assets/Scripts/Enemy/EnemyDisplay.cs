@@ -67,7 +67,7 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
     //use this to initialize variables
     void Start()
     {
-        Debug.Log(enemy.enemyName);
+        //Debug.Log(enemy.enemyName);
         enemy.SetUp();
         UpdateUI();
 
@@ -120,7 +120,7 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
         }
         else
         {
-            Debug.Log("Enemy Display is null");
+            //Debug.Log("Enemy Display is null");
         }
         
     }
@@ -149,12 +149,12 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
             }
             else
             {
-                Debug.Log("The shield is null");
+                //Debug.Log("The shield is null");
             }
 
             if (enemy == null)
             {
-                Debug.Log("enemy is null");
+                //Debug.Log("enemy is null");
             }
 
             enemyImage.sprite = enemy.enemySprite;
@@ -169,7 +169,7 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
                 }
                 else
                 {
-                    Debug.Log("rolledDMG is null");
+                    //Debug.Log("rolledDMG is null");
                 }
             }
             else if (enemy.preparedAction == PreparedAction.Attack)
@@ -182,7 +182,7 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
                 }
                 else
                 {
-                    Debug.Log("rolledDMG is null");
+                    //Debug.Log("rolledDMG is null");
                 }
             }
             else if (enemy.preparedAction == PreparedAction.Defend)
@@ -194,7 +194,7 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
                 }
                 else
                 {
-                    Debug.Log("RolledDMG is null");
+                    //Debug.Log("RolledDMG is null");
                 }
             }
             else if (enemy.preparedAction == PreparedAction.Buff)
@@ -206,7 +206,7 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
                 }
                 else
                 {
-                    Debug.Log("RolledDMG is null");
+                    //Debug.Log("RolledDMG is null");
                 }
             }
             else if (enemy.preparedAction == PreparedAction.Debuff)
@@ -218,7 +218,7 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
                 }
                 else
                 {
-                    Debug.Log("RolledDMG is null");
+                    //Debug.Log("RolledDMG is null");
                 }
             }
             else if (enemy.preparedAction == PreparedAction.Other)
@@ -230,7 +230,7 @@ public class EnemyDisplay : MonoBehaviour, IDamagable
                 }
                 else
                 {
-                    Debug.Log("RolledDMG is null");
+                    //Debug.Log("RolledDMG is null");
                 }
             }
         }

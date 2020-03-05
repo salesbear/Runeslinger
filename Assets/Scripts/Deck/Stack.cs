@@ -68,11 +68,11 @@ public class Stack : MonoBehaviour
         // Checks deck size
         if(DiscardPile.transform.childCount < 12)
         {
-            Debug.Log("Not Enough Cards");
+            //Debug.Log("Not Enough Cards");
         }
         if(DiscardPile.transform.childCount > 12)
         {
-            Debug.Log("Too Many Cards");
+            //Debug.Log("Too Many Cards");
         }
         //initialize card placements
         for (int i = 0; i < cardPlacements.Length; i++)
@@ -189,7 +189,7 @@ public class Stack : MonoBehaviour
     public void ToggleHandLayout(bool setting)
     {
         HandLayout.enabled = setting;
-        Debug.Log("Hand Layout Set to " + setting);
+        //Debug.Log("Hand Layout Set to " + setting);
     }
 
     /// <summary>
