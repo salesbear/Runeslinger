@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12d4910493323c499eb822ea33f7368, type: 3}
   m_Name: Granddad 2
   m_EditorClassIdentifier: 
-  enemyName: Bam Bam
+  enemyName: Bang Bang
   maxHP: 12
   currentHP: 12
   startingShield: 0
