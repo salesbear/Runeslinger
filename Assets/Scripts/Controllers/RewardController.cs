@@ -92,13 +92,13 @@ public class RewardController : MonoBehaviour
 
     void GenerateReward()
     {
-        Debug.Log("Generate Reward");
+        //Debug.Log("Generate Reward");
         modalPanel.panelsToAnimate.Clear();
         int spawnCount = 0;
         //CardGenerator.instance.LoadCards();
         for (int i = 0; i < rewardSpawns.Length; i++)
         {
-            Debug.Log("Loop: " + i);
+            //Debug.Log("Loop: " + i);
             //for some reason this ran 3 times during testing, so we're just going to check to make sure we aren't spawning duplicates
             if (!rewardSpawns[i].hasCard)
             {
@@ -175,7 +175,7 @@ public class RewardController : MonoBehaviour
             }
         }
         //show the cards
-        Debug.Log("Animate rewards in");
+        //Debug.Log("Animate rewards in");
         IEnumerator rewardCoroutine = rewardPanel.AnimateIn();
         rewardPanel.StartCoroutine(rewardCoroutine);
         //update pity timers

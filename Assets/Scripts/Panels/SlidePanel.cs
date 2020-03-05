@@ -31,7 +31,7 @@ public class SlidePanel : MonoBehaviour, IPanel
         //StopAllCoroutines();
         //set inScene at the beginning to avoid bugs with having multiple panels on screen
         inScene = true;
-        Debug.Log("Animate In called on SlidePanel");
+        //Debug.Log("Animate In called on SlidePanel");
         //Play Animation
         //I'm thinking it probably slides up from off screen or fades in or something
         while (currentLerpTime < lerpTime)
@@ -54,7 +54,7 @@ public class SlidePanel : MonoBehaviour, IPanel
         //StopAllCoroutines();
         //set inScene at the beginning to avoid bugs with having multiple panels on screen
         inScene = false;
-        Debug.Log("Animate Out called in Slide Panel");
+        //Debug.Log("Animate Out called in Slide Panel");
         //play animation to remove self from scene, maybe slide off screen?
         while (currentLerpTime < lerpTime)
         {
